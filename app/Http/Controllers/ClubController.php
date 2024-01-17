@@ -2,22 +2,37 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Club;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 
 class ClubController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
-    public function index()
+    public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        //
+        return view('club.index', ['clubs' => Club::all()]);
+    }
+
+    /**
+     * Récupération des données du club pour les affichées sur la page d'accueil (contact)
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     */
+    public function main(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    {
+        $clubs = Club::all();
+        return view('layouts.main', ['clubs' => $clubs]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public
+    function create()
     {
         //
     }

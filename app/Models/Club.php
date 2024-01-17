@@ -20,6 +20,7 @@ class Club extends Model
         'longitude',
         'phone',
         'email',
+        'social_network_link',
         'description'
     ];
 }

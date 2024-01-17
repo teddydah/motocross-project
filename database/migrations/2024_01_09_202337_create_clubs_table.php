@@ -20,6 +20,7 @@ return new class extends Migration {
             $table->float('longitude')->nullable();
             $table->string('phone', 10);
             $table->string('email')->unique();
+            $table->string('social_network_link');
             $table->text('description')->nullable();
             $table->timestamps();
         });
