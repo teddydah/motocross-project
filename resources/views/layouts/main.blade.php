@@ -34,8 +34,6 @@
 </head>
 <body>
 
-@include('includes.topbar')
-
 <header>
     @include('includes.header')
 </header>
