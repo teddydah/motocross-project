@@ -20,7 +20,7 @@
 
     <!-- Vendor CSS Files -->
     <link href="vendor/animate.css/animate.min.css" rel="stylesheet">
-    <!--<link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">-->
+    <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
     <link href="vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
     <link href="vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
     <link href="vendor/remixicon/remixicon.css" rel="stylesheet">
