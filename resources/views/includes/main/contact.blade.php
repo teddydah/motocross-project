@@ -8,31 +8,41 @@
     </div>
 
     <div class="map">
-        <iframe style="border:0; width: 100%; height: 350px;"
-                src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
-                frameborder="0" allowfullscreen></iframe>
+        <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d742855.1435220223!2d0.6976935232065575!3d43.33983634445177!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12aecfc42536a145%3A0xdde4829e36d4eed4!2sAuribail%20mx%20track!5e0!3m2!1sfr!2sfr!4v1705523055117!5m2!1sfr!2sfr"
+            width="100%" height="350" style="border:0;" allowfullscreen="" loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
 
     <div class="container">
 
         <div class="info-wrap mt-5">
             <div class="row">
-                <div class="col-lg-4 info">
-                    <i class="ri-map-pin-line"></i>
-                    <h4>Adresse :</h4>
+                <div class="col-lg-3 info">
+                    <i class="ri-map-pin-fill"></i>
+                    <h4>Adresse</h4>
                     <p>Moto-Club Auribail<br>Mairie de Auribail<br>31190 Auribail</p>
                 </div>
 
-                <div class="col-lg-4 info mt-4 mt-lg-0">
-                    <i class="ri-mail-line"></i>
-                    <h4>E-mail :</h4>
+                <div class="col-lg-3 info mt-4 mt-lg-0">
+                    <i class="ri-mail-fill"></i>
+                    <h4>E-mail</h4>
                     <p>daniel.raymond09@orange.fr<br>sylvain.assie@gmail.com</p>
                 </div>
 
-                <div class="col-lg-4 info mt-4 mt-lg-0">
-                    <i class="ri-phone-line"></i>
-                    <h4>Téléphone :</h4>
+                <div class="col-lg-3 info mt-4 mt-lg-0">
+                    <i class="ri-phone-fill"></i>
+                    <h4>Téléphone</h4>
                     <p>05 61 50 71 61<br>06 77 17 71 45</p>
+                </div>
+
+                <div class="col-lg-3 info mt-4 mt-lg-0">
+                    <i class="ri-facebook-fill"></i>
+                    <h4>Facebook</h4>
+                    <p>
+                        <a href="https://www.facebook.com/auribail.motosport/"
+                           title="https://www.facebook.com/auribail.motosport/">auribail.motosport</a>
+                    </p>
                 </div>
             </div>
         </div>

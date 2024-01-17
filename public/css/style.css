@@ -1,23 +1,9 @@
-/**
-* Template Name: MyBiz
-* Updated: Jan 09 2024 with Bootstrap v5.3.2
-* Template URL: https://bootstrapmade.com/mybiz-free-business-bootstrap-theme/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
-
 /*--------------------------------------------------------------
-# Variables
+# Imports
 --------------------------------------------------------------*/
 
-:root {
-    --color-1: #004C9A;
-    --color-2: #FEEC04;
-    --color-3: #fff;
-
-    --color-hsl-1: hsl(210, 100%, 30%);
-    --color-hsl-2: hsl(210, 100%, 40%);
-}
+@import "abstracts/variables.css";
+@import "layout/contact.css";
 
 /*--------------------------------------------------------------
 # General
@@ -118,7 +104,7 @@ h6 {
 }
 
 #topbar .social-links a {
-    color: #62787d;
+    color: var(--color-4);
     padding: 4px 12px;
     display: inline-block;
     line-height: 1px;
@@ -1174,141 +1160,6 @@ section {
 @media (min-width: 992px) {
     .testimonials .testimonial-item p {
         width: 80%;
-    }
-}
-
-/*--------------------------------------------------------------
-# Contact
---------------------------------------------------------------*/
-.contact .info-wrap {
-    box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
-    padding: 30px;
-}
-
-.contact .info {
-    background: var(--color-3);
-}
-
-.contact .info i {
-    font-size: 24px;
-    color: #01b1d7;
-    float: left;
-    width: 48px;
-    height: 48px;
-    background: #e2faff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50px;
-    transition: all 0.3s ease-in-out;
-}
-
-.contact .info h4 {
-    padding: 0 0 0 60px;
-    font-size: 22px;
-    font-weight: 600;
-    margin-bottom: 5px;
-    color: #354144;
-}
-
-.contact .info p {
-    padding: 0 0 0 60px;
-    margin-bottom: 0;
-    font-size: 14px;
-    color: #62787d;
-}
-
-.contact .info:hover i {
-    background: #01b1d7;
-    color: var(--color-3);
-}
-
-.contact .php-email-form {
-    width: 100%;
-    box-shadow: 0 0 24px 0 rgba(0, 0, 0, 0.12);
-    padding: 30px;
-    background: var(--color-3);
-}
-
-.contact .php-email-form .form-group {
-    padding-bottom: 8px;
-}
-
-.contact .php-email-form .error-message {
-    display: none;
-    color: var(--color-3);
-    background: #ed3c0d;
-    text-align: left;
-    padding: 15px;
-}
-
-.contact .php-email-form .error-message br + br {
-    margin-top: 25px;
-}
-
-.contact .php-email-form .sent-message {
-    display: none;
-    color: var(--color-3);
-    background: #18d26e;
-    text-align: center;
-    padding: 15px;
-    font-weight: 600;
-}
-
-.contact .php-email-form .loading {
-    display: none;
-    background: var(--color-3);
-    text-align: center;
-    padding: 15px;
-}
-
-.contact .php-email-form .loading:before {
-    content: "";
-    display: inline-block;
-    border-radius: 50%;
-    width: 24px;
-    height: 24px;
-    margin: 0 10px -6px 0;
-    border: 3px solid #18d26e;
-    border-top-color: #eee;
-    animation: animate-loading 1s linear infinite;
-}
-
-.contact .php-email-form input,
-.contact .php-email-form textarea {
-    border-radius: 0;
-    box-shadow: none;
-    font-size: 14px;
-}
-
-.contact .php-email-form input {
-    height: 44px;
-}
-
-.contact .php-email-form textarea {
-    padding: 10px 12px;
-}
-
-.contact .php-email-form button[type=submit] {
-    background: var(--color-hsl-1);
-    border: 0;
-    padding: 10px 24px;
-    color: var(--color-3);
-    transition: 0.4s;
-    border-radius: 4px;
-}
-
-.contact .php-email-form button[type=submit]:hover {
-    background: var(--color-hsl-2);
-}
-
-@keyframes animate-loading {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
     }
 }
 
