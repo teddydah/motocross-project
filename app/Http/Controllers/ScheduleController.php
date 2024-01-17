@@ -11,29 +11,18 @@ use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
-    /**
-     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
-     */
-    public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function index()
     {
-        return view('schedules.index', [
-            'schedules' => Schedule::all()
-        ]);
+        $schedule = Schedule::all();
+        return view('schedule.index', ['schedule' => $schedule]);
     }
 
-    /**
-     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
-     */
-    public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function create()
     {
-        return view('schedules.create');
+        return view('schedule.create');
     }
 
-    /**
-     * @param Request $request
-     * @return RedirectResponse
-     */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $request->validate([
             'training_id' => 'required|exists:trainings,id',
@@ -41,36 +30,26 @@ class ScheduleController extends Controller
             'end_date' => 'required|date|after:start_date',
         ]);
 
-        Schedule::create($request->all());
+        Schedule::create([
+            'training_id' => $request->training_id,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+        ]);
 
-        // TODO: message
-        return redirect()->route('schedules.index')->with('success', 'Schedule created successfully.');
+        return redirect()->route('schedule.index');
     }
 
-    /**
-     * @param Schedule $schedule
-     * @return void
-     */
-    public function show(Schedule $schedule)
+    public function show($id)
     {
-        // TODO
     }
 
-    /**
-     * @param Schedule $schedule
-     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
-     */
-    public function edit(Schedule $schedule): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function edit($id)
     {
-        return view('schedules.edit', compact('schedule'));
+        $schedule = schedule::find($id);
+        return view('schedule.edit', ['schedule' => $schedule]);
     }
 
-    /**
-     * @param Request $request
-     * @param Schedule $schedule
-     * @return RedirectResponse
-     */
-    public function update(Request $request, Schedule $schedule): RedirectResponse
+    public function update(Request $request, $id)
     {
         $request->validate([
             'training_id' => 'required|exists:trainings,id',
@@ -78,21 +57,21 @@ class ScheduleController extends Controller
             'end_date' => 'required|date|after:start_date',
         ]);
 
-        $schedule->update($request->all());
+        $schedule = Schedule::find($id);
 
-        // TODO: message
-        return redirect()->route('schedules.index')->with('success', 'Schedule updated successfully.');
+        $schedule->update([
+            'training_id' => $request->training_id,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+        ]);
+
+        return redirect()->route('schedule.index');
     }
 
-    /**
-     * @param Schedule $schedule
-     * @return RedirectResponse
-     */
-    public function destroy(Schedule $schedule): RedirectResponse
+    public function destroy($id)
     {
+        $schedule = Schedule::find($id);
         $schedule->delete();
-
-        // TODO: message
-        return redirect()->route('schedules.index')->with('success', 'Schedule deleted successfully.');
+        return redirect()->route('schedule.index');
     }
 }

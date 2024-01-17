@@ -26,6 +26,7 @@ Route::resource('schedules', ScheduleController::class);
 // Booking
 Route::resource('bookings', BookingController::class);
 
+//training
 Route::get(
     '/training',
     [TrainingController::class, 'index']
@@ -55,3 +56,35 @@ Route::delete(
     '/delete-training/{id}',
     [TrainingController::class, 'destroy']
 )->name('training.destroy');
+
+//schedule
+
+Route::get(
+    '/schedule',
+    [ScheduleController::class, 'index']
+)->name('schedule.index');
+
+Route::get(
+    '/create-schedule',
+    [ScheduleController::class, 'create']
+)->name('schedule.create');
+
+Route::post(
+    '/create-schedule',
+    [ScheduleController::class, 'store']
+)->name('schedule.store');
+
+Route::get(
+    '/edit-schedule/{id}',
+    [ScheduleController::class, 'edit']
+)->name('schedule.edit');
+
+Route::put(
+    '/edit-schedule/{id}',
+    [ScheduleController::class, 'update']
+)->name('schedule.update');
+
+Route::delete(
+    '/delete-schedule/{id}',
+    [ScheduleController::class, 'destroy']
+)->name('schedule.destroy');
