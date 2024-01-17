@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ScheduleController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,6 @@ Route::get('/', function () {
 
 // Schedule
 Route::resource('schedules', ScheduleController::class);
+
+// Booking
+Route::resource('bookings', BookingController::class);
