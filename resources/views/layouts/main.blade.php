@@ -18,6 +18,9 @@
         href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
         rel="stylesheet">
 
+    <!-- Font Awesome CDN-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
     <!-- Vendor CSS Files -->
     <link href="vendor/animate.css/animate.min.css" rel="stylesheet">
     <link href="vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
@@ -73,9 +76,9 @@
 <script src="vendor/glightbox/js/glightbox.min.js"></script>
 <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
 <script src="vendor/swiper/swiper-bundle.min.js"></script>
-<script src="vendor/php-email-form/validate.js"></script>
+<!--<script src="vendor/php-email-form/validate.js"></script>-->
 
 <!-- Template Main JS File -->
-<script src="js/main.js"></script>
+<script src="js/main.js" type="module"></script>
 </body>
 </html>

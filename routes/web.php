@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ClubController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TrainingController;
 use Illuminate\Support\Facades\Route;
@@ -18,11 +19,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('layouts/main');
-});
+    return view('layouts.main');
+})->name('main');
 
 // Main
-Route::get('/', [ClubController::class, 'main'])->name('contact');
+Route::get('/', [ClubController::class, 'main']);
 
 // Club
 Route::resource('club', ClubController::class);
@@ -95,3 +96,11 @@ Route::delete(
     '/delete-schedule/{id}',
     [ScheduleController::class, 'destroy']
 )->name('schedule.destroy');
+
+// Posts (formulaire de contact)
+Route::get('/', [PostController::class, 'create'])->name('post.create');
+Route::post('/', [PostController::class, 'store'])->name('post.store');
+
+Route::get('/posts', [PostController::class, 'index'])->name('post.index');
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('post.destroy');

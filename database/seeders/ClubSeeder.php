@@ -19,7 +19,7 @@ class ClubSeeder extends Seeder
             'city' => 'Auribail',
             'latitude' => NULL,
             'longitude' => NULL,
-            'phone' => trim('05 61 50 71 61'),
+            'phone' => '0561507161',
             'email' => 'daniel.raymond09@orange.fr',
             'social_network_link' => 'https://www.facebook.com/auribail.motosport/',
             'description' => 'Auribail Mx Park'

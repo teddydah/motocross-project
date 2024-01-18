@@ -48,7 +48,7 @@
             </div>
         @endforeach
 
-        <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+        <form action="{{route('post.store')}}" method="post" role="form" class="php-email-form">
             @csrf
             @method('POST')
             <div class="row">
@@ -71,10 +71,21 @@
                 <div class="error-message"></div>
                 <div class="sent-message">Votre message a bien été envoyé. Merci!</div>
             </div>
+
+            @if ($message = Session::get('success'))
+                <div class="alert alert-success alert-block d-flex justify-content-between align-items-baseline">
+                    <strong>{{ $message }}</strong>
+                    <i class="close fa-solid fa-xmark" data-dismiss="alert" title="Fermer la fenêtre"></i>
+                </div>
+            @elseif ($message = Session::get('error'))
+                <div class="alert alert-danger alert-block">
+                    <strong>{{ $message }}</strong>
+                    <i class="close fa-solid fa-xmark" data-dismiss="alert" title="Fermer la fenêtre"></i>
+                </div>
+            @endif
             <div class="text-center">
                 <button class="button" type="submit">Envoyer</button>
             </div>
         </form>
-
     </div>
 </section>
