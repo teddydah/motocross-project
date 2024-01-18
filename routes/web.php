@@ -18,12 +18,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('layouts.main');
-})->name('main');
-
-// Main
-Route::get('/', [ClubController::class, 'main']);
+// Home
+Route::get('/', [ClubController::class, 'home']);
 
 // Booking
 Route::resource('bookings', BookingController::class);
@@ -102,12 +98,12 @@ Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('post.d
 // Clubs
 
 Route::get('/clubs',
-[ClubController::class, 'index'
-])->name('clubs.index');
+    [ClubController::class, 'index'
+    ])->name('clubs.index');
 
 Route::get('/clubs-create',
-[ClubController::class, 'create'
-])->name('clubs.create');
+    [ClubController::class, 'create'
+    ])->name('clubs.create');
 
 Route::post(
     '/clubs-create',

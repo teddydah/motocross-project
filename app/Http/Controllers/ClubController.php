@@ -22,10 +22,10 @@ class ClubController extends Controller
      * Récupération des données du club pour les affichées sur la page d'accueil (contact)
      * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
-    public function main(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function home(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         $clubs = Club::all();
-        return view('layouts.main', ['clubs' => $clubs]);
+        return view('home', ['clubs' => $clubs]);
     }
 
     /**
@@ -67,7 +67,7 @@ class ClubController extends Controller
         return redirect()->route('clubs.index')->with('success', 'Club added successfully');
     }
 
-  
+
     public function show(Club $club)
     {
         return view('clubs.show', compact('club'));

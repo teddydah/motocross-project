@@ -25,7 +25,7 @@ class PostController extends Controller
      */
     public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('layouts.main', ['clubs' => Club::all()]);
+        return view('home', ['clubs' => Club::all()]);
     }
 
     /**
