@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BookingController;
+use App\Http\Controllers\ClubController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TrainingController;
 use Illuminate\Support\Facades\Route;
@@ -19,6 +20,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('layouts/main');
 });
+
+// Main
+Route::get('/', [ClubController::class, 'main'])->name('contact');
+
+// Club
+Route::resource('club', ClubController::class);
 
 // Schedule
 Route::resource('schedules', ScheduleController::class);

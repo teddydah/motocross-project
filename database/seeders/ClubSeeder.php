@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -20,10 +19,10 @@ class ClubSeeder extends Seeder
             'city' => 'Auribail',
             'latitude' => NULL,
             'longitude' => NULL,
-            'phone' => '05 61 50 71 61',
+            'phone' => trim('05 61 50 71 61'),
             'email' => 'daniel.raymond09@orange.fr',
             'social_network_link' => 'https://www.facebook.com/auribail.motosport/',
-            'description' => NULL
+            'description' => 'Auribail Mx Park'
         ]);
     }
 }
