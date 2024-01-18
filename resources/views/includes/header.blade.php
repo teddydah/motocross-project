@@ -3,8 +3,8 @@
 
         <div class="logo">
             <h1>
-                <a href="index.html"><img src="img/logo-motocross.png" alt="" class="img-fluid"></a>
-                <a href="index.html"><span>Auribail</span> <span>Mx Park</span></a>
+                <a href="{{url('/')}}"><img src="img/motocross.png" alt="Logo" class="img-fluid"></a>
+                <a href="{{url('/')}}"><span>Auribail</span> <span>Mx Park</span></a>
             </h1>
         </div>
         <nav id="navbar" class="navbar">

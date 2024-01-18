@@ -7,11 +7,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta content="" name="description">
     <meta content="" name="keywords">
-    <title>Auribail Mx Park</title>
+    <title>@yield('title')</title>
+    <!--TODO: Auribail Mx Park-->
 
-    <!-- Favicons -->
-    <link href="img/logo-motocross.png" rel="icon">
-    <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+    <!-- Favicon -->
+    <link href="img/motocross.png" rel="icon">
 
     <!-- Google Fonts -->
     <link
@@ -44,23 +44,7 @@
 @include('includes.hero')
 
 <main id="main">
-    @yield('content')
-
-    @include('includes.main.about')
-
-    @include('includes.main.about_list')
-
-    @include('includes.main.counts')
-
-    @include('includes.main.services')
-
-    @include('includes.main.portfolio')
-
-    @include('includes.main.team')
-
-    @include('includes.main.testimonials')
-
-    @include('includes.main.contact')
+    @yield('main')
 </main>
 
 <footer>
@@ -76,7 +60,7 @@
 <script src="vendor/glightbox/js/glightbox.min.js"></script>
 <script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
 <script src="vendor/swiper/swiper-bundle.min.js"></script>
-<!--<script src="vendor/php-email-form/validate.js"></script>-->
+<script src="vendor/php-email-form/validate.js"></script>
 
 <!-- Template Main JS File -->
 <script src="js/main.js" type="module"></script>
