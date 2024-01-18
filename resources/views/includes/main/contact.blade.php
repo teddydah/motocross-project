@@ -48,7 +48,7 @@
             </div>
         @endforeach
 
-        <form action="{{route('post.store')}}" method="post" role="form" class="php-email-form">
+        <form action="{{route('post.store')}}" method="post" role="form" class="php-email-form" id="form-contact">
             @csrf
             @method('POST')
             <div class="row">
@@ -61,28 +61,19 @@
                 </div>
             </div>
             <div class="form-group mt-3">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Sujet" required>
+                <select class="form-select rounded-0" name="subject" id="subject" required>
+                    <option selected>-- Sélectionnez un motif --</option>
+                    <option value="booking">Réservations</option>
+                    <option value="training">Entraînements</option>
+                    <option value="account">Gestion de votre compte</option>
+                    <option value="info">Demande d'informations</option>
+                    <option value="other">Autre demande</option>
+                </select>
             </div>
-            <div class="form-group mt-3">
+            <div class="form-group mt-3 mb-3">
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
             </div>
-            <div class="my-3">
-                <div class="loading">Loading</div>
-                <div class="error-message"></div>
-                <div class="sent-message">Votre message a bien été envoyé. Merci!</div>
-            </div>
-
-            @if ($message = Session::get('success'))
-                <div class="alert alert-success alert-block d-flex justify-content-between align-items-baseline">
-                    <strong>{{ $message }}</strong>
-                    <i class="close fa-solid fa-xmark" data-dismiss="alert" title="Fermer la fenêtre"></i>
-                </div>
-            @elseif ($message = Session::get('error'))
-                <div class="alert alert-danger alert-block">
-                    <strong>{{ $message }}</strong>
-                    <i class="close fa-solid fa-xmark" data-dismiss="alert" title="Fermer la fenêtre"></i>
-                </div>
-            @endif
+            @include('includes.alert')
             <div class="text-center">
                 <button class="button" type="submit">Envoyer</button>
             </div>

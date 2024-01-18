@@ -41,6 +41,15 @@ class PostController extends Controller
             'message' => 'required'
         ]);
 
+        if ($request->subject != 'booking' &&
+            $request->subject != 'training' &&
+            $request->subject != 'account' &&
+            $request->subject != 'info' &&
+            $request->subject != 'other') {
+            return redirect()->route('post.create')
+                ->with('error', 'Vous devez sélectionner un motif parmi ceux proposés dans la liste.');
+        }
+
         Post::create($request->all());
 
         return redirect()->route('post.create')->with('success', 'Votre message a bien été envoyé !');

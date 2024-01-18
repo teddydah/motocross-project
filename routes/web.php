@@ -25,19 +25,10 @@ Route::get('/', function () {
 // Main
 Route::get('/', [ClubController::class, 'main']);
 
-// Club
-Route::resource('club', ClubController::class);
-
-// Schedule
-Route::resource('schedules', ScheduleController::class);
-
 // Booking
 Route::resource('bookings', BookingController::class);
 
-//Club
-Route::resource('clubs', ClubController::class);
-
-//training
+// Training
 Route::get(
     '/training',
     [TrainingController::class, 'index']
@@ -68,7 +59,7 @@ Route::delete(
     [TrainingController::class, 'destroy']
 )->name('training.destroy');
 
-//schedule
+// Schedule
 
 Route::get(
     '/schedule',
@@ -101,7 +92,7 @@ Route::delete(
 )->name('schedule.destroy');
 
 // Posts (formulaire de contact)
-Route::get('/', [PostController::class, 'create'])->name('post.create');
+Route::get('/#form-contact', [PostController::class, 'create'])->name('post.create');
 Route::post('/', [PostController::class, 'store'])->name('post.store');
 
 Route::get('/posts', [PostController::class, 'index'])->name('post.index');

@@ -14,7 +14,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('email');
-            $table->string('subject');
+            $table->enum('subject', ['booking', 'training', 'account', 'info', 'other']);
             $table->text('message');
             $table->timestamps();
         });
