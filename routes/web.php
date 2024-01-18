@@ -34,6 +34,9 @@ Route::resource('schedules', ScheduleController::class);
 // Booking
 Route::resource('bookings', BookingController::class);
 
+//Club
+Route::resource('clubs', ClubController::class);
+
 //training
 Route::get(
     '/training',
@@ -104,3 +107,33 @@ Route::post('/', [PostController::class, 'store'])->name('post.store');
 Route::get('/posts', [PostController::class, 'index'])->name('post.index');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('post.destroy');
+
+// Clubs
+
+Route::get('/clubs',
+[ClubController::class, 'index'
+])->name('clubs.index');
+
+Route::get('/clubs-create',
+[ClubController::class, 'create'
+])->name('clubs.create');
+
+Route::post(
+    '/clubs-create',
+    [ClubController::class, 'store']
+)->name('clubs.store');
+
+Route::get(
+    '/clubs-edit/{id}',
+    [ClubController::class, 'edit']
+)->name('clubs.edit');
+
+Route::put(
+    '/clubs-edit/{id}',
+    [ClubController::class, 'update']
+)->name('clubs.update');
+
+Route::delete(
+    '/clubs-destroy/{id}',
+    [ClubController::class, 'destroy']
+)->name('clubs.destroy');

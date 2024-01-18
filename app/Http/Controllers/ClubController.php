@@ -15,7 +15,7 @@ class ClubController extends Controller
      */
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('club.index', ['clubs' => Club::all()]);
+        return view('clubs.index', ['clubs' => Club::all()]);
     }
 
     /**
@@ -31,49 +31,78 @@ class ClubController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public
-    function create()
+    public function create()
     {
-        //
+        return view('clubs.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'zip_code' => 'required',
+            'city' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+            'phone' => 'required',
+            'email' => 'required|email',
+            'social_network_link' => 'nullable|url',
+            'description' => 'nullable',
+        ]);
+
+        Club::create([
+            'name' => $request->name,
+            'address' => $request->address,
+            'zip_code' => $request->zip_code,
+            'city' => $request->city,
+            'latitude' => $request->latitude,
+            'longitude' => $request->longitude,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'social_network_link' => $request->social_network_link,
+            'description' => $request->description,
+        ]);
+
+        return redirect()->route('clubs.index')->with('success', 'Club added successfully');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
+  
+    public function show(Club $club)
     {
-        //
+        return view('clubs.show', compact('club'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
+    public function edit($id)
     {
-        //
+        $club = Club::find($id);
+        return view('clubs.edit', ['club' => $club]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function update(Request $request, $id)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'zip_code' => 'required',
+            'city' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+            'phone' => 'required',
+            'email' => 'required|email',
+            'social_network_link' => 'nullable|url',
+            'description' => 'nullable',
+        ]);
+        $club = Club::find($id);
+        $club->update($validatedData);
+
+        return redirect()->route('clubs.index')->with('success', 'Club updated successfully');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function destroy($id)
     {
-        //
+        $clubs = Club::find($id);
+        $clubs->delete();
+        return redirect()->route('clubs.index');
     }
 }
