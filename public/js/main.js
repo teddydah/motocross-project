@@ -1,18 +1,14 @@
-/**
- * Template Name: MyBiz
- * Updated: Jan 09 2024 with Bootstrap v5.3.2
- * Template URL: https://bootstrapmade.com/mybiz-free-business-bootstrap-theme/
- * Author: BootstrapMade.com
- * License: https://bootstrapmade.com/license/
- */
 import {Alert} from "./modules/alert.js";
+
 const {closeAlert} = new Alert();
-
-closeAlert()
-
 
 (function () {
     "use strict";
+
+    /**
+     * Close alert pop-up
+     */
+    closeAlert()
 
     /**
      * Easy selector helper function
