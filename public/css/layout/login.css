@@ -1,46 +1,6 @@
 /*--------------------------------------------------------------
 # Login Form
 --------------------------------------------------------------*/
-*,
-*::before,
-*::after {
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box;
-}
-
-html {
-    font-family: sans-serif;
-    line-height: 1.15;
-    -webkit-text-size-adjust: 100%;
-    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-}
-
-article, aside, figcaption, figure, footer, header, hgroup, main, nav, section {
-    display: block;
-}
-
-body {
-    margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-    font-size: 1rem;
-    font-weight: 400;
-    line-height: 1.5;
-    color: #212529;
-    text-align: left;
-    background-color: var(--color-3);
-}
-
-[tabindex="-1"]:focus {
-    outline: 0 !important;
-}
-
-hr {
-    -webkit-box-sizing: content-box;
-    box-sizing: content-box;
-    height: 0;
-    overflow: visible;
-}
-
 h1, h2, h3, h4, h5, h6 {
     margin-top: 0;
     margin-bottom: 0.5rem;
@@ -48,75 +8,6 @@ h1, h2, h3, h4, h5, h6 {
 
 p {
     margin-top: 0;
-    margin-bottom: 1rem;
-}
-
-abbr[title],
-abbr[data-original-title] {
-    text-decoration: underline;
-    -webkit-text-decoration: underline dotted;
-    text-decoration: underline dotted;
-    cursor: help;
-    border-bottom: 0;
-    text-decoration-skip-ink: none;
-}
-
-address {
-    margin-bottom: 1rem;
-    font-style: normal;
-    line-height: inherit;
-}
-
-ol,
-ul,
-dl {
-    margin-top: 0;
-    margin-bottom: 1rem;
-}
-
-ol ol,
-ul ul,
-ol ul,
-ul ol {
-    margin-bottom: 0;
-}
-
-dt {
-    font-weight: 700;
-}
-
-dd {
-    margin-bottom: .5rem;
-    margin-left: 0;
-}
-
-blockquote {
-    margin: 0 0 1rem;
-}
-
-b,
-strong {
-    font-weight: bolder;
-}
-
-small {
-    font-size: 80%;
-}
-
-sub,
-sup {
-    position: relative;
-    font-size: 75%;
-    line-height: 0;
-    vertical-align: baseline;
-}
-
-sub {
-    bottom: -.25em;
-}
-
-sup {
-    top: -.5em;
 }
 
 a {
@@ -165,27 +56,6 @@ figure {
 img {
     vertical-align: middle;
     border-style: none;
-}
-
-svg {
-    overflow: hidden;
-    vertical-align: middle;
-}
-
-table {
-    border-collapse: collapse;
-}
-
-caption {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
-    color: #6c757d;
-    text-align: left;
-    caption-side: bottom;
-}
-
-th {
-    text-align: inherit;
 }
 
 label {
@@ -11437,9 +11307,14 @@ h1, h2, h3, h4, h5,
 
 .text-wrap {
     background: var(--color-1) url("../../img/motorbike.jpg") no-repeat center;
-    background-blend-mode: hard-light;
+    /*background-blend-mode: hard-light;*/
+    background-blend-mode: luminosity;
     background-size: cover;
     color: var(--color-3);
+}
+
+.register .text-wrap {
+    background-image: url("../../img/motorbike_2.jpg");
 }
 
 .text-wrap.order-md-last {
@@ -11448,6 +11323,7 @@ h1, h2, h3, h4, h5,
 
 .text-wrap .text {
     background-color: var(--color-rgba-1);
+    padding: 1em;
 }
 
 .text-wrap .text h2 {
@@ -11530,30 +11406,6 @@ h1, h2, h3, h4, h5,
     box-shadow: none;
     background: rgba(0, 0, 0, 0.07);
     border-color: transparent;
-}
-
-.social-media {
-    position: relative;
-    width: 100%;
-}
-
-.social-media .social-icon {
-    display: block;
-    width: 40px;
-    height: 40px;
-    background: transparent;
-    border: 1px solid rgba(0, 0, 0, 0.05);
-    font-size: 16px;
-    margin-right: 5px;
-    border-radius: 50%;
-}
-
-.social-media .social-icon span {
-    color: #999999;
-}
-
-.social-media .social-icon:hover span, .social-media .social-icon:focus span {
-    color: var(--color-3);
 }
 
 .checkbox-wrap {
@@ -11648,15 +11500,15 @@ h1, h2, h3, h4, h5,
 }
 
 .btn.btn-white {
-    border: 1px solid var(--color-1);
+    border: 1px solid var(--color-3);
     background: var(--color-3);
-    color: var(--color-1);
+    color: var(--color-hsl-4);
     padding: 0.7em;
 }
 
 .btn.btn-white:active,
 .btn.btn-white:hover {
     border: 1px solid var(--color-3) !important;
-    background: var(--color-1) !important;
+    background: var(--color-hsl-4) !important;
     color: var(--color-3);
 }

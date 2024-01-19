@@ -1,6 +1,8 @@
 import {Alert} from "./modules/alert.js";
+import {Register} from "./modules/register.js";
 
 const {closeAlert} = new Alert();
+const {displayPasswordConfirmationInput} = new Register();
 
 (function () {
     "use strict";
@@ -8,7 +10,15 @@ const {closeAlert} = new Alert();
     /**
      * Close alert pop-up
      */
-    closeAlert()
+    closeAlert();
+
+    /**
+     * Display password confirmation input after entering 1st character in password entry input
+     */
+    const password = document.getElementById("password");
+    const passwordConfirmation = document.querySelector(".password-confirmation");
+
+    displayPasswordConfirmationInput(password, passwordConfirmation);
 
     /**
      * Easy selector helper function

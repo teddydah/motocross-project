@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-    Auribail Mx Park - Login
+    Auribail Mx Park | Connexion
 @endsection
 
 @section('main')
@@ -29,11 +29,11 @@
                             </div>
                             <form method="POST" action="{{ route('login') }}" class="signin-form">
                                 @csrf
+                                @include('includes.alert')
                                 <div class="form-group mb-3">
                                     <label class="label" for="email">Email</label>
                                     <input class="form-control" type="email" id="email" name="email"
-                                           placeholder="Votre Email" required
-                                           autofocus>
+                                           placeholder="Votre email" required autofocus>
                                 </div>
                                 <div class="form-group mb-3">
                                     <label class="label" for="password">Mot de passe</label>
@@ -44,7 +44,7 @@
                                     <button type="submit" class="form-control btn btn-primary submit px-3">Connexion
                                     </button>
                                 </div>
-                                <div class="form-group d-md-flex">
+                                <!--<div class="form-group d-md-flex">
                                     <div class="w-50 text-left">
                                         <label class="checkbox-wrap checkbox-primary mb-0">Se souvenir de moi
                                             <input type="checkbox" checked>
@@ -54,7 +54,7 @@
                                     <div class="w-50 text-md-right">
                                         <a href="#">Mot de passe oublié ?</a>
                                     </div>
-                                </div>
+                                </div>-->
                             </form>
                         </div>
                     </div>
