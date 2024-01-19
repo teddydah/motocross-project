@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ClubController;
+use App\Http\Controllers\PictureController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TrainingController;
@@ -97,13 +98,15 @@ Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('post.d
 
 // Clubs
 
-Route::get('/clubs',
-    [ClubController::class, 'index'
-    ])->name('clubs.index');
+Route::get(
+    '/clubs',
+    [ClubController::class, 'index']
+)->name('clubs.index');
 
-Route::get('/clubs-create',
-    [ClubController::class, 'create'
-    ])->name('clubs.create');
+Route::get(
+    '/clubs-create',
+    [ClubController::class, 'create']
+)->name('clubs.create');
 
 Route::post(
     '/clubs-create',
@@ -124,3 +127,26 @@ Route::delete(
     '/clubs-destroy/{id}',
     [ClubController::class, 'destroy']
 )->name('clubs.destroy');
+
+
+// Pictures
+
+Route::get(
+    '/pictures',
+    [PictureController::class, 'index']
+)->name('pictures.index');
+
+Route::get(
+    '/pictures-create',
+    [PictureController::class, 'create']
+)->name('pictures.create');
+
+Route::post(
+    '/pictures-create',
+    [PictureController::class, 'store']
+)->name('pictures.store');
+
+Route::delete(
+    '/pictures-destroy/{id}',
+    [PictureController::class, 'destroy']
+)->name('pictures.destroy');
