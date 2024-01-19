@@ -1,21 +1,21 @@
 @extends('layouts.main')
 
 @section('main')
-    @include('includes.main.about')
+    @include('home.about')
 
-    @include('includes.main.about_list')
+    @include('home.about_list')
 
-    @include('includes.main.counts')
+    @include('home.counts')
 
-    @include('includes.main.services')
+    @include('home.services')
 
     <!-- Galerie -->
-    @include('includes.main.portfolio')
+    @include('home.portfolio')
 
-    @include('includes.main.team')
+    @include('home.team')
 
-    @include('includes.main.testimonials')
+    @include('home.testimonials')
 
     <!-- Formulaire de contact -->
-    @include('includes.main.contact')
+    @include('home.contact')
 @endsection
