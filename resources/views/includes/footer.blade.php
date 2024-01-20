@@ -1,15 +1,17 @@
+<?php $club = \App\Models\Club::find(1); ?>
+
 <footer id="footer">
     <div class="footer-top">
         <div class="container">
             <div class="row">
                 <div class="col-md-4">
                     <div class="footer-info">
-                        <h3>MyBiz</h3>
+                        <h3>{{$club->name}}</h3>
                         <p>
-                            A108 Adam Street <br>
-                            NY 535022, USA<br><br>
-                            <strong>Phone:</strong> +1 5589 55488 55<br>
-                            <strong>Email:</strong> info@example.com<br>
+                            {{$club->address}} <br>
+                            {{$club->zip_code}} {{$club->city}}<br><br>
+                            <strong>Téléphone:</strong> {{wordwrap($club->phone, 2, '.', 1)}}<br>
+                            <strong>Email:</strong> <a href="mailto:{{$club->email}}">{{$club->email}}</a><br>
                         </p>
                         <div class="social-links mt-3">
                             <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
@@ -48,7 +50,7 @@
 
     <div class="container">
         <div class="copyright">
-            &copy; Copyright {{date('Y')}} <strong>Auribail Mx Park</strong>. Tous les droits sont réservés
+            &copy; Copyright {{date('Y')}} <strong>{{$club->description}}</strong>. Tous les droits sont réservés
         </div>
         <div class="credits">
             <!-- All the links in the footer should remain intact. -->

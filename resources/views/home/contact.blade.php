@@ -1,3 +1,5 @@
+<?php $club = \App\Models\Club::find(1); ?>
+
 <section id="contact" class="contact">
     <div class="container">
         <div class="section-title">
@@ -15,38 +17,36 @@
     </div>
 
     <div class="container">
-        @foreach($clubs as $club)
-            <div class="info-wrap mt-5">
-                <div class="row">
-                    <div class="col-lg-3 info">
-                        <i class="ri-map-pin-fill"></i>
-                        <h4>Adresse</h4>
-                        <p>{{$club->name}}<br>{{$club->address}}<br>{{$club->zip_code}} {{$club->city}}</p>
-                    </div>
+        <div class="info-wrap mt-5">
+            <div class="row">
+                <div class="col-lg-3 info">
+                    <i class="ri-map-pin-fill"></i>
+                    <h4>Adresse</h4>
+                    <p>{{$club->name}}<br>{{$club->address}}<br>{{$club->zip_code}} {{$club->city}}</p>
+                </div>
 
-                    <div class="col-lg-3 info mt-4 mt-lg-0">
-                        <i class="ri-mail-fill"></i>
-                        <h4>E-mail</h4>
-                        <p>{{$club->email}}</p>
-                    </div>
+                <div class="col-lg-3 info mt-4 mt-lg-0">
+                    <i class="ri-mail-fill"></i>
+                    <h4>E-mail</h4>
+                    <p>{{$club->email}}</p>
+                </div>
 
-                    <div class="col-lg-3 info mt-4 mt-lg-0">
-                        <i class="ri-phone-fill"></i>
-                        <h4>Téléphone</h4>
-                        <p>{{wordwrap($club->phone, 2, '.', 1)}}</p>
-                    </div>
+                <div class="col-lg-3 info mt-4 mt-lg-0">
+                    <i class="ri-phone-fill"></i>
+                    <h4>Téléphone</h4>
+                    <p>{{wordwrap($club->phone, 2, '.', 1)}}</p>
+                </div>
 
-                    <div class="col-lg-3 info mt-4 mt-lg-0">
-                        <i class="ri-facebook-fill"></i>
-                        <h4>Facebook</h4>
-                        <p>
-                            <a href="{{$club->social_network_link}}"
-                               title="{{$club->social_network_link}}">{{$club->description}}</a>
-                        </p>
-                    </div>
+                <div class="col-lg-3 info mt-4 mt-lg-0">
+                    <i class="ri-facebook-fill"></i>
+                    <h4>Facebook</h4>
+                    <p>
+                        <a href="{{$club->social_network_link}}"
+                           title="{{$club->social_network_link}}">{{$club->description}}</a>
+                    </p>
                 </div>
             </div>
-        @endforeach
+        </div>
 
         <form action="{{route('post.store')}}" method="post" role="form" class="php-email-form" id="form-contact">
             @csrf

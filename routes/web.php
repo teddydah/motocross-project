@@ -19,8 +19,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Home
-Route::get('/', [ClubController::class, 'home']);
+Route::get('/', function () {
+    return view('home');
+});
 
 // Booking
 Route::resource('bookings', BookingController::class);

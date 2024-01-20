@@ -19,16 +19,6 @@ class ClubController extends Controller
     }
 
     /**
-     * Récupération des données du club pour les affichées sur la page d'accueil (contact)
-     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
-     */
-    public function home(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
-    {
-        $clubs = Club::all();
-        return view('home', ['clubs' => $clubs]);
-    }
-
-    /**
      * Show the form for creating a new resource.
      */
     public function create()
