@@ -15,35 +15,36 @@ class CreateNewUser implements CreatesNewUsers
     /**
      * Validate and create a newly registered user.
      *
-     * @param  array<string, string>  $input
+     * @param array<string, string> $input
      */
     public function create(array $input): User
     {
-        Validator::make($input, [
-            'lastname' => ['required', 'string', 'max:255'],
-            'firstname' => ['required', 'string', 'max:255'],
-            'email' => [
-                'required',
-                'string',
-                'email',
-                'max:255',
+        $rules = [
+            'lastname' => ['required', 'max:255'],
+            'firstname' => ['required', 'max:255'],
+            'email' => ['required', 'email', 'max:255',
                 Rule::unique(User::class),
             ],
             'password' => $this->passwordRules(),
-            'role' => ['required'],
-            'license_number' => ['required', 'numeric'],
-            'phone' => ['required', 'numeric'],
+            'license_number' => ['nullable', 'numeric'],
+            'phone' => ['nullable', 'size:10'],
             'birth_date' => ['required', 'date'],
-            'address' => ['required', 'string'],
-            'zip_code' => ['required', 'string'],
-            'city' => ['required', 'string'],
-        ])->validate();
+            'address' => 'nullable',
+            'zip_code' => ['nullable', 'size:5'],
+            'city' => 'nullable',
+        ];
+
+        $messages = [
+            'phone' => 'Le numéro de téléphone doit comporté 10 chiffres.',
+            'zip_code' => 'Le code postal doit comporté 5 chiffres.'
+        ];
+
+        Validator::make($input, $rules, $messages)->validate();
 
         return User::create([
             'lastname' => $input['lastname'],
             'firstname' => $input['firstname'],
             'email' => $input['email'],
-            'role' => $input['role'],
             'license_number' => $input['license_number'],
             'phone' => $input['phone'],
             'birth_date' => $input['birth_date'],

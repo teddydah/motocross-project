@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'email' => 'john.doe@gmail.com',
             'password' => '$2y$10$Y5LdAjHNd8AG6FC21GNXCuW38Y1ClEgrcinq2fC0Ib//TZv9ycHYW', // Pa$$w0rd
             'role' => 'admin',
-            'license_number' => '123456',
+            'license_number' => 123456,
             'phone' => '0612345678',
             'birth_date' => '1900-01-01',
             'address' => '123 Fake Street',

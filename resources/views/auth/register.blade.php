@@ -5,16 +5,6 @@
 @endsection
 
 @section('main')
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
-
     <section class="ftco-section register">
         <div class="container">
             <div class="row justify-content-center">
@@ -24,72 +14,88 @@
                         <div class="login-wrap p-4 p-lg-5">
                             <div class="d-flex">
                                 <div class="w-100 text-center">
-                                    <h3 class="mb-4 text-uppercase font-weight-bold">S'inscrire</h3>
+                                    <h3 class="mb-4 text-uppercase fw-bold">S'inscrire</h3>
                                 </div>
                             </div>
+
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul class="mb-0">
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
 
                             <form method="POST" action="{{ route('register') }}" class="signin-form">
                                 @csrf
                                 <div class="form-group mb-3">
-                                    <label class="label" for="firstname">Prénom</label>
-                                    <input class="form-control" type="text" id="firstname" name="firstname"
+                                    <label class="label mb-2" for="firstname">Prénom</label>
+                                    <input class="form-control rounded-0" type="text" id="firstname" name="firstname"
                                            placeholder="Prénom" required
                                            autofocus>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label class="label" for="lastname">Nom</label>
-                                    <input class="form-control" type="text" id="lastname" name="lastname"
+                                    <label class="label mb-2" for="lastname">Nom</label>
+                                    <input class="form-control rounded-0" type="text" id="lastname" name="lastname"
                                            placeholder="Nom" required>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label class="label" for="email">Email</label>
-                                    <input class="form-control" id="email" type="email" name="email" placeholder="Email"
+                                    <label class="label mb-2" for="email">Email</label>
+                                    <input class="form-control rounded-0" id="email" type="email" name="email"
+                                           placeholder="Email"
                                            required>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label class="label" for="license_number">Numéro de licence</label>
-                                    <input class="form-control" id="license_number" type="text" name="license_number"
+                                    <label class="label mb-2" for="license_number">Numéro de licence</label>
+                                    <input class="form-control rounded-0" id="license_number" type="text"
+                                           name="license_number"
                                            placeholder="Numéro de licence">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label class="label" for="phone">Numéro de téléphone</label>
-                                    <input class="form-control" id="phone" type="text" name="phone"
+                                    <label class="label mb-2" for="phone">Numéro de téléphone</label>
+                                    <input class="form-control rounded-0" id="phone" type="text" name="phone"
                                            placeholder="Numéro de téléphone">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label class="label" for="birth_date">Date de naissance</label>
-                                    <input class="form-control" id="birth_date" type="date" name="birth_date" required>
+                                    <label class="label mb-2" for="birth_date">Date de naissance</label>
+                                    <input class="form-control rounded-0" id="birth_date" type="date" name="birth_date"
+                                           required>
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label class="label" for="address">Adresse</label>
-                                    <input class="form-control" id="address" type="text" name="address"
+                                    <label class="label mb-2" for="address">Adresse</label>
+                                    <input class="form-control rounded-0" id="address" type="text" name="address"
                                            placeholder="Adresse">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label class="label" for="zip_code">Code postal</label>
-                                    <input class="form-control" id="zip_code" type="text" name="zip_code"
+                                    <label class="label mb-2" for="zip_code">Code postal</label>
+                                    <input class="form-control rounded-0" id="zip_code" type="text" name="zip_code"
                                            placeholder="Code postal">
                                 </div>
                                 <div class="form-group mb-3">
-                                    <label class="label" for="city">Ville</label>
-                                    <input class="form-control" id="city" type="text" name="city" placeholder="Ville">
+                                    <label class="label mb-2" for="city">Ville</label>
+                                    <input class="form-control rounded-0" id="city" type="text" name="city"
+                                           placeholder="Ville">
                                 </div>
 
                                 <div class="form-group mb-3">
-                                    <label class="label" for="password">Mot de passe</label>
-                                    <input class="form-control" id="password" type="password" name="password"
+                                    <label class="label mb-2" for="password">Mot de passe</label>
+                                    <input class="form-control rounded-0" id="password" type="password" name="password"
                                            placeholder="Mot de passe"
                                            autocomplete="new-password" required>
                                 </div>
                                 <div class="form-group mb-3 d-none password-confirmation">
-                                    <label class="label" for="password_confirmation">Confirmer le mot de passe</label>
-                                    <input class="form-control" id="password_confirmation" type="password"
+                                    <label class="label mb-2" for="password_confirmation">Confirmer le mot de
+                                        passe</label>
+                                    <input class="form-control rounded-0" id="password_confirmation" type="password"
                                            name="password_confirmation"
                                            placeholder="Confirmer le mot de passe"
                                            required>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="form-control btn btn-primary submit px-3">S'inscrire
+                                    <button type="submit" class="form-control btn btn-primary submit fw-semibold px-3">
+                                        Enregistrer
                                     </button>
                                 </div>
                             </form>
