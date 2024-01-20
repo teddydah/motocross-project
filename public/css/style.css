@@ -35,13 +35,13 @@
 
 .back-to-top i {
     font-size: 28px;
-    color: var(--color-3);
+    color: var(--white);
     line-height: 0;
 }
 
 .back-to-top:hover {
     background: var(--color-hsl-2);
-    color: var(--color-3);
+    color: var(--white);
 }
 
 .back-to-top.active {
@@ -53,7 +53,7 @@
 # Top Bar
 --------------------------------------------------------------*/
 #topbar {
-    background: var(--color-3);
+    background: var(--white);
     border-bottom: 1px solid #eee;
     font-size: 14px;
     height: 44px;
@@ -255,7 +255,7 @@ section {
 
 .counts .title {
     position: relative;
-    color: var(--color-3);
+    color: var(--white);
     margin-bottom: 40px;
 }
 
@@ -275,7 +275,7 @@ section {
     margin: 0 0 20px 0;
     font-family: "Raleway", sans-serif;
     font-size: 14px;
-    color: var(--color-3);
+    color: var(--white);
 }
 
 /*--------------------------------------------------------------
@@ -285,7 +285,7 @@ section {
     margin-bottom: 20px;
     padding: 30px;
     border-radius: 6px;
-    background: var(--color-3);
+    background: var(--white);
 }
 
 .services .icon-box i {
@@ -340,7 +340,7 @@ section {
     color: #444444;
     border-radius: 4px;
     text-transform: uppercase;
-    background: var(--color-3);
+    background: var(--white);
     margin: 0 15px 5px 0;
     transition: all 0.3s ease-in-out;
 }
@@ -348,7 +348,7 @@ section {
 .portfolio #portfolio-flters li:hover,
 .portfolio #portfolio-flters li.filter-active {
     background: #01b1d7;
-    color: var(--color-3);
+    color: var(--white);
 }
 
 .portfolio #portfolio-flters li:last-child {
@@ -385,12 +385,12 @@ section {
 
 .portfolio .portfolio-wrap .portfolio-info h4 {
     font-size: 20px;
-    color: var(--color-3);
+    color: var(--white);
     font-weight: 600;
 }
 
 .portfolio .portfolio-wrap .portfolio-info p {
-    color: var(--color-3);
+    color: var(--white);
     font-size: 14px;
     text-transform: uppercase;
 }
@@ -402,7 +402,7 @@ section {
 .portfolio .portfolio-wrap .portfolio-info .portfolio-links a {
     color: #01b1d7;
     margin: 0 4px;
-    background-color: var(--color-3);
+    background-color: var(--white);
     border-radius: 50px;
     width: 36px;
     height: 36px;
@@ -419,7 +419,7 @@ section {
 
 .portfolio .portfolio-wrap .portfolio-info .portfolio-links a:hover {
     background: #01b1d7;
-    color: var(--color-3);
+    color: var(--white);
 }
 
 .portfolio .portfolio-wrap:hover {
@@ -454,7 +454,7 @@ section {
 .portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
     width: 12px;
     height: 12px;
-    background-color: var(--color-3);
+    background-color: var(--white);
     opacity: 1;
     border: 1px solid #01b1d7;
 }
@@ -504,7 +504,7 @@ section {
 # Team
 --------------------------------------------------------------*/
 .team {
-    background: var(--color-3);
+    background: var(--white);
 }
 
 .team .member {
@@ -582,7 +582,7 @@ section {
 }
 
 .team .member .social a i {
-    color: var(--color-3);
+    color: var(--white);
     font-size: 16px;
     margin: 0 2px;
 }
@@ -600,8 +600,7 @@ section {
 --------------------------------------------------------------*/
 .testimonials {
     padding: 80px 0;
-    background: url("../img/testimonials-bg.jpg") no-repeat;
-    background-position: center center;
+    background: url("../img/testimonials-bg.jpg") no-repeat center center;
     background-size: cover;
     position: relative;
 }
@@ -627,7 +626,7 @@ section {
 
 .testimonials .testimonial-item {
     text-align: center;
-    color: var(--color-3);
+    color: var(--white);
 }
 
 .testimonials .testimonial-item .testimonial-img {
@@ -641,7 +640,7 @@ section {
     font-size: 20px;
     font-weight: bold;
     margin: 10px 0 5px 0;
-    color: var(--color-3);
+    color: var(--white);
 }
 
 .testimonials .testimonial-item h4 {
@@ -673,6 +672,10 @@ section {
     font-style: italic;
     margin: 0 auto 15px auto;
     color: #eee;
+}
+
+.testimonials .swiper-wrapper {
+    height: auto;
 }
 
 .testimonials .swiper-pagination {

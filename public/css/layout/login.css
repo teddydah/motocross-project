@@ -2,7 +2,7 @@
 # Login Form
 --------------------------------------------------------------*/
 .ftco-section {
-    background: var(--color-3) url("../../img/bg-motocross.jpg") no-repeat fixed center;
+    background: var(--white) url("../../img/bg-motocross.jpg") no-repeat fixed center;
     /*background-blend-mode: luminosity;*/
     background-size: cover;
     padding: 7em 0;
@@ -31,7 +31,7 @@
     /*background-blend-mode: hard-light;*/
     background-blend-mode: luminosity;
     background-size: cover;
-    color: var(--color-3);
+    color: var(--white);
 }
 
 .register .text-wrap {
@@ -49,12 +49,12 @@
 
 .text-wrap .text h2 {
     font-weight: 900;
-    color: var(--color-3);
+    color: var(--white);
 }
 
 .login-wrap {
     position: relative;
-    background: var(--color-3);
+    background: var(--white);
 }
 
 .login-wrap h3 {
@@ -69,7 +69,7 @@
     font-size: 12px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--color-5);
+    color: var(--black);
     font-weight: 700;
 }
 
@@ -103,26 +103,26 @@
 .btn.btn-primary {
     background: var(--color-hsl-1);
     border: 1px solid var(--color-hsl-1);
-    color: var(--color-3);
+    color: var(--white);
     padding: 9px 24px;
 }
 
 .btn.btn-primary:hover {
     border: 1px solid var(--color-hsl-2);
     background: var(--color-hsl-2);
-    color: var(--color-3);
+    color: var(--white);
 }
 
 .btn.btn-white {
-    border: 1px solid var(--color-3);
-    background: var(--color-3);
+    border: 1px solid var(--white);
+    background: var(--white);
     color: var(--color-hsl-4);
     padding: 0.7em;
 }
 
 .btn.btn-white:active,
 .btn.btn-white:hover {
-    border: 1px solid var(--color-3) !important;
+    border: 1px solid var(--white) !important;
     background: var(--color-hsl-4) !important;
-    color: var(--color-3);
+    color: var(--white);
 }
