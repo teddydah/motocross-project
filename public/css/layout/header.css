@@ -2,11 +2,12 @@
 # Header
 --------------------------------------------------------------*/
 #header {
-    height: 70px;
+    /*height: 70px;*/
+    padding: 1em 0;
     z-index: 997;
     transition: all 0.5s;
     background: var(--color-3);
-    top: 44px;
+    /*top: 44px;*/
 }
 
 #header.header-scrolled {
