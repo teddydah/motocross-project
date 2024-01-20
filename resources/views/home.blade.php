@@ -1,5 +1,11 @@
 @extends('layouts.main')
 
+@section('title')
+    Auribail Mx Park
+@endsection
+
+@include('includes.hero')
+
 @section('main')
     @include('home.about')
 

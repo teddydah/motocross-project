@@ -75,7 +75,7 @@
             </div>
             @include('includes.alert')
             <div class="text-center">
-                <button class="button" type="submit">Envoyer</button>
+                <button class="button fw-semibold" type="submit">Envoyer</button>
             </div>
         </form>
     </div>

@@ -8,7 +8,6 @@
     <meta content="" name="description">
     <meta content="" name="keywords">
     <title>@yield('title')</title>
-    <!--TODO: Auribail Mx Park-->
 
     <!-- Favicon -->
     <link href="img/motocross.png" rel="icon">
@@ -29,19 +28,17 @@
     <link href="vendor/remixicon/remixicon.css" rel="stylesheet">
     <link href="vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
-    <!-- Bootstrap -->
-    @vite(['resources/js/app.css', 'resources/js/app.js'])
-
     <!-- Template Main CSS File -->
     <link href="css/style.css" rel="stylesheet">
+
+    <!-- Bootstrap -->
+    @vite(['resources/js/app.css', 'resources/js/app.js'])
 </head>
 <body>
 
 <header>
     @include('includes.header')
 </header>
-
-@include('includes.hero')
 
 <main id="main">
     @yield('main')
