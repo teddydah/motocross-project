@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\UserController;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,15 +21,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get(
-    '/users/all',
-    [UserController::class, 'index']
-)->name('user.all');
+// https://laravel.com/docs/10.x/middleware
+// AdminMiddleware
+Route::middleware(['auth:sanctum', 'admin'])->group(function () {
+    Route::get(
+        '/users/all',
+        [UserController::class, 'index']
+    )->name('user.all');
 
-Route::get(
-    '/users/{id}',
-    [UserController::class, 'show']
-)->name('user.show');
+    Route::get(
+        '/users/{id}',
+        [UserController::class, 'show']
+    )->name('user.show');
+})->middleware(AdminMiddleware::class);
 
 Route::post(
     '/users',
