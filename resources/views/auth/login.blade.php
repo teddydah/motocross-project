@@ -48,22 +48,23 @@
                                     <input class="form-control rounded-0" type="password" id="password" name="password"
                                            placeholder="Votre mot de passe" required autocomplete="current-password">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group mb-3">
                                     <button type="submit"
                                             class="form-control btn btn-primary submit fw-semibold px-3">Connexion
                                     </button>
                                 </div>
-                                <!--<div class="form-group d-md-flex">
+                                <div class="form-group d-md-flex">
                                     <div class="w-50 text-left">
                                         <label class="checkbox-wrap checkbox-primary mb-0">Se souvenir de moi
-                                            <input type="checkbox" checked>
+                                            <input type="checkbox">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>
-                                    <div class="w-50 text-md-right">
-                                        <a href="#">Mot de passe oublié ?</a>
-                                    </div>
+                                </div>
+                                <!--<div class="w-50 text-md-right">
+                                    <a href="#">Mot de passe oublié ?</a>
                                 </div>-->
+                                <!--</div>-->
                             </form>
                         </div>
                     </div>

@@ -3,7 +3,6 @@
 --------------------------------------------------------------*/
 .ftco-section {
     background: var(--white) url("../../img/bg-motocross.jpg") no-repeat fixed center;
-    /*background-blend-mode: luminosity;*/
     background-size: cover;
     padding: 7em 0;
 }
@@ -27,11 +26,17 @@
 }
 
 .text-wrap {
-    background: var(--color-1) url("../../img/motorbike.jpg") no-repeat center;
-    /*background-blend-mode: hard-light;*/
+    background: var(--color-theme-3) url("../../img/motorbike.jpg") no-repeat center;
     background-blend-mode: luminosity;
+    /*background-blend-mode: hard-light;*/
     background-size: cover;
     color: var(--white);
+}
+
+@media (max-width: 767.98px) {
+    .text-wrap {
+        background-size: 25%;
+    }
 }
 
 .register .text-wrap {
@@ -43,7 +48,7 @@
 }
 
 .text-wrap .text {
-    background-color: var(--color-rgba-1);
+    background-color: var(--color-rgba-4);
     padding: 1em;
 }
 
@@ -81,10 +86,9 @@
     color: gray;
 }
 
-/* Style the checkmark/indicator */
-.checkbox-primary,
-.checkbox-primary input:checked ~ .checkmark:after {
-    color: var(--color-hsl-1);
+.checkbox-wrap input {
+    vertical-align: middle;
+    padding-right: 0.5em;
 }
 
 .btn {
@@ -116,13 +120,13 @@
 .btn.btn-white {
     border: 1px solid var(--white);
     background: var(--white);
-    color: var(--color-hsl-4);
+    color: var(--color-hsl-1);
     padding: 0.7em;
 }
 
 .btn.btn-white:active,
 .btn.btn-white:hover {
     border: 1px solid var(--white) !important;
-    background: var(--color-hsl-4) !important;
+    background: var(--color-hsl-1) !important;
     color: var(--white);
 }

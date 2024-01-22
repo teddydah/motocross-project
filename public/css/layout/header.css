@@ -8,6 +8,7 @@
     transition: all 0.5s;
     background: var(--white);
     /*top: 44px;*/
+    position: initial;
 }
 
 #header.header-scrolled {
