@@ -4,9 +4,9 @@
     Auribail Mx Park
 @endsection
 
-@include('includes.hero')
-
 @section('main')
+    @include('includes.hero')
+
     @include('home.about')
 
     @include('home.about_list')

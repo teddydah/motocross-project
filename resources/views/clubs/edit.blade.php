@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Club</title>
-</head>
-<body>
-    <h1>Edit Club</h1>
+@extends('layouts.main')
+
+@section('title')
+    Auribail Mx Park | {{$club->name}}
+@endsection
+
+@section('main')
 
     @if ($errors->any())
         <div style="color: red;">
@@ -55,7 +53,8 @@
         <br>
 
         <label for="social_network_link">Social Network Link:</label>
-        <input type="url" name="social_network_link" value="{{ old('social_network_link', $club->social_network_link) }}">
+        <input type="url" name="social_network_link"
+               value="{{ old('social_network_link', $club->social_network_link) }}">
         <br>
 
         <label for="description">Description:</label>
@@ -68,5 +67,4 @@
     <br>
 
     <a href="{{ route('clubs.index') }}">Back to Clubs List</a>
-</body>
-</html>
+@endsection

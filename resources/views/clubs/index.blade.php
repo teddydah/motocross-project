@@ -1,53 +1,45 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Clubs List</title>
-</head>
-<body>
-    <h1>Clubs List</h1>
+@extends('layouts.main')
 
+@section('title')
+    Auribail Mx Park | Clubs
+@endsection
+
+@section('main')
     @if(session('success'))
         <div style="color: green;">
             {{ session('success') }}
         </div>
     @endif
-
-    <table border="1">
-        <thead>
+    <section class="admin">
+        <table class="container table table-striped table-light text-center align-baseline">
+            <thead>
             <tr>
-                <th>Name</th>
-                <th>Address</th>
-                <th>City</th>
-                <th>Actions</th>
+                <th scope="row">#</th>
+                <th scope="row">Nom</th>
+                <th scope="row">Ville</th>
+                <th scope="row">Action</th>
             </tr>
-        </thead>
-        <tbody>
-            @forelse($clubs as $club)
+            </thead>
+            <tfoot>
+            <tr class="p-3">
+                <td colspan="4">
+                    <a class="btn-dark-blue btn btn-primary btn-outline-light m-2" href="{{ route('clubs.create') }}">Ajouter un
+                        club</a>
+                </td>
+            </tr>
+            </tfoot>
+            <tbody>
+            @foreach($clubs as $club)
                 <tr>
+                    <td>{{ $club->id }}</td>
                     <td>{{ $club->name }}</td>
-                    <td>{{ $club->address }}</td>
                     <td>{{ $club->city }}</td>
                     <td>
-                        <a href="{{ route('clubs.edit', $club->id) }}">Edit</a>
-                        <form action="{{ route('clubs.destroy', $club->id) }}" method="post" style="display: inline;">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" onclick="return confirm('Are you sure?')">Delete</button>
-                        </form>
+                        <a class="btn btn-primary btn-outline-light" href="{{ route('clubs.show', $club->id)  }}">Voir</a>
                     </td>
                 </tr>
-            @empty
-                <tr>
-                    <td colspan="4">No clubs available</td>
-                </tr>
-            @endforelse
-        </tbody>
-    </table>
-
-    <br>
-
-    <a href="{{ route('clubs.create') }}">Add New Club</a>
-</body>
-</html>
+            @endforeach
+            </tbody>
+        </table>
+    </section>
+@endsection

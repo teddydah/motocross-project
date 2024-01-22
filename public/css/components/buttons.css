@@ -1,0 +1,16 @@
+/*--------------------------------------------------------------
+# Buttons
+--------------------------------------------------------------*/
+
+.btn.btn-dark-blue {
+    background: var(--color-hsl-1);
+    border: 1px solid var(--color-hsl-1);
+    color: var(--white);
+    padding: 9px 24px;
+}
+
+.btn.btn-dark-blue:hover {
+    border: 1px solid var(--color-hsl-2);
+    background: var(--color-hsl-2);
+    color: var(--white);
+}

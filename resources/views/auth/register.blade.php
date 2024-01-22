@@ -5,7 +5,7 @@
 @endsection
 
 @section('main')
-    <section class="ftco-section register">
+    <section class="ftco-section register admin">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-10">
@@ -94,7 +94,8 @@
                                            required>
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="form-control btn btn-primary submit fw-semibold px-3">
+                                    <button type="submit"
+                                            class="form-control btn-dark-blue btn btn-primary submit fw-semibold px-3">
                                         Enregistrer
                                     </button>
                                 </div>

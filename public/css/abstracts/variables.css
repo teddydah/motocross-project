@@ -9,10 +9,15 @@
     /* theme */
     --color-1: #102d66;
     --color-2: #f18617;
+    --color-3: #3a2a41;
 
-    --color-theme-1: #f18617;
-    --color-theme-2: #3a2a41;
-    --color-theme-3: #102d66;
+    --color-theme-1: #FC6700;
+    --color-theme-2: #E8C88F;
+    --color-theme-3: #000;
+
+    /* background */
+    --color-bg-1: #1f2627;
+    --color-bg-2: #2a3336;
 
     /* rgba */
     --color-rgba-1: rgba(0, 75, 154, 0.5);

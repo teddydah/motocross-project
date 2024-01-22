@@ -5,7 +5,7 @@
 @endsection
 
 @section('main')
-    <section class="ftco-section">
+    <section class="ftco-section admin">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12 col-lg-10">
@@ -50,13 +50,14 @@
                                 </div>
                                 <div class="form-group mb-3">
                                     <button type="submit"
-                                            class="form-control btn btn-primary submit fw-semibold px-3">Connexion
+                                            class="form-control btn-dark-blue btn btn-primary submit fw-semibold px-3">
+                                        Connexion
                                     </button>
                                 </div>
-                                <div class="form-group d-md-flex">
-                                    <div class="w-50 text-left">
+                                <div class="form-group">
+                                    <div class="text-left">
                                         <label class="checkbox-wrap checkbox-primary mb-0">Se souvenir de moi
-                                            <input type="checkbox">
+                                            <input class="ms-1" type="checkbox">
                                             <span class="checkmark"></span>
                                         </label>
                                     </div>

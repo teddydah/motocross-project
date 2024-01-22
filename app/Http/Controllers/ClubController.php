@@ -6,6 +6,7 @@ use App\Models\Club;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class ClubController extends Controller
@@ -19,26 +20,31 @@ class ClubController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
-    public function create()
+    public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         return view('clubs.create');
     }
 
-    public function store(Request $request)
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function store(Request $request): RedirectResponse
     {
+        // TODO
         $request->validate([
             'name' => 'required',
             'address' => 'required',
             'zip_code' => 'required',
             'city' => 'required',
-            'latitude' => 'required',
-            'longitude' => 'required',
+            'latitude' => 'nullable',
+            'longitude' => 'nullable',
             'phone' => 'required',
             'email' => 'required|email',
             'social_network_link' => 'nullable|url',
-            'description' => 'nullable',
+            'description' => 'nullable'
         ]);
 
         Club::create([
@@ -54,22 +60,34 @@ class ClubController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->route('clubs.index')->with('success', 'Club added successfully');
+        return redirect()->route('clubs.index')->with('success', 'Club ajouté avec succès!');
     }
 
 
-    public function show(Club $club)
+    /**
+     * @param Club $club
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     */
+    public function show(Club $club): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('clubs.show', compact('club'));
+        return view('clubs.show', ['club' => Club::find($club->id)]);
     }
 
-    public function edit($id)
+    /**
+     * @param $id
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     */
+    public function edit($id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $club = Club::find($id);
-        return view('clubs.edit', ['club' => $club]);
+        return view('clubs.edit', ['club' => Club::find($id)]);
     }
 
-    public function update(Request $request, $id)
+    /**
+     * @param Request $request
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function update(Request $request, $id): RedirectResponse
     {
         $validatedData = $request->validate([
             'name' => 'required',
@@ -83,16 +101,19 @@ class ClubController extends Controller
             'social_network_link' => 'nullable|url',
             'description' => 'nullable',
         ]);
-        $club = Club::find($id);
-        $club->update($validatedData);
+
+        Club::find($id)->update($validatedData);
 
         return redirect()->route('clubs.index')->with('success', 'Club updated successfully');
     }
 
-    public function destroy($id)
+    /**
+     * @param $id
+     * @return RedirectResponse
+     */
+    public function destroy($id): RedirectResponse
     {
-        $clubs = Club::find($id);
-        $clubs->delete();
+        Club::find($id)->delete();
         return redirect()->route('clubs.index');
     }
 }

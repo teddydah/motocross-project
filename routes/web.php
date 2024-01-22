@@ -23,6 +23,9 @@ Route::get('/', function () {
     return view('home');
 });
 
+// Clubs
+Route::resource('clubs', ClubController::class);
+
 // Booking
 Route::resource('bookings', BookingController::class);
 
@@ -58,7 +61,6 @@ Route::delete(
 )->name('training.destroy');
 
 // Schedule
-
 Route::get(
     '/schedule',
     [ScheduleController::class, 'index']
@@ -98,40 +100,43 @@ Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('post.destroy');
 
 // Clubs
-
-Route::get(
+/*Route::get(
     '/clubs',
     [ClubController::class, 'index']
 )->name('clubs.index');
 
 Route::get(
-    '/clubs-create',
-    [ClubController::class, 'create']
-)->name('clubs.create');
-
-Route::post(
-    '/clubs-create',
-    [ClubController::class, 'store']
-)->name('clubs.store');
+    '/club/{club}',
+    [ClubController::class, 'show']
+)->name('club.show');
 
 Route::get(
-    '/clubs-edit/{id}',
+    '/clubs/create',
+    [ClubController::class, 'create']
+)->name('club.create');
+
+Route::post(
+    '/club/create',
+    [ClubController::class, 'store']
+)->name('club.store');
+
+Route::get(
+    '/club/edit/{club}',
     [ClubController::class, 'edit']
-)->name('clubs.edit');
+)->name('club.edit');
 
 Route::put(
-    '/clubs-edit/{id}',
+    '/club/edit/{club}',
     [ClubController::class, 'update']
-)->name('clubs.update');
+)->name('club.update');
 
 Route::delete(
-    '/clubs-destroy/{id}',
+    '/clubs/destroy/{club}',
     [ClubController::class, 'destroy']
-)->name('clubs.destroy');
+)->name('club.destroy');*/
 
 
 // Pictures
-
 Route::get(
     '/pictures',
     [PictureController::class, 'index']

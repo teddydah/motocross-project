@@ -8,6 +8,9 @@
 /* base */
 @import "base/tools.css";
 
+/* components */
+@import "components/buttons.css";
+
 /* layout */
 @import "layout/header.css";
 @import "layout/navigation.css";
@@ -15,6 +18,16 @@
 @import "layout/contact.css";
 @import "layout/login.css";
 @import "layout/footer.css";
+
+/*--------------------------------------------------------------
+# Admin
+--------------------------------------------------------------*/
+
+.admin {
+    background: var(--white) url("../../img/bg-motocross.jpg") no-repeat fixed center;
+    background-size: cover;
+    padding: 7em 0;
+}
 
 /*--------------------------------------------------------------
 # Back to top button
@@ -26,7 +39,7 @@
     right: 15px;
     bottom: 15px;
     z-index: 996;
-    background: var(--color-hsl-1);
+    background: var(--color-2);
     width: 40px;
     height: 40px;
     border-radius: 4px;
