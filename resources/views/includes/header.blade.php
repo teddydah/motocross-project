@@ -3,7 +3,7 @@
 
         <div class="logo">
             <h1>
-                <a href="{{url('/')}}"><img src="img/motocross.png" alt="Logo" class="img-fluid"></a>
+                <a href="{{url('/')}}"><img src="{{url('/')}}/img/motocross.png" alt="Logo" class="img-fluid"></a>
                 <a href="{{url('/')}}"><span>Auribail</span> <span>Mx Park</span></a>
             </h1>
         </div>

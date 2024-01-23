@@ -5,6 +5,14 @@
 /* abstracts */
 @import "abstracts/variables.css";
 
+/* vendors */
+@import "vendors/animate.css/animate.min.css";
+@import "vendors/bootstrap-icons/bootstrap-icons.css";
+@import "vendors/boxicons/css/boxicons.min.css";
+@import "vendors/glightbox/css/glightbox.min.css";
+@import "vendors/remixicon/remixicon.css";
+@import "vendors/swiper/swiper-bundle.min.css";
+
 /* base */
 @import "base/tools.css";
 
