@@ -6,12 +6,17 @@
 
 @section('main')
     @if(session('success'))
-        <div style="color: green;">
+        <div class="container" style="color: green;">
             {{ session('success') }}
         </div>
     @endif
     <section class="admin">
-        <table class="container table table-striped table-dark text-center align-baseline mb-0">
+        <div class="section-title container bg-white">
+            <span>Liste des clubs</span>
+            <h2 class="mb-0">Liste des clubs</h2>
+        </div>
+
+        <table class="container table table-striped text-center align-baseline mb-0">
             <thead>
             <tr>
                 <th scope="row">#</th>
@@ -23,7 +28,8 @@
             <tfoot>
             <tr>
                 <td colspan="4">
-                    <a class="btn-add btn btn-primary btn-outline-light m-3" href="{{ route('clubs.create') }}">Ajouter un
+                    <a class="btn-add btn btn-primary btn-outline-light" href="{{ route('clubs.create') }}"
+                       title="Ajouter un club">Ajouter un
                         club</a>
                 </td>
             </tr>
@@ -35,7 +41,8 @@
                     <td>{{ $club->name }}</td>
                     <td>{{ $club->city }}</td>
                     <td>
-                        <a class="btn btn-see btn-info btn-outline-light" href="{{ route('clubs.show', $club->id)  }}">Voir</a>
+                        <a class="btn btn-see btn-info btn-outline-light" href="{{ route('clubs.show', $club->id)  }}"
+                           title="Voir le club">Voir</a>
                     </td>
                 </tr>
             @endforeach

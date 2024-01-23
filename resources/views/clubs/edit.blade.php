@@ -5,9 +5,8 @@
 @endsection
 
 @section('main')
-
     @if ($errors->any())
-        <div style="color: red;">
+        <div class="container" style="color: red;">
             <ul>
                 @foreach ($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -15,56 +14,95 @@
             </ul>
         </div>
     @endif
+    <section class="admin">
+        <div class="section-title container bg-white">
+            <span>{{ $club->name }}</span>
+            <h2 class="mb-0">{{ $club->name }}</h2>
+        </div>
 
-    <form action="{{ route('clubs.update', $club->id) }}" method="post">
-        @csrf
-        @method('PUT')
-
-        <label for="name">Name:</label>
-        <input type="text" name="name" value="{{ old('name', $club->name) }}" required>
-        <br>
-
-        <label for="address">Address:</label>
-        <input type="text" name="address" value="{{ old('address', $club->address) }}" required>
-        <br>
-
-        <label for="zip_code">Zip Code:</label>
-        <input type="text" name="zip_code" value="{{ old('zip_code', $club->zip_code) }}" required>
-        <br>
-
-        <label for="city">City:</label>
-        <input type="text" name="city" value="{{ old('city', $club->city) }}" required>
-        <br>
-
-        <label for="latitude">Latitude:</label>
-        <input type="text" name="latitude" value="{{ old('latitude', $club->latitude) }}" required>
-        <br>
-
-        <label for="longitude">Longitude:</label>
-        <input type="text" name="longitude" value="{{ old('longitude', $club->longitude) }}" required>
-        <br>
-
-        <label for="phone">Phone:</label>
-        <input type="text" name="phone" value="{{ old('phone', $club->phone) }}" required>
-        <br>
-
-        <label for="email">Email:</label>
-        <input type="email" name="email" value="{{ old('email', $club->email) }}" required>
-        <br>
-
-        <label for="social_network_link">Social Network Link:</label>
-        <input type="url" name="social_network_link"
-               value="{{ old('social_network_link', $club->social_network_link) }}">
-        <br>
-
-        <label for="description">Description:</label>
-        <textarea name="description">{{ old('description', $club->description) }}</textarea>
-        <br>
-
-        <button type="submit">Update Club</button>
-    </form>
-
-    <br>
-
-    <a href="{{ route('clubs.index') }}">Back to Clubs List</a>
+        <form action="{{ route('clubs.update', $club->id) }}" method="post">
+            @csrf
+            @method('PUT')
+            <table class="container table table-admin table-edit table-striped align-middle mb-0">
+                <tbody>
+                <tr>
+                    <th scope="row"><label for="name">Nom :</label></th>
+                    <td>
+                        <input type="text" name="name" id="name" value="{{ old('name', $club->name) }}" required>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="address">Adresse :</label></th>
+                    <td>
+                        <input type="text" name="address" id="address" value="{{ old('address', $club->address) }}"
+                               required>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="zip_code">Code postal :</label></th>
+                    <td>
+                        <input type="text" name="zip_code" id="zip_code" value="{{ old('zip_code', $club->zip_code) }}"
+                               required>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="city">Ville :</label></th>
+                    <td>
+                        <input type="text" name="city" id="city" value="{{ old('city', $club->city) }}" required>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="latitude">Latitude :</label></th>
+                    <td>
+                        <input type="text" name="latitude" id="latitude" value="{{ old('latitude', $club->latitude) }}">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="longitude">Longitude :</label></th>
+                    <td>
+                        <input type="text" name="longitude" id="longitude"
+                               value="{{ old('longitude', $club->longitude) }}">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="phone">Téléphone :</label></th>
+                    <td>
+                        <input type="text" name="phone" id="phone" value="{{ old('phone', $club->phone) }}" required>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="email">E-mail :</label></th>
+                    <td>
+                        <input type="email" name="email" id="email" value="{{ old('email', $club->email) }}" required>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="social_network_link">Facebook :</label></th>
+                    <td>
+                        <input type="url" name="social_network_link" id="social_network_link"
+                               value="{{ old('social_network_link', $club->social_network_link) }}">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="description">Description :</label></th>
+                    <td>
+                        <textarea class="align-middle" name="description" id="description"
+                                  rows="3">{{ old('description', $club->description) }}</textarea>
+                    </td>
+                </tr>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td class="text-center" colspan="2">
+                        <a class="btn btn-dark btn-outline-light btn-back ms-0 me-1"
+                           href="{{ route('clubs.show', $club->id) }}" title="Retour aux détails du club">Retour</a>
+                        <button class="btn btn-success btn-outline-light btn-save ms-1 me-0" type="submit"
+                                title="Enregistrer les modifications">Enregistrer
+                        </button>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </form>
+    </section>
 @endsection

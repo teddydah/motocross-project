@@ -33,7 +33,6 @@ class ClubController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        // TODO
         $request->validate([
             'name' => 'required',
             'address' => 'required',
@@ -43,7 +42,7 @@ class ClubController extends Controller
             'longitude' => 'nullable',
             'phone' => 'required',
             'email' => 'required|email',
-            'social_network_link' => 'nullable|url',
+            'social_network_link' => 'required|url',
             'description' => 'nullable'
         ]);
 
@@ -60,7 +59,7 @@ class ClubController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->route('clubs.index')->with('success', 'Club ajouté avec succès!');
+        return redirect()->route('clubs.index')->with('success', 'Club ajouté avec succès.');
     }
 
 
@@ -94,17 +93,17 @@ class ClubController extends Controller
             'address' => 'required',
             'zip_code' => 'required',
             'city' => 'required',
-            'latitude' => 'required',
-            'longitude' => 'required',
+            'latitude' => 'nullable',
+            'longitude' => 'nullable',
             'phone' => 'required',
             'email' => 'required|email',
-            'social_network_link' => 'nullable|url',
+            'social_network_link' => 'required|url',
             'description' => 'nullable',
         ]);
 
         Club::find($id)->update($validatedData);
 
-        return redirect()->route('clubs.index')->with('success', 'Club updated successfully');
+        return redirect()->route('clubs.index')->with('success', 'Club mis à jour avec succès.');
     }
 
     /**

@@ -1,8 +1,29 @@
 /*--------------------------------------------------------------
 # Buttons
 --------------------------------------------------------------*/
+.btn-add,
+.btn-edit,
+.btn-save,
+.btn-delete,
+.btn-see,
+.btn-back {
+    /*background-color: var(--color-theme-2);*/
+    margin: 0.75em 0;
+    padding: 0.7em !important;
+}
+
+.btn-add:hover,
+.btn-edit:hover,
+.btn-save:hover,
+.btn-delete:hover,
+.btn-see:hover,
+.btn-back:hover {
+    border-color: var(--black) !important;
+}
+
 .btn-add::before,
 .btn-edit::before,
+.btn-save::before,
 .btn-delete::before,
 .btn-see::before,
 .btn-back::before {
@@ -12,11 +33,15 @@
 }
 
 .btn-add::before {
-    content: "\2b";
+    content: "\f055";
 }
 
 .btn-edit::before {
     content: "\f304";
+}
+
+.btn-save::before {
+    content: "\f0c7";
 }
 
 .btn-delete::before {
