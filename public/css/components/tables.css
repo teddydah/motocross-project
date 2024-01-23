@@ -1,0 +1,19 @@
+/*--------------------------------------------------------------
+# Tables
+--------------------------------------------------------------*/
+.table-admin {
+    margin-bottom: 0;
+}
+
+.table-admin tr th,
+.table-admin tr td {
+    width: 50%;
+}
+
+.table-admin tr th {
+    text-align: right;
+}
+
+.table-admin tr td {
+    text-align: left;
+}

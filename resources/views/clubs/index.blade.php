@@ -11,7 +11,7 @@
         </div>
     @endif
     <section class="admin">
-        <table class="container table table-striped table-light text-center align-baseline">
+        <table class="container table table-striped table-dark text-center align-baseline mb-0">
             <thead>
             <tr>
                 <th scope="row">#</th>
@@ -21,9 +21,9 @@
             </tr>
             </thead>
             <tfoot>
-            <tr class="p-3">
+            <tr>
                 <td colspan="4">
-                    <a class="btn-dark-blue btn btn-primary btn-outline-light m-2" href="{{ route('clubs.create') }}">Ajouter un
+                    <a class="btn-add btn btn-primary btn-outline-light m-3" href="{{ route('clubs.create') }}">Ajouter un
                         club</a>
                 </td>
             </tr>
@@ -35,7 +35,7 @@
                     <td>{{ $club->name }}</td>
                     <td>{{ $club->city }}</td>
                     <td>
-                        <a class="btn btn-primary btn-outline-light" href="{{ route('clubs.show', $club->id)  }}">Voir</a>
+                        <a class="btn btn-see btn-info btn-outline-light" href="{{ route('clubs.show', $club->id)  }}">Voir</a>
                     </td>
                 </tr>
             @endforeach

@@ -1,6 +1,35 @@
 /*--------------------------------------------------------------
 # Buttons
 --------------------------------------------------------------*/
+.btn-add::before,
+.btn-edit::before,
+.btn-delete::before,
+.btn-see::before,
+.btn-back::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: bold;
+    padding-right: 0.5em;
+}
+
+.btn-add::before {
+    content: "\2b";
+}
+
+.btn-edit::before {
+    content: "\f304";
+}
+
+.btn-delete::before {
+    content: "\f2ed";
+}
+
+.btn-see::before {
+    content: "\f06e";
+}
+
+.btn-back::before {
+    content: "\f060";
+}
 
 .btn.btn-dark-blue {
     background: var(--color-hsl-1);
