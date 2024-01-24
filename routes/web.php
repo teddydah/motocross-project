@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// Home
 Route::get('/', function () {
     return view('home');
 });
@@ -26,11 +27,14 @@ Route::get('/', function () {
 // Clubs
 Route::resource('clubs', ClubController::class);
 
+// Training
+Route::resource('trainings', TrainingController::class);
+
 // Booking
 Route::resource('bookings', BookingController::class);
 
 // Training
-Route::get(
+/*Route::get(
     '/training',
     [TrainingController::class, 'index']
 )->name('training.index');
@@ -58,7 +62,7 @@ Route::put(
 Route::delete(
     '/delete-training/{id}',
     [TrainingController::class, 'destroy']
-)->name('training.destroy');
+)->name('training.destroy');*/
 
 // Schedule
 Route::get(
@@ -98,43 +102,6 @@ Route::post('/', [PostController::class, 'store'])->name('post.store');
 Route::get('/posts', [PostController::class, 'index'])->name('post.index');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('post.destroy');
-
-// Clubs
-/*Route::get(
-    '/clubs',
-    [ClubController::class, 'index']
-)->name('clubs.index');
-
-Route::get(
-    '/club/{club}',
-    [ClubController::class, 'show']
-)->name('club.show');
-
-Route::get(
-    '/clubs/create',
-    [ClubController::class, 'create']
-)->name('club.create');
-
-Route::post(
-    '/club/create',
-    [ClubController::class, 'store']
-)->name('club.store');
-
-Route::get(
-    '/club/edit/{club}',
-    [ClubController::class, 'edit']
-)->name('club.edit');
-
-Route::put(
-    '/club/edit/{club}',
-    [ClubController::class, 'update']
-)->name('club.update');
-
-Route::delete(
-    '/clubs/destroy/{club}',
-    [ClubController::class, 'destroy']
-)->name('club.destroy');*/
-
 
 // Pictures
 Route::get(
