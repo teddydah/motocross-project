@@ -18,27 +18,31 @@
                 <tr>
                     <th scope="row"><label for="name">Nom :</label></th>
                     <td>
-                        <input type="text" name="name" id="name" value="{{ old('name') }}" required>
+                        <input type="text" name="name" id="name" placeholder="Moto-Club Auribail"
+                               value="{{ old('name') }}" required>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="address">Adresse :</label></th>
                     <td>
-                        <input type="text" name="address" id="address" value="{{ old('address') }}"
+                        <input type="text" name="address" id="address" placeholder="Mairie de Auribail"
+                               value="{{ old('address') }}"
                                required>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="zip_code">Code postal :</label></th>
                     <td>
-                        <input type="text" name="zip_code" id="zip_code" value="{{ old('zip_code') }}"
+                        <input type="text" name="zip_code" id="zip_code" placeholder="31190"
+                               value="{{ old('zip_code') }}"
                                required>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="city">Ville :</label></th>
                     <td>
-                        <input type="text" name="city" id="city" value="{{ old('city') }}" required>
+                        <input type="text" name="city" id="city" placeholder="Auribail" value="{{ old('city') }}"
+                               required>
                     </td>
                 </tr>
                 <tr>
@@ -57,19 +61,22 @@
                 <tr>
                     <th scope="row"><label for="phone">Téléphone :</label></th>
                     <td>
-                        <input type="text" name="phone" id="phone" value="{{ old('phone') }}" required>
+                        <input type="text" name="phone" id="phone" placeholder="0561507161" value="{{ old('phone') }}"
+                               required>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="email">E-mail :</label></th>
                     <td>
-                        <input type="email" name="email" id="email" value="{{ old('email') }}" required>
+                        <input type="email" name="email" id="email" placeholder="daniel.raymond09@orange.fr"
+                               value="{{ old('email') }}" required>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="social_network_link">Facebook :</label></th>
                     <td>
-                        <input type="url" name="social_network_link" id="social_network_link"
+                        <input type="url" name="social_network_link"
+                               placeholder="https://www.facebook.com/auribail.motosport/" id="social_network_link"
                                value="{{ old('social_network_link') }}">
                     </td>
                 </tr>
@@ -77,6 +84,7 @@
                     <th scope="row"><label for="description">Description :</label></th>
                     <td>
                         <textarea class="align-middle" name="description" id="description"
+                                  placeholder="Auribail Mx Park"
                                   rows="3">{{ old('description') }}</textarea>
                     </td>
                 </tr>
