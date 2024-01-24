@@ -24,7 +24,7 @@
     <link href="{{url('/')}}/css/style.css" rel="stylesheet">
 
     <!-- Bootstrap -->
-    @vite(['resources/js/app.css', 'resources/js/app.js'])
+    @vite(['resources/js/app.js'])
 </head>
 <body>
 
