@@ -3,45 +3,55 @@
 namespace App\Http\Controllers;
 
 use App\Models\Training;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
 class TrainingController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
-    public function index()
+    public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $trainings = Training::all();
-        return view('training.index', ['trainings' => $trainings]);
+        return view('trainings.index', ['trainings' => Training::all()]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
-    public function create()
+    public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('training.create');
+        return view('trainings.create');
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            "name" => "required|string",
-            "max_people" => "required|numeric",
-            "type" => "required",
-            "price" => "required|numeric",
-            "length" => "numeric",
-            "width" => "numeric",
-            "address" => "required|string",
-            "zip_code" => "required|string",
-            "city" => "required|string",
-            "latitude" => "numeric",
-            "longitude" => "numeric",
-        ]);
+        $request->validate(
+            [
+                "name" => "required|string",
+                "max_people" => "required|numeric",
+                "type" => "required",
+                "price" => "required|numeric",
+                "length" => "numeric",
+                "width" => "numeric",
+                "address" => "required|string",
+                'zip_code' => 'required|size:5',
+                "city" => "required|string",
+                "latitude" => "numeric",
+                "longitude" => "numeric",
+                "description" => "nullable"
+            ],
+            [
+                'zip_code' => 'Le code postal doit comporté 5 chiffres.'
+            ]
+        );
 
         Training::create([
             "name" => $request->name,
@@ -53,28 +63,30 @@ class TrainingController extends Controller
             "address" => $request->address,
             "zip_code" => $request->zip_code,
             "city" => $request->city,
-            "latitude" => $request->latitude,
-            "longitude" => $request->longitude,
+            "latitude" => str_replace(',', '.', $request->latitude),
+            'longitude' => str_replace(',', '.', $request->longitude),
+            "description" => $request->description
         ]);
 
-        return redirect()->route('training.index');
+        return redirect()->route('trainings.index')->with('success', 'Entraînement ajouté avec succès.');
     }
 
     /**
-     * Display the specified resource.
+     * @param Training $training
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
-    public function show($id)
+    public function show(Training $training): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        //
+        return view('trainings.show', ['training' => Training::find($training->id)]);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * @param Training $training
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
-    public function edit($id)
+    public function edit(Training $training): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $training = Training::find($id);
-        return view('training.edit', ['training' => $training]);
+        return view('trainings.edit', ['training' => Training::find($training->id)]);
     }
 
     /**
@@ -94,6 +106,7 @@ class TrainingController extends Controller
             "city" => "required|string",
             "latitude" => "numeric",
             "longitude" => "numeric",
+            "description" => "nullable"
         ]);
 
         $training = Training::find($id);
@@ -110,9 +123,10 @@ class TrainingController extends Controller
             "city" => $request->city,
             "latitude" => $request->latitude,
             "longitude" => $request->longitude,
+            "description" => $request->description
         ]);
 
-        return redirect()->route('training.index');
+        return redirect()->route('trainings.index');
     }
 
     /**
@@ -122,6 +136,6 @@ class TrainingController extends Controller
     {
         $training = Training::find($id);
         $training->delete();
-        return redirect()->route('training.index');
+        return redirect()->route('trainings.index');
     }
 }

@@ -12,17 +12,26 @@ return new class extends Migration {
     {
         Schema::create('trainings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('max_people');
-            $table->enum('type', ['enfant', 'adulte']);
+            $table->string('name'); // Nom du circuit
+            $table->integer('max_people'); // Nb max de pilotes inscrits
+            $table->enum('track', ['MX', 'Enfant']); // Type de piste
+            $table->enum('vehicle', ['Moto']); // Véhicule autorisé
+            $table->enum('license_type', ['UFOLEP', 'FFM'])->nullable();
+
+            // TODO: revoir
             $table->float('price');
+            // 10€ par mois (pour les pilotes du club).
+            // 15€ par mois (pour les pilotes extérieurs).
+
             $table->float('length')->nullable();
             $table->float('width')->nullable();
+            $table->string('nature_of_land')->nullable(); // Nature du terrain
             $table->string('address');
             $table->string('zip_code', 5);
             $table->string('city', 50);
-            $table->float('latitude')->nullable();
-            $table->float('longitude')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }

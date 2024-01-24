@@ -22,6 +22,7 @@ class Training extends Model
         'zip_code',
         'city',
         'latitude',
-        'longitude'
+        'longitude',
+        'description'
     ];
 }
