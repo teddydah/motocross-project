@@ -44,14 +44,14 @@
         class="bi bi-arrow-up-short"></i></a>
 
 <!-- Vendor JS Files -->
-<script src="vendor/purecounter/purecounter_vanilla.js"></script>
-<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="vendor/glightbox/js/glightbox.min.js"></script>
-<script src="vendor/isotope-layout/isotope.pkgd.min.js"></script>
-<script src="vendor/swiper/swiper-bundle.min.js"></script>
-<script src="vendor/php-email-form/validate.js"></script>
+<script src="{{url('/')}}/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="{{url('/')}}/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{{url('/')}}/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="{{url('/')}}/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="{{url('/')}}/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="{{url('/')}}/vendor/php-email-form/validate.js"></script>
 
 <!-- Template Main JS File -->
-<script src="js/main.js" type="module"></script>
+<script src="{{url('/')}}/js/main.js" type="module"></script>
 </body>
 </html>
