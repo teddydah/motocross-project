@@ -10,13 +10,8 @@
                 <div class="carousel-item active" style="background-image: url(img/slide/auribail.jpg);">
                     <div class="carousel-container">
                         <div class="carousel-content">
+                            <img class="w-25 mb-4" src="{{ url('/') }}/img/logo.png" alt="Logo Auribail Mx Park">
                             <h2 class="animate__animated animate__fadeInDown">Bienvenue à Auribail Mx Park</h2>
-                            <p class="animate__animated animate__fadeInUp">Ut velit est quam dolor ad a aliquid qui
-                                aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem
-                                mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti
-                                vel. Minus et tempore modi architecto.</p>
-                            <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Read
-                                More</a>
                         </div>
                     </div>
                 </div>

@@ -5,7 +5,7 @@
 @endsection
 
 @section('main')
-    @include('includes.hero')
+    @include('home.hero')
 
     @include('home.about')
 
