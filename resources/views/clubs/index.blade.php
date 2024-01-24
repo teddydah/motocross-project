@@ -5,8 +5,8 @@
 @endsection
 
 @section('main')
-    @include('messages.success')
     <section class="admin">
+        @include('messages.success')
         <div class="section-title container bg-white">
             <span>Liste des clubs</span>
             <h2 class="mb-0">Liste des clubs</h2>

@@ -33,18 +33,24 @@ class ClubController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => 'required',
-            'address' => 'required',
-            'zip_code' => 'required|size:5',
-            'city' => 'required',
-            'latitude' => 'nullable',
-            'longitude' => 'nullable',
-            'phone' => 'required|size:10',
-            'email' => 'required|email',
-            'social_network_link' => 'required|url',
-            'description' => 'nullable'
-        ]);
+        $request->validate(
+            [
+                'name' => 'required',
+                'address' => 'required',
+                'zip_code' => 'required|size:5',
+                'city' => 'required',
+                'latitude' => 'nullable',
+                'longitude' => 'nullable',
+                'phone' => 'required|size:10',
+                'email' => 'required|email',
+                'social_network_link' => 'required|url',
+                'description' => 'nullable'
+            ],
+            [
+                'phone' => 'Le numéro de téléphone doit comporté 10 chiffres.',
+                'zip_code' => 'Le code postal doit comporté 5 chiffres.'
+            ]
+        );
 
         Club::create([
             'name' => $request->name,
@@ -88,18 +94,24 @@ class ClubController extends Controller
      */
     public function update(Request $request, Club $club): RedirectResponse
     {
-        $validatedData = $request->validate([
-            'name' => 'required',
-            'address' => 'required',
-            'zip_code' => 'required|size:5',
-            'city' => 'required',
-            'latitude' => 'nullable',
-            'longitude' => 'nullable',
-            'phone' => 'required|size:10',
-            'email' => 'required|email',
-            'social_network_link' => 'required|url',
-            'description' => 'nullable',
-        ]);
+        $validatedData = $request->validate(
+            [
+                'name' => 'required',
+                'address' => 'required',
+                'zip_code' => 'required|size:5',
+                'city' => 'required',
+                'latitude' => 'nullable',
+                'longitude' => 'nullable',
+                'phone' => 'required|size:10',
+                'email' => 'required|email',
+                'social_network_link' => 'required|url',
+                'description' => 'nullable',
+            ],
+            [
+                'phone' => 'Le numéro de téléphone doit comporté 10 chiffres.',
+                'zip_code' => 'Le code postal doit comporté 5 chiffres.'
+            ]
+        );
 
         Club::find($club->id)->update([
             'name' => $request->name,
