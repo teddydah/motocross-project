@@ -4,6 +4,7 @@
 .btn-add,
 .btn-edit,
 .btn-save,
+.btn-cancel,
 .btn-delete,
 .btn-see,
 .btn-back {
@@ -12,9 +13,14 @@
     padding: 0.7em !important;
 }
 
+.btn-cancel {
+    background-color: var(--color-2) !important;
+}
+
 .btn-add:hover,
 .btn-edit:hover,
 .btn-save:hover,
+.btn-cancel:hover,
 .btn-delete:hover,
 .btn-see:hover,
 .btn-back:hover {
@@ -24,6 +30,7 @@
 .btn-add::before,
 .btn-edit::before,
 .btn-save::before,
+.btn-cancel::before,
 .btn-delete::before,
 .btn-see::before,
 .btn-back::before {
@@ -42,6 +49,10 @@
 
 .btn-save::before {
     content: "\f0c7";
+}
+
+.btn-cancel::before {
+    content: "\f00d";
 }
 
 .btn-delete::before {

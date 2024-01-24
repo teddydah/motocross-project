@@ -94,11 +94,13 @@
                 <tfoot>
                 <tr>
                     <td class="text-center" colspan="2">
-                        <a class="btn btn-dark btn-outline-light btn-back ms-0 me-1"
-                           href="{{ route('clubs.show', $club->id) }}" title="Retour aux détails du club">Retour</a>
-                        <button class="btn btn-success btn-outline-light btn-save ms-1 me-0" type="submit"
+                        <a class="btn btn-dark btn-outline-light btn-back ms-0 me-0"
+                           href="{{ route('clubs.index') }}" title="Retour à la liste des clubs">Retour</a>
+                        <button class="btn btn-success btn-outline-light btn-save m-2" type="submit"
                                 title="Enregistrer les modifications">Enregistrer
                         </button>
+                        <a class="btn btn-outline-light btn-cancel ms-0 me-0"
+                           href="{{ route('clubs.show', $club->id) }}" title="Annuler les modifications">Annuler</a>
                     </td>
                 </tr>
                 </tfoot>

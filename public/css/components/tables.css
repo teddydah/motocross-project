@@ -17,4 +17,5 @@
 .table-admin.table-edit tr td input,
 .table-admin.table-edit tr td textarea {
     width: 100%;
+    padding-left: 0.25em;
 }
