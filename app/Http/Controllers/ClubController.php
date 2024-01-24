@@ -36,11 +36,11 @@ class ClubController extends Controller
         $request->validate([
             'name' => 'required',
             'address' => 'required',
-            'zip_code' => 'required',
+            'zip_code' => 'required|size:5',
             'city' => 'required',
             'latitude' => 'nullable',
             'longitude' => 'nullable',
-            'phone' => 'required',
+            'phone' => 'required|size:10',
             'email' => 'required|email',
             'social_network_link' => 'required|url',
             'description' => 'nullable'
@@ -51,8 +51,8 @@ class ClubController extends Controller
             'address' => $request->address,
             'zip_code' => $request->zip_code,
             'city' => $request->city,
-            'latitude' => $request->latitude,
-            'longitude' => $request->longitude,
+            'latitude' => str_replace(',', '.', $request->latitude),
+            'longitude' => str_replace(',', '.', $request->longitude),
             'phone' => $request->phone,
             'email' => $request->email,
             'social_network_link' => $request->social_network_link,
@@ -86,24 +86,37 @@ class ClubController extends Controller
      * @param $id
      * @return RedirectResponse
      */
-    public function update(Request $request, $id): RedirectResponse
+    public function update(Request $request, Club $club): RedirectResponse
     {
         $validatedData = $request->validate([
             'name' => 'required',
             'address' => 'required',
-            'zip_code' => 'required',
+            'zip_code' => 'required|size:5',
             'city' => 'required',
             'latitude' => 'nullable',
             'longitude' => 'nullable',
-            'phone' => 'required',
+            'phone' => 'required|size:10',
             'email' => 'required|email',
             'social_network_link' => 'required|url',
             'description' => 'nullable',
         ]);
 
-        Club::find($id)->update($validatedData);
+        Club::find($club->id)->update([
+            'name' => $request->name,
+            'address' => $request->address,
+            'zip_code' => $request->zip_code,
+            'city' => $request->city,
+            'latitude' => str_replace(',', '.', $request->latitude),
+            'longitude' => str_replace(',', '.', $request->longitude),
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'social_network_link' => $request->social_network_link,
+            'description' => $request->description,
+        ]);
 
-        return redirect()->route('clubs.index')->with('success', 'Club mis à jour avec succès.');
+        return redirect()->route('clubs.show', [
+            'club' => $club->id
+        ])->with('success', 'Club mis à jour avec succès.');
     }
 
     /**

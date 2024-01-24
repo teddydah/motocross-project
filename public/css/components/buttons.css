@@ -13,10 +13,6 @@
     padding: 0.7em !important;
 }
 
-.btn-cancel {
-    background-color: var(--color-2) !important;
-}
-
 .btn-add:hover,
 .btn-edit:hover,
 .btn-save:hover,

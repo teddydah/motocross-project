@@ -5,11 +5,7 @@
 @endsection
 
 @section('main')
-    @if(session('success'))
-        <div class="container" style="color: green;">
-            {{ session('success') }}
-        </div>
-    @endif
+    @include('messages.success')
     <section class="admin">
         <div class="section-title container bg-white">
             <span>Liste des clubs</span>

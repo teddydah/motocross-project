@@ -5,16 +5,8 @@
 @endsection
 
 @section('main')
-    @if ($errors->any())
-        <div class="container" style="color: red;">
-            <ul>
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
     <section class="admin">
+        @include('messages.errors')
         <div class="section-title container bg-white">
             <span>{{ $club->name }}</span>
             <h2 class="mb-0">{{ $club->name }}</h2>
@@ -99,7 +91,7 @@
                         <button class="btn btn-success btn-outline-light btn-save m-2" type="submit"
                                 title="Enregistrer les modifications">Enregistrer
                         </button>
-                        <a class="btn btn-outline-light btn-cancel ms-0 me-0"
+                        <a class="btn btn-secondary btn-outline-light btn-cancel ms-0 me-0"
                            href="{{ route('clubs.show', $club->id) }}" title="Annuler les modifications">Annuler</a>
                     </td>
                 </tr>

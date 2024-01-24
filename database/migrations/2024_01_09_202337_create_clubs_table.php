@@ -16,8 +16,8 @@ return new class extends Migration {
             $table->string('address');
             $table->string('zip_code', 5);
             $table->string('city', 50);
-            $table->float('latitude')->nullable();
-            $table->float('longitude')->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->string('phone', 10);
             $table->string('email')->unique();
             $table->string('social_network_link');
