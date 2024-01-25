@@ -17,13 +17,14 @@
             <tr>
                 <th scope="row">#</th>
                 <th scope="row">Nom</th>
+                <th scope="row">Piste</th>
                 <th scope="row">Ville</th>
                 <th scope="row">Action</th>
             </tr>
             </thead>
             <tfoot>
             <tr>
-                <td colspan="4">
+                <td colspan="5">
                     <a class="btn-add btn btn-primary btn-outline-light" href="{{ route('trainings.create') }}"
                        title="Ajouter un entraînement">Ajouter un entraînement</a>
                 </td>
@@ -34,6 +35,7 @@
                 <tr>
                     <td>{{ $training->id }}</td>
                     <td>{{ $training->name }}</td>
+                    <td>{{ $training->track }}</td>
                     <td>{{ $training->city }}</td>
                     <td>
                         <a class="btn btn-see btn-info btn-outline-light"

@@ -37,7 +37,7 @@ class TrainingController extends Controller
             [
                 "name" => "required|string",
                 "max_people" => "required|numeric",
-                "type" => "required",
+                "track" => "required",
                 "price" => "required|numeric",
                 "length" => "numeric",
                 "width" => "numeric",
@@ -56,7 +56,7 @@ class TrainingController extends Controller
         Training::create([
             "name" => $request->name,
             "max_people" => $request->max_people,
-            "type" => $request->type,
+            "track" => $request->type,
             "price" => $request->price,
             "length" => $request->length,
             "width" => $request->width,
@@ -90,14 +90,16 @@ class TrainingController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @param Request $request
+     * @param Training $training
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Training $training): RedirectResponse
     {
         $request->validate([
             "name" => "required|string",
             "max_people" => "required|numeric",
-            "type" => "required",
+            "track" => "required",
             "price" => "required|numeric",
             "length" => "numeric",
             "width" => "numeric",
@@ -109,12 +111,10 @@ class TrainingController extends Controller
             "description" => "nullable"
         ]);
 
-        $training = Training::find($id);
-
-        $training->update([
+        Training::find($training->id)->update([
             "name" => $request->name,
             "max_people" => $request->max_people,
-            "type" => $request->type,
+            "track" => $request->type,
             "price" => $request->price,
             "length" => $request->length,
             "width" => $request->width,
@@ -126,16 +126,16 @@ class TrainingController extends Controller
             "description" => $request->description
         ]);
 
-        return redirect()->route('trainings.index');
+        return redirect()->route('trainings.show', ['training' => $training->id]);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @param Training $training
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Training $training): RedirectResponse
     {
-        $training = Training::find($id);
-        $training->delete();
+        Training::find($training->id)->delete();
         return redirect()->route('trainings.index');
     }
 }
