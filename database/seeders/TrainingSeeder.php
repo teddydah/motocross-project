@@ -15,18 +15,18 @@ class TrainingSeeder extends Seeder
     {
         DB::table('trainings')->insert([
             'name' => 'Auribail mx track',
-            'max_people' => NULL,
+            'max_people' => 20,
             'track' => 'MX',
-            'license_type' => 'UFOLEP, FFM',
             'length' => 1950,
             'width' => 8,
-            'nature_of_land' => 'Terre argileuse',
             'address' => 'Le Petayre Rossignol – Lieu dit Peyret',
             'zip_code' => '31190',
             'city' => 'Auribail',
             'latitude' => '43.34192221833587',
             'longitude' => '1.357055980850652',
-            'description' => 'Sanitaire, douche, club house, électricité, terrain technique et école de pilotage à disposition.'
+            'description' => 'Sanitaire, douche, club house, électricité, terrain technique et école de pilotage à disposition.
+Terre argileuse',
+            'club_id' => 1
         ]);
     }
 }

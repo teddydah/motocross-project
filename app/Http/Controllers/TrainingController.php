@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Club;
 use App\Models\Training;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -24,7 +25,7 @@ class TrainingController extends Controller
      */
     public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('trainings.create');
+        return view('trainings.create', ['clubs' => Club::all()]);
     }
 
     /**
@@ -35,37 +36,43 @@ class TrainingController extends Controller
     {
         $request->validate(
             [
-                "name" => "required|string",
-                "max_people" => "required|numeric",
-                "track" => "required",
-                "price" => "required|numeric",
-                "length" => "numeric",
-                "width" => "numeric",
-                "address" => "required|string",
+                'name' => 'required',
+                'max_people' => 'required',
+                'track' => 'required',
+                'length' => 'nullable',
+                'width' => 'nullable',
+                'address' => 'required',
                 'zip_code' => 'required|size:5',
-                "city" => "required|string",
-                "latitude" => "numeric",
-                "longitude" => "numeric",
-                "description" => "nullable"
+                'city' => 'required',
+                'latitude' => 'nullable',
+                'longitude' => 'nullable',
+                'description' => 'nullable',
+                'club' => 'required'
             ],
             [
+                'max_people' => 'Le nombre maximum de participants est requis.',
                 'zip_code' => 'Le code postal doit comporté 5 chiffres.'
             ]
         );
 
+        if ($request->track != 'mx' && $request->track != 'kid') {
+            return redirect()->route('trainings.create')->with('danger', 'Vous devez selectionner TODO');
+        }
+
         Training::create([
-            "name" => $request->name,
-            "max_people" => $request->max_people,
-            "track" => $request->type,
-            "price" => $request->price,
-            "length" => $request->length,
-            "width" => $request->width,
-            "address" => $request->address,
-            "zip_code" => $request->zip_code,
-            "city" => $request->city,
-            "latitude" => str_replace(',', '.', $request->latitude),
+            'name' => $request->name,
+            'max_people' => $request->max_people,
+            'track' => $request->track,
+            'price' => $request->price,
+            'length' => $request->length,
+            'width' => $request->width,
+            'address' => $request->address,
+            'zip_code' => $request->zip_code,
+            'city' => $request->city,
+            'latitude' => str_replace(',', '.', $request->latitude),
             'longitude' => str_replace(',', '.', $request->longitude),
-            "description" => $request->description
+            'description' => $request->description,
+            'club_id' => $request->club
         ]);
 
         return redirect()->route('trainings.index')->with('success', 'Entraînement ajouté avec succès.');

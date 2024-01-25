@@ -17,15 +17,14 @@ class Training extends Model
         'track',
         'vehicle',
         'license_type',
-        'price',
         'length',
         'width',
-        'nature_of_land',
         'address',
         'zip_code',
         'city',
         'latitude',
         'longitude',
-        'description'
+        'description',
+        'club_id'
     ];
 }

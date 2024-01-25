@@ -6,7 +6,7 @@
 
 @section('main')
     <section class="admin">
-        @include('messages.errors')
+        @include('messages')
         <div class="section-title container bg-white">
             <span>AJouter un entraînement</span>
             <h2 class="mb-0">Ajouter un entraînement</h2>
@@ -23,70 +23,102 @@
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row"><label for="max_people">Nb max de pilotes inscrits :</label></th>
+                    <th scope="row"><label for="club">Club :</label></th>
+                    <td>
+                        <select name="club" id="club" required>
+                            <option selected>-- Sélectionnez un club --</option>
+                            @foreach($clubs as $club)
+                                <option value="{{ $club->id }}">{{ $club->name }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="max_people">Nb max de participants :</label></th>
                     <td>
                         <input type="text" name="max_people" id="max_people" placeholder="15"
-                               value="{{ old('max_people') }}">
+                               value="{{ old('max_people') }}" required>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="track">Piste :</label></th>
                     <td>
-                        <input type="text" name="track" id="track" placeholder="MX" value="{{ old('track') }}"
+                        <select name="track" id="track" required>
+                            <option selected>-- Sélectionnez une piste --</option>
+                            <option value="mx">MX</option>
+                            <option value="kid">Enfant</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="license_type">Type de licence :</label></th>
+                    <td>
+                        <select name="license_type" id="license_type" required>
+                            <option selected>-- Sélectionnez un type de licence --</option>
+                            <option value="{{ old('license_type', 'ufolep') }}">UFOLEP</option>
+                            <option value="{{ old('license_type', 'ffm') }}">FFM</option>
+                        </select>
+                    </td>
+                </tr>
+
+                <!-- TODO: Price / Tarif ? -->
+
+                <tr>
+                    <th scope="row"><label for="length">Longueur (en mètres) :</label></th>
+                    <td>
+                        <input type="text" name="length" id="length" placeholder="1950"
+                               value="{{ old('length') }}">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="width">Largeur (en mètres) :</label></th>
+                    <td>
+                        <input type="text" name="width" id="width" placeholder="8"
+                               value="{{ old('width') }}">
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="address">Adresse :</label></th>
+                    <td>
+                        <input type="text" name="address" id="address"
+                               placeholder="Le Petayre Rossignol – Lieu dit Peyret"
+                               value="{{ old('address') }}"
                                required>
                     </td>
                 </tr>
-
-                <!-- TODO -->
                 <tr>
-                    <th scope="row"><label for="license_type">Type(s) de licence :</label></th>
+                    <th scope="row"><label for="zip_code">Code postal :</label></th>
                     <td>
-                        <input type="text" name="license_type" id="license_type" placeholder="UFOLEP, FFM"
-                               value="{{ old('license_type') }}">
+                        <input type="text" name="zip_code" id="zip_code" placeholder="31190"
+                               value="{{ old('zip_code') }}"
+                               required>
                     </td>
                 </tr>
-
-
+                <tr>
+                    <th scope="row"><label for="city">Ville :</label></th>
+                    <td>
+                        <input type="text" name="city" id="city" placeholder="Auribail" value="{{ old('city') }}"
+                               required>
+                    </td>
+                </tr>
                 <tr>
                     <th scope="row"><label for="latitude">Latitude :</label></th>
                     <td>
-                        <input type="text" name="latitude" id="latitude" value="{{ old('latitude') }}">
+                        <input type="text" name="latitude" id="latitude" placeholder="43.34192221833587"
+                               value="{{ old('latitude') }}">
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="longitude">Longitude :</label></th>
                     <td>
-                        <input type="text" name="longitude" id="longitude"
+                        <input type="text" name="longitude" id="longitude" placeholder="1.357055980850652"
                                value="{{ old('longitude') }}">
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="phone">Téléphone :</label></th>
-                    <td>
-                        <input type="text" name="phone" id="phone" placeholder="0561507161" value="{{ old('phone') }}"
-                               required>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="email">E-mail :</label></th>
-                    <td>
-                        <input type="email" name="email" id="email" placeholder="daniel.raymond09@orange.fr"
-                               value="{{ old('email') }}" required>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="social_network_link">Facebook :</label></th>
-                    <td>
-                        <input type="url" name="social_network_link"
-                               placeholder="https://www.facebook.com/auribail.motosport/" id="social_network_link"
-                               value="{{ old('social_network_link') }}">
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="description">Description :</label></th>
                     <td>
                         <textarea class="align-middle" name="description" id="description"
-                                  placeholder="Auribail Mx Park"
                                   rows="3">{{ old('description') }}</textarea>
                     </td>
                 </tr>
@@ -95,9 +127,9 @@
                 <tr>
                     <td class="text-center" colspan="2">
                         <a class="btn btn-dark btn-outline-light btn-back ms-0 me-0"
-                           href="{{ route('clubs.index') }}" title="Retour à la liste des clubs">Retour</a>
+                           href="{{ route('trainings.index') }}" title="Retour à la liste des entraînements">Retour</a>
                         <button class="btn btn-primary btn-outline-light btn-add m-2" type="submit"
-                                title="Ajouter un club">Ajouter
+                                title="Ajouter un entraînement">Ajouter
                         </button>
                     </td>
                 </tr>
@@ -106,62 +138,3 @@
         </form>
     </section>
 @endsection
-
-
-
-
-<body>
-<h1>
-    Créer l'entrainement
-</h1>
-<form action="{{ route('trainings.store') }}" method="POST">
-    @csrf
-    <label for="name">Nom</label>
-    <input type="text" name="name" id="name" autofocus>
-    <br>
-
-    <label for="max_people">Nombre de personnes</label>
-    <input type="number" name="max_people" id="max_people">
-    <br>
-
-    <label for="type">Adulte ou enfant</label>
-    <input type="radio" name="type" id="type" value="adulte">Adulte</radio>
-    <input type="radio" name="type" id="type" value="enfant">Enfant</radio>
-    <br>
-
-    <label for="price">Prix</label>
-    <input type="number" name="price" id="price">
-    <br>
-
-    <label for="length">Longueur</label>
-    <input type="number" name="length" id="length">
-    <br>
-
-    <label for="width">Largeur</label>
-    <input type="number" name="width" id="width">
-    <br>
-
-    <label for="address">Adresse</label>
-    <input type="text" name="address" id="address">
-    <br>
-
-    <label for="zip_code">Code postal</label>
-    <input type="text" name="zip_code" id="zip_code">
-    <br>
-
-    <label for="city">Ville</label>
-    <input type="text" name="city" id="city">
-    <br>
-
-    <label for="latitude">Latitude</label>
-    <input type="number" name="latitude" id="latitude">
-    <br>
-
-    <label for="longitude">Longitude</label>
-    <input type="number" name="longitude" id="longitude">
-    <br>
-
-    <button type="submit">Enregistrer</button>
-</body>
-
-</html>
