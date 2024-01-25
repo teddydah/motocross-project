@@ -131,8 +131,6 @@ class ClubController extends Controller
      */
     public function destroy(Club $club): RedirectResponse
     {
-        $club = Club::find($club->id);
-
         if (count(Club::all()) < 2) {
             return redirect()->route('clubs.show', ['club' => $club->id])
                 ->with('warning', 'Vous ne pouvez pas supprimer ce club.');

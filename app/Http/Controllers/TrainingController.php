@@ -39,8 +39,8 @@ class TrainingController extends Controller
                 'name' => 'required',
                 'max_people' => 'required',
                 'track' => 'required',
-                'length' => 'nullable',
-                'width' => 'nullable',
+                'length' => 'nullable|numeric',
+                'width' => 'nullable|numeric',
                 'address' => 'required',
                 'zip_code' => 'required|size:5',
                 'city' => 'required',
@@ -51,12 +51,24 @@ class TrainingController extends Controller
             ],
             [
                 'max_people' => 'Le nombre maximum de participants est requis.',
-                'zip_code' => 'Le code postal doit comporté 5 chiffres.'
+                'length' => 'Le champ longueur doit être un nombre.',
+                'width' => 'Le champ largeur doit être un nombre.',
+                'zip_code' => 'Le code postal doit comporté 5 chiffres.',
+                'latitude' => 'Le champ latitude doit être un nombre.',
+                'longitude' => 'Le champ longitude doit être un nombre.'
             ]
         );
 
-        if ($request->track != 'mx' && $request->track != 'kid') {
-            return redirect()->route('trainings.create')->with('danger', 'Vous devez selectionner TODO');
+        // TODO
+        if ($request->track != 'mx' && $request->track != 'kid' && $request->club === null) {
+            return redirect()->route('trainings.create')
+                ->with('danger', 'Vous devez selectionner un club et une piste.');
+        } else if ($request->club === null) {
+            return redirect()->route('trainings.create')
+                ->with('danger', 'Vous devez selectionner un club.');
+        } else if ($request->track != 'mx' && $request->track != 'kid') {
+            return redirect()->route('trainings.create')
+                ->with('danger', 'Vous devez selectionner une piste');
         }
 
         Training::create([
@@ -142,7 +154,8 @@ class TrainingController extends Controller
      */
     public function destroy(Training $training): RedirectResponse
     {
-        Training::find($training->id)->delete();
+        // Training::find($training->id)->delete();
+        $training->delete();
         return redirect()->route('trainings.index');
     }
 }
