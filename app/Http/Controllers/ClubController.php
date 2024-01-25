@@ -33,24 +33,21 @@ class ClubController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate(
-            [
-                'name' => 'required',
-                'address' => 'required',
-                'zip_code' => 'required|size:5',
-                'city' => 'required',
-                'latitude' => 'nullable',
-                'longitude' => 'nullable',
-                'phone' => 'required|size:10',
-                'email' => 'required|email',
-                'social_network_link' => 'required|url',
-                'description' => 'nullable'
-            ],
-            [
-                'phone' => 'Le numéro de téléphone doit comporté 10 chiffres.',
-                'zip_code' => 'Le code postal doit comporté 5 chiffres.'
-            ]
-        );
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'zip_code' => 'required|size:5',
+            'city' => 'required',
+            'latitude' => 'nullable',
+            'longitude' => 'nullable',
+            'phone' => 'required|size:10',
+            'email' => 'required|email',
+            'social_network_link' => 'required|url',
+            'description' => 'nullable'
+        ], [
+            'phone' => 'Le numéro de téléphone doit comporté 10 chiffres.',
+            'zip_code' => 'Le code postal doit comporté 5 chiffres.'
+        ]);
 
         Club::create([
             'name' => $request->name,
@@ -79,39 +76,36 @@ class ClubController extends Controller
     }
 
     /**
-     * @param $id
+     * @param Club $club
      * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
-    public function edit($id): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function edit(Club $club): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('clubs.edit', ['club' => Club::find($id)]);
+        return view('clubs.edit', ['club' => Club::find($club->id)]);
     }
 
     /**
      * @param Request $request
-     * @param $id
+     * @param Club $club
      * @return RedirectResponse
      */
     public function update(Request $request, Club $club): RedirectResponse
     {
-        $validatedData = $request->validate(
-            [
-                'name' => 'required',
-                'address' => 'required',
-                'zip_code' => 'required|size:5',
-                'city' => 'required',
-                'latitude' => 'nullable',
-                'longitude' => 'nullable',
-                'phone' => 'required|size:10',
-                'email' => 'required|email',
-                'social_network_link' => 'required|url',
-                'description' => 'nullable',
-            ],
-            [
-                'phone' => 'Le numéro de téléphone doit comporté 10 chiffres.',
-                'zip_code' => 'Le code postal doit comporté 5 chiffres.'
-            ]
-        );
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'zip_code' => 'required|size:5',
+            'city' => 'required',
+            'latitude' => 'nullable',
+            'longitude' => 'nullable',
+            'phone' => 'required|size:10',
+            'email' => 'required|email',
+            'social_network_link' => 'required|url',
+            'description' => 'nullable',
+        ], [
+            'phone' => 'Le numéro de téléphone doit comporté 10 chiffres.',
+            'zip_code' => 'Le code postal doit comporté 5 chiffres.'
+        ]);
 
         Club::find($club->id)->update([
             'name' => $request->name,
@@ -132,12 +126,18 @@ class ClubController extends Controller
     }
 
     /**
-     * @param $id
+     * @param Club $club
      * @return RedirectResponse
      */
-    public function destroy($id): RedirectResponse
+    public function destroy(Club $club): RedirectResponse
     {
-        Club::find($id)->delete();
-        return redirect()->route('clubs.index');
+        $club = Club::find($club->id);
+
+        if (count(Club::all()) < 2) {
+            return redirect()->route('clubs.show', ['club' => $club->id])
+                ->with('warning', 'Vous ne pouvez pas supprimer ce club.');
+        } else $club->delete();
+
+        return redirect()->route('clubs.index')->with('success', 'Club supprimé avec succès.');
     }
 }

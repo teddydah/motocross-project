@@ -19,7 +19,7 @@
                     <th scope="row"><label for="name">Nom :</label></th>
                     <td>
                         <input type="text" name="name" id="name" placeholder="Moto-Club Auribail"
-                               value="{{ old('name') }}" required>
+                               value="{{ old('name') }}" required autofocus>
                     </td>
                 </tr>
                 <tr>

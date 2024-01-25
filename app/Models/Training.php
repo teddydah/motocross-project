@@ -14,14 +14,17 @@ class Training extends Model
     protected $fillable = [
         'name',
         'max_people',
-        'type',
-        'price',
+        'track',
+        'vehicle',
+        'license_type',
         'length',
         'width',
         'address',
         'zip_code',
         'city',
         'latitude',
-        'longitude'
+        'longitude',
+        'description',
+        'club_id'
     ];
 }

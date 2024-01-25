@@ -12,17 +12,19 @@ return new class extends Migration {
     {
         Schema::create('trainings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('max_people');
-            $table->enum('type', ['enfant', 'adulte']);
-            $table->float('price');
-            $table->float('length')->nullable();
-            $table->float('width')->nullable();
+            $table->string('name'); // Nom du circuit
+            $table->integer('max_people'); // Nb max de pilotes inscrits
+            $table->enum('track', ['mx', 'kid']); // Type de piste
+            $table->enum('vehicle', ['moto'])->default('Moto'); // Véhicule autorisé
+            $table->enum('license_type', ['ufolep', 'ffm'])->default('ufolep');
+            $table->integer('length')->nullable();
+            $table->integer('width')->nullable();
             $table->string('address');
             $table->string('zip_code', 5);
-            $table->string('city', 50);
-            $table->float('latitude')->nullable();
-            $table->float('longitude')->nullable();
+            $table->string('city');
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
