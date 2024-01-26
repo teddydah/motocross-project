@@ -26,7 +26,7 @@
                     <th scope="row"><label for="club_id">Club :</label></th>
                     <td>
                         <select name="club_id" id="club_id" required>
-                            <option>-- Sélectionnez un club --</option>
+                            <option value="">-- Sélectionnez un club --</option>
                             @foreach($clubs as $club)
                                 <option value="{{ $club->id }}">{{ $club->name }}</option>
                             @endforeach
@@ -44,9 +44,9 @@
                     <th scope="row"><label for="track">Piste :</label></th>
                     <td>
                         <select name="track" id="track" required>
-                            <option selected>-- Sélectionnez une piste --</option>
-                            <option value="mx">MX</option>
-                            <option value="kid">Enfant</option>
+                            <option value="">-- Sélectionnez une piste --</option>
+                            <option value="{{ old('track', 'mx') }}">MX</option>
+                            <option value="{{ old('track', 'kid') }}">Enfant</option>
                         </select>
                     </td>
                 </tr>
@@ -54,15 +54,12 @@
                     <th scope="row"><label for="license_type">Type de licence :</label></th>
                     <td>
                         <select name="license_type" id="license_type" required>
-                            <option selected>-- Sélectionnez un type de licence --</option>
+                            <option value="">-- Sélectionnez un type de licence --</option>
                             <option value="{{ old('license_type', 'ufolep') }}">UFOLEP</option>
                             <option value="{{ old('license_type', 'ffm') }}">FFM</option>
                         </select>
                     </td>
                 </tr>
-
-                <!-- TODO: Price / Tarif ? -->
-
                 <tr>
                     <th scope="row"><label for="length">Longueur (en mètres) :</label></th>
                     <td>

@@ -25,7 +25,7 @@ class TrainingController extends Controller
      */
     public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('trainings.create', ['clubs' => Club::all()]);
+        return view('trainings.create', ['clubs' => Club::all(), 'trainings' => Training::all()]);
     }
 
     /**
@@ -58,18 +58,6 @@ class TrainingController extends Controller
                 'longitude' => 'Le champ longitude doit être un nombre.'
             ]
         );
-
-        // TODO
-        if ($request->track != 'mx' && $request->track != 'kid' && $request->club_id === null) {
-            return redirect()->route('trainings.create')
-                ->with('danger', 'Vous devez selectionner un club et une piste.');
-        } else if ($request->club_id === null) {
-            return redirect()->route('trainings.create')
-                ->with('danger', 'Vous devez selectionner un club.');
-        } else if ($request->track != 'mx' && $request->track != 'kid') {
-            return redirect()->route('trainings.create')
-                ->with('danger', 'Vous devez selectionner une piste');
-        }
 
         Training::create([
             'name' => $request->name,
