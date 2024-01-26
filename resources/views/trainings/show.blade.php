@@ -6,7 +6,7 @@
 
 @section('main')
     <section class="admin">
-        @include('messages')
+        @include('includes.alert')
         <div class="section-title container bg-white">
             <span>{{ $training->name }}</span>
             <h2 class="mb-0">{{ $training->name }}</h2>
@@ -26,10 +26,9 @@
                 <th scope="row">Nb max de participants :</th>
                 <td>{{ $training->max_people }}</td>
             </tr>
-            <!-- TODO: ternaire affichage uppercase / capitalize -->
             <tr>
                 <th scope="row">Piste :</th>
-                <td>{{ $training->track }}</td>
+                <td>{{ $training->track === 'mx' ? 'MX' : 'Enfant' }}</td>
             </tr>
             <tr>
                 <th scope="row">Type de licence :</th>
@@ -51,8 +50,14 @@
                 <th scope="row">Adresse :</th>
                 <td>{{ $training->address }}</td>
             </tr>
-            <!-- TODO -->
-
+            <tr>
+                <th scope="row">Code postal :</th>
+                <td>{{ $training->zip_code }}</td>
+            </tr>
+            <tr>
+                <th scope="row">Ville :</th>
+                <td>{{ $training->city }}</td>
+            </tr>
             @if($training->latitude != null)
                 <tr>
                     <th scope="row">Latitude :</th>
@@ -65,9 +70,6 @@
                     <td>{{ $training->longitude }}</td>
                 </tr>
             @endif
-
-            <!-- TODO -->
-
             @if($training->description != null)
                 <tr>
                     <th scope="row">Description :</th>

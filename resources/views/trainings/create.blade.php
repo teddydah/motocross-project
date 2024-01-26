@@ -6,7 +6,7 @@
 
 @section('main')
     <section class="admin">
-        @include('messages')
+        @include('includes.alert')
         <div class="section-title container bg-white">
             <span>AJouter un entraînement</span>
             <h2 class="mb-0">Ajouter un entraînement</h2>
@@ -36,7 +36,7 @@
                 <tr>
                     <th scope="row"><label for="max_people">Nb max de participants :</label></th>
                     <td>
-                        <input type="text" name="max_people" id="max_people" placeholder="15"
+                        <input type="text" name="max_people" id="max_people" placeholder="20"
                                value="{{ old('max_people') }}" required>
                     </td>
                 </tr>
@@ -54,8 +54,7 @@
                     <th scope="row"><label for="license_type">Type de licence :</label></th>
                     <td>
                         <select name="license_type" id="license_type" required>
-                            <option value="">-- Sélectionnez un type de licence --</option>
-                            <option value="{{ old('license_type', 'ufolep') }}">UFOLEP</option>
+                            <option value="{{ old('license_type', 'ufolep') }}" selected>UFOLEP</option>
                             <option value="{{ old('license_type', 'ffm') }}">FFM</option>
                         </select>
                     </td>

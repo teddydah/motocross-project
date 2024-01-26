@@ -25,7 +25,7 @@ class TrainingSeeder extends Seeder
             'latitude' => '43.34192221833587',
             'longitude' => '1.357055980850652',
             'description' => 'Sanitaire, douche, club house, électricité, terrain technique et école de pilotage à disposition.
-Terre argileuse',
+Nature du terrain : terre argileuse',
             'club_id' => 1
         ]);
     }

@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->integer('max_people'); // Nb max de pilotes inscrits
             $table->enum('track', ['mx', 'kid']); // Type de piste
             $table->enum('vehicle', ['moto'])->default('Moto'); // Véhicule autorisé
-            $table->enum('license_type', ['ufolep', 'ffm'])->default('ufolep');
+            $table->enum('license_type', ['ufolep', 'ffm']);
             $table->integer('length')->nullable();
             $table->integer('width')->nullable();
             $table->string('address');

@@ -12,6 +12,31 @@ use Illuminate\Http\Request;
 
 class TrainingController extends Controller
 {
+    private array $inputs = [
+        'name' => 'required',
+        'max_people' => 'required|numeric',
+        'track' => 'required',
+        'license_type' => 'required',
+        'length' => 'nullable|numeric',
+        'width' => 'nullable|numeric',
+        'address' => 'required',
+        'zip_code' => 'required|size:5',
+        'city' => 'required',
+        'latitude' => 'nullable',
+        'longitude' => 'nullable',
+        'description' => 'nullable',
+        'club_id' => 'required|exists:clubs,id'
+    ];
+
+    private array $messages = [
+        'max_people' => 'Le champ "max_people" doit être une valeur numérique.',
+        'length' => 'Le champ longueur doit être une valeur numérique.',
+        'width' => 'Le champ largeur doit être une valeur numérique.',
+        'zip_code' => 'Le code postal doit comporté 5 chiffres.',
+        'latitude' => 'Le champ latitude doit être une valeur numérique.',
+        'longitude' => 'Le champ longitude doit être une valeur numérique.'
+    ];
+
     /**
      * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
@@ -34,36 +59,13 @@ class TrainingController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate(
-            [
-                'name' => 'required',
-                'max_people' => 'required',
-                'track' => 'required',
-                'length' => 'nullable|numeric',
-                'width' => 'nullable|numeric',
-                'address' => 'required',
-                'zip_code' => 'required|size:5',
-                'city' => 'required',
-                'latitude' => 'nullable',
-                'longitude' => 'nullable',
-                'description' => 'nullable',
-                'club_id' => 'required|exists:clubs,id'
-            ],
-            [
-                'max_people' => 'Le nombre maximum de participants est requis.',
-                'length' => 'Le champ longueur doit être un nombre.',
-                'width' => 'Le champ largeur doit être un nombre.',
-                'zip_code' => 'Le code postal doit comporté 5 chiffres.',
-                'latitude' => 'Le champ latitude doit être un nombre.',
-                'longitude' => 'Le champ longitude doit être un nombre.'
-            ]
-        );
+        $request->validate($this->inputs, $this->messages);
 
         Training::create([
             'name' => $request->name,
             'max_people' => $request->max_people,
             'track' => $request->track,
-            'price' => $request->price,
+            'license_type' => $request->license_type,
             'length' => $request->length,
             'width' => $request->width,
             'address' => $request->address,
@@ -93,7 +95,7 @@ class TrainingController extends Controller
      */
     public function edit(Training $training): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('trainings.edit', ['training' => Training::find($training->id)]);
+        return view('trainings.edit', ['clubs' => Club::all(), 'training' => Training::find($training->id)]);
     }
 
     /**
@@ -103,37 +105,26 @@ class TrainingController extends Controller
      */
     public function update(Request $request, Training $training): RedirectResponse
     {
-        $request->validate([
-            "name" => "required|string",
-            "max_people" => "required|numeric",
-            "track" => "required",
-            "price" => "required|numeric",
-            "length" => "numeric",
-            "width" => "numeric",
-            "address" => "required|string",
-            "zip_code" => "required|string",
-            "city" => "required|string",
-            "latitude" => "numeric",
-            "longitude" => "numeric",
-            "description" => "nullable"
-        ]);
+        $request->validate($this->inputs, $this->messages);
 
         Training::find($training->id)->update([
-            "name" => $request->name,
-            "max_people" => $request->max_people,
-            "track" => $request->type,
-            "price" => $request->price,
-            "length" => $request->length,
-            "width" => $request->width,
-            "address" => $request->address,
-            "zip_code" => $request->zip_code,
-            "city" => $request->city,
-            "latitude" => $request->latitude,
-            "longitude" => $request->longitude,
-            "description" => $request->description
+            'name' => $request->name,
+            'max_people' => $request->max_people,
+            'track' => $request->track,
+            'license_type' => $request->license_type,
+            'length' => $request->length,
+            'width' => $request->width,
+            'address' => $request->address,
+            'zip_code' => $request->zip_code,
+            'city' => $request->city,
+            'latitude' => str_replace(',', '.', $request->latitude),
+            'longitude' => str_replace(',', '.', $request->longitude),
+            'description' => $request->description,
+            'club_id' => $request->club_id
         ]);
 
-        return redirect()->route('trainings.show', ['training' => $training->id]);
+        return redirect()->route('trainings.show', ['training' => $training->id])
+            ->with('success', 'Entraînement mis à jour avec succès.');
     }
 
     /**
@@ -142,7 +133,6 @@ class TrainingController extends Controller
      */
     public function destroy(Training $training): RedirectResponse
     {
-        // Training::find($training->id)->delete();
         $training->delete();
         return redirect()->route('trainings.index');
     }
