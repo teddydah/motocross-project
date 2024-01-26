@@ -110,6 +110,7 @@
 .contact .php-email-form input,
 .contact .php-email-form .form-select {
     height: 44px;
+    font-size: 14px;
 }
 
 .contact .php-email-form textarea {
