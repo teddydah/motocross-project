@@ -62,7 +62,7 @@
             </div>
             <div class="form-group mt-3">
                 <select class="form-select rounded-0" name="subject" id="subject" required>
-                    <option selected>-- Sélectionnez un motif --</option>
+                    <option value="">-- Sélectionnez un motif --</option>
                     <option value="booking">Réservations</option>
                     <option value="training">Entraînements</option>
                     <option value="account">Gestion de votre compte</option>
