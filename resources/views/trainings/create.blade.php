@@ -23,10 +23,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row"><label for="club">Club :</label></th>
+                    <th scope="row"><label for="club_id">Club :</label></th>
                     <td>
-                        <select name="club" id="club" required>
-                            <option selected>-- Sélectionnez un club --</option>
+                        <select name="club_id" id="club_id" required>
+                            <option>-- Sélectionnez un club --</option>
                             @foreach($clubs as $club)
                                 <option value="{{ $club->id }}">{{ $club->name }}</option>
                             @endforeach

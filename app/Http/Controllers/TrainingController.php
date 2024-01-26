@@ -47,7 +47,7 @@ class TrainingController extends Controller
                 'latitude' => 'nullable',
                 'longitude' => 'nullable',
                 'description' => 'nullable',
-                'club' => 'required'
+                'club_id' => 'required|exists:clubs,id'
             ],
             [
                 'max_people' => 'Le nombre maximum de participants est requis.',
@@ -60,10 +60,10 @@ class TrainingController extends Controller
         );
 
         // TODO
-        if ($request->track != 'mx' && $request->track != 'kid' && $request->club === null) {
+        if ($request->track != 'mx' && $request->track != 'kid' && $request->club_id === null) {
             return redirect()->route('trainings.create')
                 ->with('danger', 'Vous devez selectionner un club et une piste.');
-        } else if ($request->club === null) {
+        } else if ($request->club_id === null) {
             return redirect()->route('trainings.create')
                 ->with('danger', 'Vous devez selectionner un club.');
         } else if ($request->track != 'mx' && $request->track != 'kid') {
@@ -84,7 +84,7 @@ class TrainingController extends Controller
             'latitude' => str_replace(',', '.', $request->latitude),
             'longitude' => str_replace(',', '.', $request->longitude),
             'description' => $request->description,
-            'club_id' => $request->club
+            'club_id' => $request->club_id
         ]);
 
         return redirect()->route('trainings.index')->with('success', 'Entraînement ajouté avec succès.');
