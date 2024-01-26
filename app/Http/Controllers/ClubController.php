@@ -120,9 +120,8 @@ class ClubController extends Controller
             'description' => $request->description,
         ]);
 
-        return redirect()->route('clubs.show', [
-            'club' => $club->id
-        ])->with('success', 'Club mis à jour avec succès.');
+        return redirect()->route('clubs.show', ['club' => $club->id])
+            ->with('success', 'Club mis à jour avec succès.');
     }
 
     /**

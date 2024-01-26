@@ -6,7 +6,7 @@
 
 @section('main')
     <section class="admin">
-        @include('messages.errors')
+        @include('includes.alert')
         <div class="section-title container bg-white">
             <span>{{ $club->name }}</span>
             <h2 class="mb-0">{{ $club->name }}</h2>

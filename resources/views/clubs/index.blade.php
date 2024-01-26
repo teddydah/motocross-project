@@ -6,7 +6,7 @@
 
 @section('main')
     <section class="admin">
-        @include('messages')
+        @include('includes.alert')
         <div class="section-title container bg-white">
             <span>Liste des clubs</span>
             <h2 class="mb-0">Liste des clubs</h2>
