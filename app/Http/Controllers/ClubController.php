@@ -11,6 +11,24 @@ use Illuminate\Http\Request;
 
 class ClubController extends Controller
 {
+    private array $inputs = [
+        'name' => 'required',
+        'address' => 'required',
+        'zip_code' => 'required|size:5',
+        'city' => 'required',
+        'latitude' => 'nullable',
+        'longitude' => 'nullable',
+        'phone' => 'required|size:10',
+        'email' => 'required|email',
+        'social_network_link' => 'required|url',
+        'description' => 'nullable'
+    ];
+
+    private array $messages = [
+        'phone' => 'Le numéro de téléphone doit comporté 10 chiffres.',
+        'zip_code' => 'Le code postal doit comporté 5 chiffres.'
+    ];
+
     /**
      * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
@@ -33,21 +51,7 @@ class ClubController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'name' => 'required',
-            'address' => 'required',
-            'zip_code' => 'required|size:5',
-            'city' => 'required',
-            'latitude' => 'nullable',
-            'longitude' => 'nullable',
-            'phone' => 'required|size:10',
-            'email' => 'required|email',
-            'social_network_link' => 'required|url',
-            'description' => 'nullable'
-        ], [
-            'phone' => 'Le numéro de téléphone doit comporté 10 chiffres.',
-            'zip_code' => 'Le code postal doit comporté 5 chiffres.'
-        ]);
+        $request->validate($this->inputs, $this->messages);
 
         Club::create([
             'name' => $request->name,
@@ -91,21 +95,7 @@ class ClubController extends Controller
      */
     public function update(Request $request, Club $club): RedirectResponse
     {
-        $request->validate([
-            'name' => 'required',
-            'address' => 'required',
-            'zip_code' => 'required|size:5',
-            'city' => 'required',
-            'latitude' => 'nullable',
-            'longitude' => 'nullable',
-            'phone' => 'required|size:10',
-            'email' => 'required|email',
-            'social_network_link' => 'required|url',
-            'description' => 'nullable',
-        ], [
-            'phone' => 'Le numéro de téléphone doit comporté 10 chiffres.',
-            'zip_code' => 'Le code postal doit comporté 5 chiffres.'
-        ]);
+        $request->validate($this->inputs, $this->messages);
 
         Club::find($club->id)->update([
             'name' => $request->name,
