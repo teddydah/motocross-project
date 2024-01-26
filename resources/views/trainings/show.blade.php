@@ -12,7 +12,7 @@
             <h2 class="mb-0">{{ $training->name }}</h2>
         </div>
 
-        <table class="container table table-admin table-striped align-baseline mb-0">
+        <table class="container table table-admin table-striped align-middle mb-0">
             <tbody>
             <tr>
                 <th scope="row">Nom :</th>
@@ -73,7 +73,11 @@
             @if($training->description != null)
                 <tr>
                     <th scope="row">Description :</th>
-                    <td>{{ $training->description }}</td>
+                    <td>
+                        <ul class="mb-0">
+                            <li><?= str_replace('<br />', '<li>', nl2br(htmlspecialchars($training->description))) ?></li>
+                        </ul>
+                    </td>
                 </tr>
             @endif
             </tbody>
