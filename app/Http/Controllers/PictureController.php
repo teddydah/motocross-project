@@ -9,6 +9,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use function Tinify\fromFile;
 use function Tinify\setKey;
 
@@ -44,20 +45,18 @@ class PictureController extends Controller
     {
         $request->validate($this->inputs);
 
-        // TODO: https://www.youtube.com/watch?v=_rtY82-xkzA&ab_channel=Lvnweb
+        setKey(getenv("TINY_PNG_API_KEY"));
 
-        setKey(env("TINY_PNG_API_KEY"));
+        $imageToCompress = fromFile($request->file('image'));
+        $compressedImage = $imageToCompress->toBuffer();
 
-        $pictures = $request->file("image");
-        $count = 1;
+        $fileName = $request->file('image')->getClientOriginalName();
 
-        while (file_exists(public_path("img/portfolio/" . "portfolio-" . $count . "." . $pictures->getClientOriginalExtension())))
-            $count++;
-        $path = "img/portfolio/" . "portfolio-" . $count . "." . $pictures->getClientOriginalExtension();
-        fromFile($pictures->path())->toFile($path);
+        Storage::put($fileName, $compressedImage);
+        // TODO voir emplacement uploads + renommer image
 
         Picture::create([
-            "image" => $path,
+            "image" => $fileName,
             "description" => $request->description,
             "club_id" => $request->club_id,
         ]);

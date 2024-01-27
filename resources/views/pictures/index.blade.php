@@ -37,7 +37,10 @@
             @foreach($pictures as $picture)
                 <tr>
                     <td>{{ $picture->id }}</td>
-                    <td><img src="{{ $picture->image }}" alt="{{ $picture->description }}" width="5%"></td>
+                    <td>
+                        <img src="{{ url('uploads/' . $picture->image) }}"
+                             alt="{{ $picture->description }}" width="5%">
+                    </td>
                     <td>{{ $picture->club->name }}</td>
                     <td>
                         <a class="btn btn-see btn-info btn-outline-light"

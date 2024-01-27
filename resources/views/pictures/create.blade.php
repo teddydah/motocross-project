@@ -22,6 +22,7 @@
                 <tr>
                     <th scope="row"><label for="image">Image :</label></th>
                     <td>
+                        <input type="hidden" name="MAX_FILE_SIZE" value="1000000">
                         <input type="file" name="image" id="image" value="{{ old('image') }}" required>
                     </td>
                 </tr>
