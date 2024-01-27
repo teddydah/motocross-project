@@ -1,34 +1,45 @@
 /*--------------------------------------------------------------
 # Buttons
 --------------------------------------------------------------*/
+.btn-see,
 .btn-add,
 .btn-edit,
 .btn-save,
 .btn-cancel,
 .btn-delete,
-.btn-see,
 .btn-back {
-    /*background-color: var(--color-theme-2);*/
     margin: 0.75em 0;
     padding: 0.7em !important;
 }
 
+.btn-see {
+    padding: 0.5em 0.75em !important;
+}
+
+.btn-edit {
+    padding: 0.5em 0.8125em !important;
+}
+
+.btn-delete {
+    padding: 0.5em 0.875em !important;
+}
+
+.btn-see:hover,
 .btn-add:hover,
 .btn-edit:hover,
 .btn-save:hover,
 .btn-cancel:hover,
 .btn-delete:hover,
-.btn-see:hover,
 .btn-back:hover {
     border-color: var(--black) !important;
 }
 
+.btn-see::before,
 .btn-add::before,
 .btn-edit::before,
 .btn-save::before,
 .btn-cancel::before,
 .btn-delete::before,
-.btn-see::before,
 .btn-back::before {
     font-family: "Font Awesome 6 Free";
     font-weight: bold;
@@ -36,11 +47,7 @@
 }
 
 .btn-add::before {
-    content: "\f055";
-}
-
-.btn-edit::before {
-    content: "\f304";
+    content: "\2b";
 }
 
 .btn-save::before {
@@ -49,14 +56,6 @@
 
 .btn-cancel::before {
     content: "\f00d";
-}
-
-.btn-delete::before {
-    content: "\f2ed";
-}
-
-.btn-see::before {
-    content: "\f06e";
 }
 
 .btn-back::before {
@@ -74,4 +73,9 @@
     border: 1px solid var(--color-hsl-2);
     background: var(--color-hsl-2);
     color: var(--white);
+}
+
+.btn:disabled,
+fieldset:disabled .btn {
+    background-color: var(--bs-btn-bg) !important;
 }

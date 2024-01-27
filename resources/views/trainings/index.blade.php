@@ -18,7 +18,7 @@
                 <th scope="row">#</th>
                 <th scope="row">Nom</th>
                 <th scope="row">Club</th>
-                <th scope="row">Action</th>
+                <th scope="row">Actions</th>
             </tr>
             </thead>
             <tfoot>
@@ -37,8 +37,23 @@
                     <td>{{ $training->club->name }}</td>
                     <td>
                         <a class="btn btn-see btn-info btn-outline-light"
-                           href="{{ route('trainings.show', $training->id)  }}"
-                           title="Voir l'entraînement">Voir</a>
+                           href="{{ route('trainings.show', $training->id) }}" title="Voir l'entraînement">
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                        <a class="btn btn-secondary btn-outline-light btn-edit m-2"
+                           href="{{ route('trainings.edit', $training->id) }}" title="Modifier l'entraînement">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <form class="d-inline-block" action="{{ route('trainings.destroy', $training->id) }}"
+                              method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-outline-light btn-delete ms-0 me-0" type="submit"
+                                    title="Supprimer l'entraînement"
+                                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet entraînement ?')">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

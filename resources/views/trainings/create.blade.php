@@ -124,8 +124,8 @@
                     <td class="text-center" colspan="2">
                         <a class="btn btn-dark btn-outline-light btn-back ms-0 me-0"
                            href="{{ route('trainings.index') }}" title="Retour à la liste des entraînements">Retour</a>
-                        <button class="btn btn-primary btn-outline-light btn-add m-2" type="submit"
-                                title="Ajouter un entraînement">Ajouter
+                        <button class="btn btn-success btn-outline-light btn-save m-2" type="submit"
+                                title="Enregistrer l'entraînement">Enregistrer
                         </button>
                     </td>
                 </tr>
