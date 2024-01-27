@@ -44,7 +44,7 @@
                     <td>{{ $picture->club->name }}</td>
                     <td>
                         <a class="btn btn-see btn-info btn-outline-light"
-                           href="{{ route('pictures.show', $picture->id) }}" title="Voir l'entraînement">
+                           href="{{ route('pictures.show', $picture->id) }}" title="Voir la photo">
                             <i class="fa-solid fa-eye"></i>
                         </a>
                         <a class="btn btn-secondary btn-outline-light btn-edit m-2"
