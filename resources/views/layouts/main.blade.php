@@ -29,7 +29,7 @@
 <body>
 
 <header>
-    @include('includes.header')
+    @yield('header')
 </header>
 
 <main id="main">

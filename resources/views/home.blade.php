@@ -4,6 +4,10 @@
     Auribail Mx Park
 @endsection
 
+@section('header')
+    @include('includes.home.header')
+@endsection
+
 @section('main')
     @include('home.hero')
 

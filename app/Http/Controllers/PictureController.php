@@ -4,46 +4,57 @@ namespace App\Http\Controllers;
 
 use App\Models\Club;
 use App\Models\Picture;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use function Tinify\fromFile;
+use function Tinify\setKey;
 
 class PictureController extends Controller
 {
+    private array $inputs = [
+        'image' => 'required|image|mimes:png,jpg,jpeg,webp',
+        'description' => 'required|string',
+        'club_id' => 'required|exists:clubs,id'
+    ];
+
     /**
-     * Display a listing of the resource.
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
-    public function index()
+    public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $pictures = Picture::all();
-        return view('pictures.index', ['pictures' => $pictures]);
+        return view('pictures.index', ['pictures' => Picture::all()]);
     }
 
     /**
-     * Show the form for creating a new resource.
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
-    public function create()
+    public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $clubs = Club::all();
-        return view('pictures.create', compact('clubs'));
+        return view('pictures.create', ['clubs' => Club::all()]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @param Request $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            "image" => "required|image|mimes:png,jpg,jpeg,webp",
-            "description" => "required|string",
-            'club_id' => "required|exists:clubs,id"
-        ]);
+        $request->validate($this->inputs);
 
-        \Tinify\setKey(env("TINY_PNG_API_KEY"));
+        // TODO: https://www.youtube.com/watch?v=_rtY82-xkzA&ab_channel=Lvnweb
+
+        setKey(env("TINY_PNG_API_KEY"));
+
         $pictures = $request->file("image");
         $count = 1;
+
         while (file_exists(public_path("img/portfolio/" . "portfolio-" . $count . "." . $pictures->getClientOriginalExtension())))
             $count++;
         $path = "img/portfolio/" . "portfolio-" . $count . "." . $pictures->getClientOriginalExtension();
-        \Tinify\fromFile($pictures->path())->toFile($path);
+        fromFile($pictures->path())->toFile($path);
 
         Picture::create([
             "image" => $path,
@@ -51,26 +62,26 @@ class PictureController extends Controller
             "club_id" => $request->club_id,
         ]);
 
-        return redirect()->route('pictures.index');
+        return redirect()->route('pictures.index')->with('success', 'Photo ajoutée avec succès.');
     }
 
     /**
-     * Display the specified resource.
+     * @param Picture $picture
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
-    public function show(Picture $picture)
+    public function show(Picture $picture): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        //
+        return view('pictures.show', ['picture' => Picture::find($picture->id)]);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * @param Picture $picture
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy(Picture $picture): RedirectResponse
     {
-        $pictures = Picture::find($id);
-        $pictures->delete();
-
-        return redirect()->route("pictures.index");
+        Picture::find($picture->id)->delete();
+        return redirect()->route("pictures.index")->with('success', 'Photo supprimée avec succès.');;
 
     }
 }

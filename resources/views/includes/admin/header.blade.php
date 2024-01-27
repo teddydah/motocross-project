@@ -9,10 +9,6 @@
         </div>
         <nav id="navbar" class="navbar">
             <ul>
-                <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                <li><a class="nav-link scrollto" href="#about">About</a></li>
-                <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
                 <li class="dropdown"><a href="#"><span>Club</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="{{ route('clubs.index') }}">Liste des clubs</a></li>
@@ -23,6 +19,12 @@
                     <ul>
                         <li><a href="{{ route('trainings.index') }}">Liste des entraînements</a></li>
                         <li><a href="{{ route('trainings.create') }}">Ajouter un entraînement</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="#"><span>Photos</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="{{ route('pictures.index') }}">Liste des photos</a></li>
+                        <li><a href="{{ route('pictures.create') }}">Ajouter une photo</a></li>
                     </ul>
                 </li>
                 <li><a class="nav-link scrollto" href="#contact">Contact</a></li>

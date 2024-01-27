@@ -1,41 +1,67 @@
-<div class="container">
-    <h2>Pictures</h2>
-    <a href="{{ route('pictures.create') }}" class="btn btn-primary mb-3">Add Pictures</a>
+@extends('layouts.main')
 
-    @if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
-    @endif
+@section('title')
+    Auribail Mx Park | Photos
+@endsection
 
-    <table class="table table-striped table-light text-center">
-        <thead>
+@section('header')
+    @include('includes.admin.header')
+@endsection
+
+@section('main')
+    <section class="admin">
+        @include('includes.alert')
+        <div class="section-title container bg-white">
+            <span>Liste des photos</span>
+            <h2 class="mb-0">Liste des photos</h2>
+        </div>
+
+        <table class="container table table-striped text-center align-baseline mb-0">
+            <thead>
             <tr>
                 <th scope="row">#</th>
-                <th scope="row">Club</th>
                 <th scope="row">Image</th>
-                <th scope="row">Description</th>
-                <th scope="row">Action</th>
+                <th scope="row">Club</th>
+                <th scope="row">Actions</th>
             </tr>
-        </thead>
-        <tbody>
-            @foreach($pictures as $picture)
+            </thead>
+            <tfoot>
             <tr>
-                <td>{{ $picture->id }}</td>
-                <td>{{ $picture->club->name }}</td>
-                <td><img src="{{$picture->image}}" width="5%" /></td>
-                <td>{{$picture->description}}</td>
-                <td>
-                    <form action="{{ route('pictures.destroy', $picture->id) }}" method="POST" style="display:inline">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger"
-                            onclick="return confirm('Are you sure?')">Delete
-                        </button>
-                    </form>
+                <td colspan="4">
+                    <a class="btn-add btn btn-primary btn-outline-light" href="{{ route('pictures.create') }}"
+                       title="Ajouter une photo">Ajouter une photo</a>
                 </td>
             </tr>
+            </tfoot>
+            <tbody>
+            @foreach($pictures as $picture)
+                <tr>
+                    <td>{{ $picture->id }}</td>
+                    <td><img src="{{ $picture->image }}" alt="{{ $picture->description }}" width="5%"></td>
+                    <td>{{ $picture->club->name }}</td>
+                    <td>
+                        <a class="btn btn-see btn-info btn-outline-light"
+                           href="{{ route('pictures.show', $picture->id) }}" title="Voir l'entraînement">
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                        <a class="btn btn-secondary btn-outline-light btn-edit m-2"
+                           href="{{ route('pictures.edit', $picture->id) }}" title="Modifier la photo">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <form class="d-inline-block" action="{{ route('pictures.destroy', $picture->id) }}"
+                              method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-outline-light btn-delete ms-0 me-0" type="submit"
+                                    title="Supprimer la photo"
+                                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
             @endforeach
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </section>
+@endsection
