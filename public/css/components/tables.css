@@ -19,7 +19,7 @@
     height: 2em;
 }
 
-.table-admin.table-edit tr td input,
+.table-admin.table-edit tr td input:not(input[type="file"]),
 .table-admin.table-edit tr td textarea,
 .table-admin.table-edit tr td select {
     width: 100%;
