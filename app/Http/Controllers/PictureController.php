@@ -94,6 +94,34 @@ class PictureController extends Controller
 
     /**
      * @param Picture $picture
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     */
+    public function edit(Picture $picture): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    {
+        return view('pictures.edit', ['clubs' => Club::all(), 'picture' => Picture::find($picture->id)]);
+    }
+
+    /**
+     * @param Request $request
+     * @param Picture $picture
+     * @return RedirectResponse
+     */
+    public function update(Request $request, Picture $picture): RedirectResponse
+    {
+        $request->validate($this->inputs);
+
+        Picture::find($picture->id)->update([
+            'name' => $request->image, // TODO
+            'description' => $request->description,
+            'club_id' => $request->club_id
+        ]);
+
+        return redirect()->route('pictures.show', ['picture' => $picture->id])
+            ->with('success', 'Photo mise à jour avec succès.');
+    }
+
+    /**
+     * @param Picture $picture
      * @return RedirectResponse
      */
     public function destroy(Picture $picture): RedirectResponse
