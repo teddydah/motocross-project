@@ -10,6 +10,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use SplFileInfo;
 use function Tinify\fromFile;
 use function Tinify\setKey;
 
@@ -45,26 +46,36 @@ class PictureController extends Controller
     {
         $request->validate($this->inputs);
 
-        setKey(getenv("TINY_PNG_API_KEY"));
+        // 1. On récupère le fichier image du formulaire
+        $image = $request->file('image');
 
-        $imageToCompress = fromFile($request->file('image'));
+        // 2. On compresse l'image
+        setKey(getenv("TINY_PNG_API_KEY"));
+        $imageToCompress = fromFile($image);
         $compressedImage = $imageToCompress->toBuffer();
 
-        $fileName = $request->file('image')->getClientOriginalName();
+        // 3. On récupère le nom de l'image avec son extension
+        $fileOriginalName = $image->getClientOriginalName();
 
-        Storage::put($fileName, $compressedImage);
-        // TODO: renommer image
-        /*
-         * $source = \Tinify\fromFile($request->file('image')->path());
+        // 4. On récupère l'extension du fichier image
+        $info = new SplFileInfo($fileOriginalName);
+        $extension = $info->getExtension();
 
-        $optimizedImage = $source->toBuffer();
+        // 5. On soustrait l'extension du nom du fichier image
+        $fileName = str_replace('.' . $extension, '', $fileOriginalName);
 
-        $optimizedFileName = uniqid('optimized_image_') . '.png';
-        */
+        // 6. On ajoute un identifiant unique au nom du fichier image sans son extension
+        $uniqId = uniqid();
 
+        // 7a. On change la casse de l'image en minuscule
+        // 7b. On remplace les éventuels espaces par un tiret
+        // 7c. On ajoute l'identifiant unique après un underscore
+        $file = strtolower(str_replace(' ', '-', $fileName)) . '_' . $uniqId . '.' . $extension;
+
+        Storage::put($file, $compressedImage);
 
         Picture::create([
-            "image" => $fileName,
+            "image" => $file,
             "description" => $request->description,
             "club_id" => $request->club_id,
         ]);
