@@ -30,8 +30,8 @@
                     <th scope="row"><label for="description">Description :</label></th>
                     <td>
                         <input type="text" name="description" id="description"
-                               placeholder="Photo de Motocross - Auribail Mx Park"
-                               value="{{ old('description') }}">
+                               placeholder="Photo Auribail Mx Park" value="{{ old('description') }}"
+                               required>
                     </td>
                 </tr>
                 <tr>

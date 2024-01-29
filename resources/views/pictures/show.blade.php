@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-    Auribail Mx Park | {{ $picture->description }}
+    Auribail Mx Park | {{ $picture->description }} n°{{ $picture->id }}
 @endsection
 
 @section('header')
@@ -12,15 +12,17 @@
     <section class="admin">
         @include('includes.alert')
         <div class="section-title container bg-white">
-            <span>{{ $picture->description }}</span>
-            <h2 class="mb-0">{{ $picture->description }}</h2>
+            <span>{{ $picture->description }} n°{{ $picture->id }}</span>
+            <h2 class="mb-0">{{ $picture->description }} n°{{ $picture->id }}</h2>
         </div>
 
         <table class="container table table-admin table-striped align-baseline mb-0">
             <tbody>
             <tr>
-                <th scope="row">Image :</th>
-                <td>{{ $picture->description }}</td>
+                <td colspan="2" class="text-center">
+                    <img class="w-25" src="{{ url('uploads/' . $picture->image) }}" alt="{{ $picture->description }}"
+                         title="{{ $picture->image }}">
+                </td>
             </tr>
             <tr>
                 <th scope="row">Description :</th>

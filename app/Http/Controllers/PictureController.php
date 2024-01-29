@@ -108,17 +108,46 @@ class PictureController extends Controller
      */
     public function update(Request $request, Picture $picture): RedirectResponse
     {
-        $request->validate($this->inputs);
+        $request->validate([
+            'image' => 'image|mimes:png,jpg,jpeg,webp',
+            'description' => 'required|string',
+            'club_id' => 'required|exists:clubs,id'
+        ]);
 
+        $image = $request->file('image');
+
+        // Vérifier si une image est fournie
+        if ($image) {
+            setKey(getenv("TINY_PNG_API_KEY"));
+            $imageToCompress = fromFile($image);
+            $compressedImage = $imageToCompress->toBuffer();
+
+            $fileOriginalName = $image->getClientOriginalName();
+            $info = new SplFileInfo($fileOriginalName);
+            $extension = $info->getExtension();
+
+            $fileName = str_replace('.' . $extension, '', $fileOriginalName);
+            $uniqId = uniqid();
+
+            $file = strtolower(str_replace(' ', '-', $fileName)) . '_' . $uniqId . '.' . $extension;
+
+            // Vérifier si le fichier existe déjà avant de l'enregistrer
+            if (!Storage::exists($file)) {
+                Storage::put($file, $compressedImage);
+            }
+        }
+
+        // Mettre à jour la bdd avec le nouveau nom de fichier ou l'ancien si aucune nouvelle image n'est fournie
         Picture::find($picture->id)->update([
-            'name' => $request->image, // TODO
-            'description' => $request->description,
-            'club_id' => $request->club_id
+            "image" => $file ?? $picture->image, // Utiliser l'ancien nom de fichier s'il n'y a pas de nouvelle image
+            "description" => $request->description,
+            "club_id" => $request->club_id,
         ]);
 
         return redirect()->route('pictures.show', ['picture' => $picture->id])
             ->with('success', 'Photo mise à jour avec succès.');
     }
+
 
     /**
      * @param Picture $picture
@@ -128,6 +157,5 @@ class PictureController extends Controller
     {
         Picture::find($picture->id)->delete();
         return redirect()->route("pictures.index")->with('success', 'Photo supprimée avec succès.');;
-
     }
 }
