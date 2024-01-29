@@ -4,6 +4,10 @@
     Auribail Mx Park | {{$club->name}}
 @endsection
 
+@section('header')
+    @include('includes.admin.header')
+@endsection
+
 @section('main')
     <section class="admin">
         @include('includes.alert')
