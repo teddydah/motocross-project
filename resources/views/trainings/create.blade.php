@@ -4,6 +4,10 @@
     Auribail Mx Park | Ajouter un entraînement
 @endsection
 
+@section('header')
+    @include('includes.admin.header')
+@endsection
+
 @section('main')
     <section class="admin">
         @include('includes.alert')
