@@ -53,7 +53,15 @@ class PictureController extends Controller
         $fileName = $request->file('image')->getClientOriginalName();
 
         Storage::put($fileName, $compressedImage);
-        // TODO voir emplacement uploads + renommer image
+        // TODO: renommer image
+        /*
+         * $source = \Tinify\fromFile($request->file('image')->path());
+
+        $optimizedImage = $source->toBuffer();
+
+        $optimizedFileName = uniqid('optimized_image_') . '.png';
+        */
+
 
         Picture::create([
             "image" => $fileName,
