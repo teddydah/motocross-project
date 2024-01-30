@@ -38,6 +38,12 @@
     padding: 7em 0;
 }
 
+@media (min-width: 1400px) {
+    .admin .section-title span {
+        display: block !important;
+    }
+}
+
 /*--------------------------------------------------------------
 # Back to top button
 --------------------------------------------------------------*/
