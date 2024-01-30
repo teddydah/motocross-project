@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Contracts\View\View;
+use Illuminate\Foundation\Application;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -44,12 +47,12 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @param User $user
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
-    public function show($id)
+    public function show(User $user): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $user = User::findorfail($id);
-        return response()->json($user, 201);
+        return view('users.show', ['user' => User::findorfail($user->id)]);
     }
 
     /**

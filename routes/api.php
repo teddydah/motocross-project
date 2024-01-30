@@ -17,9 +17,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+/*Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-});
+});*/
 
 // https://laravel.com/docs/10.x/middleware
 // AdminMiddleware
@@ -27,12 +27,12 @@ Route::middleware(['auth:sanctum', 'admin'])->group(function () {
     Route::get(
         '/users/all',
         [UserController::class, 'index']
-    )->name('user.all');
+    )->name('users.all');
 
     Route::get(
         '/users/{id}',
         [UserController::class, 'show']
-    )->name('user.show');
+    )->name('users.show');
 })->middleware(AdminMiddleware::class);
 
 Route::post(
