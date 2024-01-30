@@ -22,14 +22,16 @@
                 <tr>
                     <th scope="row"><label for="start_date">Date de début :</label></th>
                     <td>
-                        <input type="datetime-local" name="start_date" id="start_date" value="{{ old('start_date') }}"
+                        <input type="datetime-local" name="start_date" id="start_date"
+                               value="{{ old('start_date', '2024-01-07 10:00') }}"
                                required>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="end_date">Date de fin :</label></th>
                     <td>
-                        <input type="datetime-local" name="end_date" id="end_date" value="{{ old('end_date') }}"
+                        <input type="datetime-local" name="end_date" id="end_date"
+                               value="{{ old('end_date', '2024-01-07 12:00') }}"
                                required>
                     </td>
                 </tr>
