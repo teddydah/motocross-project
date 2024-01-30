@@ -70,7 +70,7 @@ class PictureController extends Controller
         // 7a. On change la casse de l'image en minuscule
         // 7b. On remplace les éventuels espaces par un tiret
         // 7c. On ajoute l'identifiant unique après un underscore
-        $file = strtolower(str_replace(' ', '-', $fileName)) . '_' . $uniqId . '.' . $extension;
+        $file = strtolower(str_replace(' ', '_', $fileName)) . '_' . $uniqId . '.' . $extension;
 
         Storage::put($file, $compressedImage);
 
@@ -129,7 +129,7 @@ class PictureController extends Controller
             $fileName = str_replace('.' . $extension, '', $fileOriginalName);
             $uniqId = uniqid();
 
-            $file = strtolower(str_replace(' ', '-', $fileName)) . '_' . $uniqId . '.' . $extension;
+            $file = strtolower(str_replace(' ', '_', $fileName)) . '_' . $uniqId . '.' . $extension;
 
             // Vérifier si le fichier existe déjà avant de l'enregistrer
             if (!Storage::exists($file)) {
