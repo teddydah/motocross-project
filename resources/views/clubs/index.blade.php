@@ -12,7 +12,7 @@
     <section class="admin">
         @include('includes.alert')
         <div class="section-title container bg-white">
-            <span>Liste des clubs</span>
+            <span class="d-none">Liste des clubs</span>
             <h2 class="mb-0">Liste des clubs</h2>
         </div>
 

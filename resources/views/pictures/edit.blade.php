@@ -12,7 +12,7 @@
     <section class="admin">
         @include('includes.alert')
         <div class="section-title container bg-white">
-            <span>{{ $picture->description }} n°{{ $picture->id }}</span>
+            <span class="d-none">{{ $picture->description }} n°{{ $picture->id }}</span>
             <h2 class="mb-0">{{ $picture->description }} n°{{ $picture->id }}</h2>
         </div>
 

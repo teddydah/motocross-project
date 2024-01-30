@@ -12,7 +12,7 @@
     <section class="admin">
         @include('includes.alert')
         <div class="section-title container bg-white">
-            <span>AJouter une photo</span>
+            <span class="d-none">AJouter une photo</span>
             <h2 class="mb-0">Ajouter une photo</h2>
         </div>
         <form action="{{ route('pictures.store') }}" method="post" enctype="multipart/form-data">

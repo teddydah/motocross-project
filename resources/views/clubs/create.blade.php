@@ -12,7 +12,7 @@
     <section class="admin">
         @include('includes.alert')
         <div class="section-title container bg-white">
-            <span>AJouter un club</span>
+            <span class="d-none">AJouter un club</span>
             <h2 class="mb-0">Ajouter un club</h2>
         </div>
         <form action="{{ route('clubs.store') }}" method="post">

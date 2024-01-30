@@ -12,7 +12,7 @@
     <section class="admin">
         @include('includes.alert')
         <div class="section-title container bg-white">
-            <span>{{ $club->name }}</span>
+            <span class="d-none">{{ $club->name }}</span>
             <h2 class="mb-0">{{ $club->name }}</h2>
         </div>
 

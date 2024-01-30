@@ -12,7 +12,7 @@
     <section class="admin">
         @include('includes.alert')
         <div class="section-title container bg-white">
-            <span>AJouter un entraînement</span>
+            <span class="d-none">AJouter un entraînement</span>
             <h2 class="mb-0">Ajouter un entraînement</h2>
         </div>
         <form action="{{ route('trainings.store') }}" method="post">

@@ -12,11 +12,11 @@
     <section class="admin">
         @include('includes.alert')
         <div class="section-title container bg-white">
-            <span>Liste des photos</span>
+            <span class="d-none">Liste des photos</span>
             <h2 class="mb-0">Liste des photos</h2>
         </div>
 
-        <table class="container table table-striped text-center align-baseline mb-0">
+        <table class="container table-index table table-striped text-center align-baseline mb-0">
             <thead>
             <tr>
                 <th scope="row">#</th>
@@ -39,7 +39,7 @@
                     <td>{{ $picture->id }}</td>
                     <td>
                         <img src="{{ url('uploads/' . $picture->image) }}"
-                             alt="{{ $picture->description }}" width="5%">
+                             alt="{{ $picture->description }}" width="25%">
                     </td>
                     <td>{{ $picture->club->name }}</td>
                     <td>
