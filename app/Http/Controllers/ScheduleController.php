@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Club;
 use App\Models\Schedule;
+use App\Models\Training;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -11,24 +13,35 @@ use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
-    public function index()
+    private array $inputs = [
+        'training_id' => 'required|exists:trainings,id',
+        'start_date' => 'required|date',
+        'end_date' => 'required|date|after:start_date',
+    ];
+
+    /**
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     */
+    public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $schedule = Schedule::all();
-        return view('schedule.index', ['schedule' => $schedule]);
+        return view('schedules.index', ['schedules' => Schedule::all()->sortByDesc(['start_date'])]);
     }
 
-    public function create()
+    /**
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     */
+    public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('schedule.create');
+        return view('schedules.create', ['trainings' => Training::all()]);
     }
 
-    public function store(Request $request)
+    /**
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function store(Request $request): RedirectResponse
     {
-        $request->validate([
-            'training_id' => 'required|exists:trainings,id',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_date',
-        ]);
+        $request->validate($this->inputs);
 
         Schedule::create([
             'training_id' => $request->training_id,
@@ -36,28 +49,35 @@ class ScheduleController extends Controller
             'end_date' => $request->end_date,
         ]);
 
-        return redirect()->route('schedule.index');
+        return redirect()->route('schedules.index')->with('success', 'Horaire ajouté avec succès.');
     }
 
-    public function show($id)
+    /**
+     * @param Schedule $schedule
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     */
+    public function show(Schedule $schedule): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
+        return view('schedules.show', ['schedule' => Schedule::find($schedule->id)]);
     }
 
-    public function edit($id)
+    /**
+     * @param Schedule $schedule
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     */
+    public function edit(Schedule $schedule): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $schedule = schedule::find($id);
-        return view('schedule.edit', ['schedule' => $schedule]);
-    }
-
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'training_id' => 'required|exists:trainings,id',
-            'start_date' => 'required|date',
-            'end_date' => 'required|date|after:start_date',
+        return view('schedules.edit', [
+            'trainings' => Training::all(),
+            'schedule' => Schedule::find($schedule->id)
         ]);
+    }
 
-        $schedule = Schedule::find($id);
+    public function update(Request $request, Schedule $schedule)
+    {
+        $request->validate($this->inputs);
+
+        $schedule = Schedule::find($schedule->id);
 
         $schedule->update([
             'training_id' => $request->training_id,
@@ -65,13 +85,17 @@ class ScheduleController extends Controller
             'end_date' => $request->end_date,
         ]);
 
-        return redirect()->route('schedule.index');
+        return redirect()->route('schedules.show', ['schedule' => $schedule->id])
+            ->with('success', 'Horaire mis à jour avec succès.');
     }
 
-    public function destroy($id)
+    /**
+     * @param Schedule $schedule
+     * @return RedirectResponse
+     */
+    public function destroy(Schedule $schedule): RedirectResponse
     {
-        $schedule = Schedule::find($id);
         $schedule->delete();
-        return redirect()->route('schedule.index');
+        return redirect()->route('schedules.index')->with('success', 'Horaire supprimé avec succès.');
     }
 }

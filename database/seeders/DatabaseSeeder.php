@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             ClubSeeder::class,
             PictureSeeder::class,
             TrainingSeeder::class,
+            ScheduleSeeder::class,
             UserSeeder::class
         ]);
 

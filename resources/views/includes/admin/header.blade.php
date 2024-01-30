@@ -9,16 +9,22 @@
         </div>
         <nav id="navbar" class="navbar">
             <ul>
-                <li class="dropdown"><a href="#"><span>Club</span> <i class="bi bi-chevron-down"></i></a>
+                <li class="dropdown"><a href="#"><span>Clubs</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="{{ route('clubs.index') }}">Liste des clubs</a></li>
                         <li><a href="{{ route('clubs.create') }}">Ajouter un club</a></li>
                     </ul>
                 </li>
-                <li class="dropdown"><a href="#"><span>Entraînement</span> <i class="bi bi-chevron-down"></i></a>
+                <li class="dropdown"><a href="#"><span>Entraînements</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="{{ route('trainings.index') }}">Liste des entraînements</a></li>
                         <li><a href="{{ route('trainings.create') }}">Ajouter un entraînement</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown"><a href="#"><span>Horaires</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="{{ route('schedules.index') }}">Liste des horaires</a></li>
+                        <li><a href="{{ route('schedules.create') }}">Ajouter un horaire</a></li>
                     </ul>
                 </li>
                 <li class="dropdown"><a href="#"><span>Photos</span> <i class="bi bi-chevron-down"></i></a>
