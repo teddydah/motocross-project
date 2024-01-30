@@ -18,9 +18,7 @@ class BookingController extends Controller
      */
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $bookings = Booking::with('user', 'schedule')->get();
-
-        return view('bookings.index', compact('bookings'));
+        return view('bookings.index', ['bookings' => Booking::with('user', 'schedule')->get()]);
     }
 
     /**
@@ -97,8 +95,6 @@ class BookingController extends Controller
     public function destroy(Booking $booking): RedirectResponse
     {
         $booking->delete();
-
-        // TODO: message
-        return redirect()->route('bookings.index')->with('success', 'Booking deleted successfully.');
+        return redirect()->route('bookings.index')->with('success', 'Réservation supprimée avec succès.');
     }
 }

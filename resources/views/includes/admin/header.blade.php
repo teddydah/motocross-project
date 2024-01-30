@@ -27,6 +27,12 @@
                         <li><a href="{{ route('schedules.create') }}">Ajouter un horaire</a></li>
                     </ul>
                 </li>
+                <li class="dropdown"><a href="#"><span>Réservations</span> <i class="bi bi-chevron-down"></i></a>
+                    <ul>
+                        <li><a href="{{ route('bookings.index') }}">Liste des réservations</a></li>
+                        <li><a href="{{ route('bookings.create') }}">Ajouter une réservation</a></li>
+                    </ul>
+                </li>
                 <li class="dropdown"><a href="#"><span>Photos</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
                         <li><a href="{{ route('pictures.index') }}">Liste des photos</a></li>

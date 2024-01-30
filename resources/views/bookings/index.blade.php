@@ -4,42 +4,64 @@
     Auribail Mx Park | Réservations
 @endsection
 
+@section('header')
+    @include('includes.admin.header')
+@endsection
+
 @section('main')
     <section class="admin">
-        <h2>Bookings</h2>
-        <a href="{{ route('bookings.create') }}" class="btn btn-primary mb-3">Add Booking</a>
+        @include('includes.alert')
+        <div class="section-title container bg-white">
+            <span class="d-none">Liste des réservations</span>
+            <h2 class="mb-0">Liste des réservations</h2>
+        </div>
 
-        @if(session('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
-        @endif
-
-        <table class="container table table-striped table-light text-center">
+        <table class="container table-index table table-striped text-center align-baseline mb-0">
             <thead>
             <tr>
                 <th scope="row">#</th>
+                <th scope="row">Horaire</th>
                 <th scope="row">Utilisateur</th>
-                <th scope="row">Créneaux</th>
                 <th scope="row">Actions</th>
             </tr>
             </thead>
+            <tfoot>
+            <tr>
+                <td colspan="4">
+                    <a class="btn-add btn btn-primary btn-outline-light" href="{{ route('bookings.create') }}"
+                       title="Ajouter une réservation">Ajouter une réservation</a>
+                </td>
+            </tr>
+            </tfoot>
             <tbody>
             @foreach($bookings as $booking)
                 <tr>
                     <td>{{ $booking->id }}</td>
-                    <td>{{ $booking->user->firstname }} {{ $booking->user->lastname }}</td>
-                    <td>{{ date_format(date_create($booking->schedule->start_date), 'd/m/Y') }}
-                        | de {{ date_format(date_create($booking->schedule->start_date), 'H:i') }}
-                        à {{ date_format(date_create($booking->schedule->end_date), 'H:i') }}</td>
                     <td>
-                        <a href="{{ route('bookings.edit', $booking->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                        <form action="{{ route('bookings.destroy', $booking->id) }}" method="POST"
-                              style="display:inline">
+                        <a href="{{ route('schedules.show', $booking->schedule_id) }}">{{ date_format(date_create($booking->schedule->start_date), 'd/m/y') }}
+                            • {{ str_replace('h00', 'h', date_format(date_create($booking->schedule->start_date), 'H\hi')) }}
+                            à {{ str_replace('h00', 'h', date_format(date_create($booking->schedule->end_date), 'H\hi')) }}</a>
+                    </td>
+                    <!-- TODO: lien a vers user -->
+                    <td>{{ $booking->user->email }}</td>
+                    <td>
+                        <a class="btn btn-see btn-info btn-outline-light"
+                           href="{{ route('schedules.show', $booking->id) }}"
+                           title="Voir la réservation">
+                            <i class="fa-solid fa-eye"></i>
+                        </a>
+                        <a class="btn btn-secondary btn-outline-light btn-edit m-2"
+                           href="{{ route('bookings.edit', $booking->id) }}" title="Modifier la réservation">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </a>
+                        <form class="d-inline-block" action="{{ route('bookings.destroy', $booking->id) }}"
+                              method="post">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-sm btn-danger"
-                                    onclick="return confirm('Are you sure?')">Delete
+                            <button class="btn btn-danger btn-outline-light btn-delete ms-0 me-0" type="submit"
+                                    title="Supprimer la réservation"
+                                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')">
+                                <i class="fa-solid fa-trash-can"></i>
                             </button>
                         </form>
                     </td>
