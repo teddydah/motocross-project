@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use App\Models\Booking;
 use App\Models\User;
 use App\Models\Schedule;
+use Illuminate\Support\Facades\Auth;
 
 class BookingController extends Controller
 {
@@ -26,10 +27,10 @@ class BookingController extends Controller
      */
     public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $users = User::all();
-        $schedules = Schedule::all();
-
-        return view('bookings.create', compact('users', 'schedules'));
+        return view('bookings.create', [
+            'schedules' => Schedule::all()->sortByDesc(['start_date']),
+            'users' => User::all()
+        ]);
     }
 
     /**
@@ -45,17 +46,16 @@ class BookingController extends Controller
 
         Booking::create($request->all());
 
-        // TODO: message
-        return redirect()->route('bookings.index')->with('success', 'Booking created successfully.');
+        return redirect()->route('bookings.index')->with('success', 'Réservation ajoutée avec succès.');
     }
 
     /**
      * @param Booking $booking
-     * @return void
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
-    public function show(Booking $booking)
+    public function show(Booking $booking): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        // TODO
+        return view('bookings.show', ['booking' => Booking::find($booking->id)]);
     }
 
     /**
@@ -82,10 +82,16 @@ class BookingController extends Controller
             'schedule_id' => 'required|exists:schedules,id',
         ]);
 
+        // Vérifier si l'utilisateur authentifié est le propriétaire de la réservation
+        // TODO
+        if (Auth::id() !== $booking->user_id) {
+            return redirect()->route('bookings.index')
+                ->with('errors', 'Vous n\'êtes pas autorisé à modifier cette réservation.');
+        }
+
         $booking->update($request->all());
 
-        // TODO: message
-        return redirect()->route('bookings.index')->with('success', 'Booking updated successfully.');
+        return redirect()->route('bookings.index')->with('success', 'Réservation mise à jour avec succès.');
     }
 
     /**
