@@ -40,12 +40,12 @@ Route::resource('bookings', BookingController::class);
 Route::resource('pictures', PictureController::class);
 
 // Posts (formulaire de contact)
-Route::get('/#form-contact', [PostController::class, 'create'])->name('post.create');
-Route::post('/', [PostController::class, 'store'])->name('post.store');
+Route::get('/#form-contact', [PostController::class, 'create'])->name('posts.create');
+Route::post('/', [PostController::class, 'store'])->name('posts.store');
 
-Route::get('/posts', [PostController::class, 'index'])->name('post.index');
-Route::get('/posts/{post}', [PostController::class, 'show'])->name('post.show');
-Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('post.destroy');
+Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
+Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
 // Training
 /*Route::get(

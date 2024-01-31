@@ -49,7 +49,6 @@
 <script src="{{url('/')}}/vendor/glightbox/js/glightbox.min.js"></script>
 <script src="{{url('/')}}/vendor/isotope-layout/isotope.pkgd.min.js"></script>
 <script src="{{url('/')}}/vendor/swiper/swiper-bundle.min.js"></script>
-<script src="{{url('/')}}/vendor/php-email-form/validate.js"></script>
 
 <!-- Template Main JS File -->
 <script src="{{url('/')}}/js/main.js" type="module"></script>

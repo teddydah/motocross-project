@@ -48,7 +48,7 @@
             </div>
         </div>
 
-        <form action="{{route('post.store')}}" method="post" role="form" class="php-email-form" id="form-contact">
+        <form action="{{ route('posts.store') }}" method="post" role="form" class="php-email-form" id="form-contact">
             @csrf
             @method('POST')
             <div class="row">

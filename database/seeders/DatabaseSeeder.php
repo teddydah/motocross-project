@@ -18,7 +18,8 @@ class DatabaseSeeder extends Seeder
             TrainingSeeder::class,
             ScheduleSeeder::class,
             UserSeeder::class,
-            BookingSeeder::class
+            BookingSeeder::class,
+            PostSeeder::class
         ]);
 
         // \App\Models\User::factory(10)->create();

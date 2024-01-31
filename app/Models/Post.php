@@ -16,12 +16,4 @@ class Post extends Model
         'subject',
         'message'
     ];
-
-    /**
-     * Get the subject associated with the post.
-     */
-    public function subject(): HasOne
-    {
-        return $this->hasOne(Subject::class);
-    }
 }

@@ -17,7 +17,7 @@ class PostController extends Controller
      */
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('posts.index', ['posts' => Post::all()]);
+        return view('posts.index', ['posts' => Post::all()->sortByDesc('id')]);
     }
 
     /**
@@ -46,13 +46,13 @@ class PostController extends Controller
             $request->subject != 'account' &&
             $request->subject != 'info' &&
             $request->subject != 'other') {
-            return redirect()->route('post.create')
-                ->with('error', 'Vous devez sélectionner un motif parmi ceux proposés dans la liste.');
+            return redirect()->route('posts.create')
+                ->with('danger', 'Vous devez sélectionner un motif parmi ceux proposés dans la liste.');
         }
 
         Post::create($request->all());
 
-        return redirect()->route('post.create')->with('success', 'Votre message a bien été envoyé !');
+        return redirect()->route('posts.create')->with('success', 'Votre message a bien été envoyé !');
     }
 
     /**
@@ -61,7 +61,7 @@ class PostController extends Controller
      */
     public function show(Post $post): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('posts.show', compact('post'));
+        return view('posts.show', ['post' => Post::find($post->id)]);
     }
 
     /**

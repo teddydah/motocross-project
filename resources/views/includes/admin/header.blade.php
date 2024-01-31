@@ -39,7 +39,7 @@
                         <li><a href="{{ route('pictures.create') }}">Ajouter une photo</a></li>
                     </ul>
                 </li>
-                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+                <li><a class="nav-link scrollto" href="{{ route('posts.index') }}">Messages</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>

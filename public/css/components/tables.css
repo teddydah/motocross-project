@@ -30,3 +30,8 @@
 .table-index tr td {
     width: 25%;
 }
+
+.table tr td.text-justify {
+    text-align: justify !important;
+    padding: 1em;
+}
