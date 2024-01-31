@@ -30,11 +30,11 @@ class TrainingController extends Controller
 
     private array $messages = [
         'max_people' => 'Le champ "max_people" doit être une valeur numérique.',
-        'length' => 'Le champ longueur doit être une valeur numérique.',
-        'width' => 'Le champ largeur doit être une valeur numérique.',
+        'length' => 'Le champ "longueur" doit être une valeur numérique.',
+        'width' => 'Le champ "largeur" doit être une valeur numérique.',
         'zip_code' => 'Le code postal doit comporté 5 chiffres.',
-        'latitude' => 'Le champ latitude doit être une valeur numérique.',
-        'longitude' => 'Le champ longitude doit être une valeur numérique.'
+        'latitude' => 'Le champ "latitude" doit être une valeur numérique.',
+        'longitude' => 'Le champ "longitude" doit être une valeur numérique.'
     ];
 
     /**
