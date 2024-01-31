@@ -5,6 +5,7 @@
 * Desktop Navigation
 */
 .navbar {
+    position: relative !important;
     padding: 0;
 }
 
@@ -121,7 +122,7 @@
     color: #354144;
     font-size: 28px;
     cursor: pointer;
-    display: none;
+    display: block;
     line-height: 0;
     transition: 0.5s;
 }
@@ -130,18 +131,12 @@
     color: var(--white);
 }
 
-@media (max-width: 991px) {
-    .mobile-nav-toggle {
-        display: block;
-    }
-
-    .navbar ul {
-        display: none;
-    }
+.navbar ul {
+    display: none;
 }
 
 .navbar-mobile {
-    position: fixed;
+    position: fixed !important;
     overflow: hidden;
     top: 0;
     right: 0;
@@ -164,11 +159,16 @@
     top: 55px;
     right: 15px;
     bottom: 15px;
-    left: 15px;
     padding: 10px 0;
     background-color: var(--white);
     overflow-y: auto;
     transition: 0.3s;
+}
+
+@media (max-width: 991px) {
+    .navbar-mobile ul {
+        left: 15px;
+    }
 }
 
 .navbar-mobile a,
