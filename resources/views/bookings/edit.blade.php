@@ -22,28 +22,20 @@
             <table class="container table table-admin table-edit table-striped align-middle mb-0">
                 <tbody>
                 <tr>
+                    <th scope="row"><label for="user_id">Utilisateur :</label></th>
+                    <td>{{ $booking->user->email }}</td>
+                </tr>
+                <tr>
                     <th scope="row"><label for="schedule_id">Horaire :</label></th>
                     <td>
                         <select name="schedule_id" id="schedule_id" required>
                             @foreach($schedules as $schedule)
                                 <option
-                                    value="{{ old('schedule_id', $schedule->id) }}" {{ $booking->schedule_id == $schedule->id ? 'selected' : '' }}>
+                                        value="{{ old('schedule_id', $schedule->id) }}" {{ $booking->schedule_id == $schedule->id ? 'selected' : '' }}>
                                     Le {{ date_format(date_create($schedule->start_date), 'd/m/y') }}
                                     de {{ str_replace('h00', 'h', date_format(date_create($schedule->start_date), 'H\hi')) }}
                                     à {{ str_replace('h00', 'h', date_format(date_create($schedule->end_date), 'H\hi')) }}
                                 </option>
-                            @endforeach
-                        </select>
-                    </td>
-                </tr>
-
-                <tr>
-                    <th scope="row"><label for="user_id">Utilisateur :</label></th>
-                    <td>
-                        <select name="user_id" id="user_id" required>
-                            @foreach($users as $user)
-                                <option
-                                    value="{{ old('user_id', $user->id) }}" {{ $booking->user_id == $user->id ? 'selected' : '' }}>{{ $user->email }}</option>
                             @endforeach
                         </select>
                     </td>

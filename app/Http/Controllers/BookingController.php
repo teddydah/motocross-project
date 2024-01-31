@@ -41,7 +41,9 @@ class BookingController extends Controller
     {
         $request->validate([
             'user_id' => 'required|exists:users,id',
-            'schedule_id' => 'required|exists:schedules,id',
+            'schedule_id' => 'required|exists:schedules,id'
+        ], [
+            'user_id' => 'Le champ "utilisateur" est requis.'
         ]);
 
         Booking::create($request->all());
@@ -78,18 +80,21 @@ class BookingController extends Controller
     public function update(Request $request, Booking $booking): RedirectResponse
     {
         $request->validate([
-            'user_id' => 'required|exists:users,id',
-            'schedule_id' => 'required|exists:schedules,id',
+            'schedule_id' => 'required|exists:schedules,id'
         ]);
 
         // Vérifier si l'utilisateur authentifié est le propriétaire de la réservation
         // TODO
-        if (Auth::id() !== $booking->user_id) {
+        // Auth::check() && $user->role !== 'admin'
+        if (Auth::id() !== $booking->user_id || User::find($booking->user_id)->role !== 'admin') {
             return redirect()->route('bookings.index')
-                ->with('errors', 'Vous n\'êtes pas autorisé à modifier cette réservation.');
+                ->with('danger', 'Vous n\'êtes pas autorisé à modifier cette réservation.');
         }
 
-        $booking->update($request->all());
+        $booking->update([
+            'user_id' => $booking->user_id,
+            'schedule_id' => $request->schedule_id
+        ]);
 
         return redirect()->route('bookings.index')->with('success', 'Réservation mise à jour avec succès.');
     }

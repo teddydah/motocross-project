@@ -46,11 +46,6 @@
                         <a href="{{ route('users.show', $booking->user_id) }}">{{ $booking->user->email }}</a>
                     </td>
                     <td>
-                        <a class="btn btn-see btn-info btn-outline-light"
-                           href="{{ route('schedules.show', $booking->id) }}"
-                           title="Voir la réservation">
-                            <i class="fa-solid fa-eye"></i>
-                        </a>
                         <a class="btn btn-secondary btn-outline-light btn-edit m-2"
                            href="{{ route('bookings.edit', $booking->id) }}" title="Modifier la réservation">
                             <i class="fa-solid fa-pen-to-square"></i>
