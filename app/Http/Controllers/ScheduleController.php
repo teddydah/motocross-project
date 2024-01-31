@@ -24,7 +24,7 @@ class ScheduleController extends Controller
      */
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('schedules.index', ['schedules' => Schedule::all()->sortByDesc(['start_date'])]);
+        return view('schedules.index', ['schedules' => Schedule::all()->sortBy('start_date')]);
     }
 
     /**
