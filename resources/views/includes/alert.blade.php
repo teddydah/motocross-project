@@ -20,4 +20,10 @@
         <span>{{ session('warning') }}</span>
         <i class="close fa-solid fa-xmark" data-dismiss="alert" title="Fermer la fenêtre"></i>
     </div>
+@elseif (session('danger'))
+    <div
+        class="alert alert-danger alert-block container d-flex justify-content-between align-items-baseline text-start">
+        <span>{{ session('danger') }}</span>
+        <i class="close fa-solid fa-xmark" data-dismiss="alert" title="Fermer la fenêtre"></i>
+    </div>
 @endif
