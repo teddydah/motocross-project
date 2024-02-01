@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -14,16 +15,16 @@ use Illuminate\Validation\Rule;
 class UserController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
      */
-    public function index()
+    public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        $user = DB::table('users')->get();
-        return response()->json($user, 201);
+        return view('users.index', ['users' => User::all()]);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * @param Request $request
+     * @return mixed
      */
     public function store(Request $request)
     {
@@ -52,33 +53,26 @@ class UserController extends Controller
      */
     public function show(User $user): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        return view('users.show', ['user' => User::findorfail($user->id)]);
+        return view('users.show', ['user' => User::find($user->id)]);
+    }
+
+    public function edit(User $user)
+    {
+        // TODO
+    }
+
+    public function update(Request $request, User $user)
+    {
+        // TODO
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * @param User $user
+     * @return RedirectResponse
      */
-    public function edit(string $id)
+    public function destroy(User $user): RedirectResponse
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        $user = User::findorfail($id);
         $user->delete();
-
-        return response()->json($user, 201);
+        return redirect()->route('users.index')->with('success', 'Utilisateur supprimé avec succès.');
     }
 }

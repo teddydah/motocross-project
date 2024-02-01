@@ -8,6 +8,7 @@
             </h1>
         </div>
         <nav id="navbar" class="navbar">
+            <!-- TODO: active -->
             <ul>
                 <li class="dropdown"><a href="#"><span>Clubs</span> <i class="bi bi-chevron-down"></i></a>
                     <ul>
@@ -40,6 +41,7 @@
                     </ul>
                 </li>
                 <li><a class="nav-link scrollto" href="{{ route('posts.index') }}">Messages</a></li>
+                <li><a class="nav-link scrollto" href="{{ route('users.index') }}">Utilisateurs</a></li>
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>

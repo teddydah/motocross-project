@@ -1,11 +1,14 @@
 <?php
 
+use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\PictureController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TrainingController;
+use App\Http\Controllers\UserController;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +21,13 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+// https://laravel.com/docs/10.x/middleware
+// AdminMiddleware
+/*Route::middleware(['auth:sanctum', 'admin'])->group(function () {
+    Route::get('/users', [UserController::class, 'index'])->name('users.index');
+    Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
+})->middleware(AdminMiddleware::class);*/
 
 // Home
 Route::get('/', function () {
@@ -47,33 +57,9 @@ Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
-// Training
-/*Route::get(
-    '/training',
-    [TrainingController::class, 'index']
-)->name('training.index');
+// Users
+Route::resource('users', UserController::class);
 
-Route::get(
-    '/create-training',
-    [TrainingController::class, 'create']
-)->name('training.create');
+// Login
+Route::post('/login', [LoginController::class, 'login'])->name('users.login');
 
-Route::post(
-    '/create-training',
-    [TrainingController::class, 'store']
-)->name('training.store');
-
-Route::get(
-    '/edit-training/{id}',
-    [TrainingController::class, 'edit']
-)->name('training.edit');
-
-Route::put(
-    '/edit-training/{id}',
-    [TrainingController::class, 'update']
-)->name('training.update');
-
-Route::delete(
-    '/delete-training/{id}',
-    [TrainingController::class, 'destroy']
-)->name('training.destroy');*/
