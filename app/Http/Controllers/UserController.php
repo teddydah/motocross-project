@@ -8,6 +8,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
@@ -26,7 +27,7 @@ class UserController extends Controller
      * @param Request $request
      * @return mixed
      */
-    public function store(Request $request)
+    public function store(Request $request): mixed
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -49,16 +50,25 @@ class UserController extends Controller
 
     /**
      * @param User $user
-     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     * @return Factory|View|Application|RedirectResponse|\Illuminate\Contracts\Foundation\Application
      */
-    public function show(User $user): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function show(User $user): Factory|View|Application|RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
+        if (Auth::id() !== $user->id || $user->role !== 'admin') {
+            return redirect()->route('users.index')
+                ->with('danger', 'Vous n\'avez pas le droit d\'accéder à ce profil.');
+        }
+
         return view('users.show', ['user' => User::find($user->id)]);
     }
 
-    public function edit(User $user)
+    /**
+     * @param User $user
+     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     */
+    public function edit(User $user): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
-        // TODO
+        return view('users.edit', ['user' => User::find($user->id)]);
     }
 
     public function update(Request $request, User $user)
