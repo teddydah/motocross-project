@@ -12,9 +12,13 @@
 .navbar ul {
     margin: 0;
     padding: 0;
-    display: flex;
+    display: none;
     list-style: none;
     align-items: center;
+}
+
+.navbar-home ul {
+    display: flex;
 }
 
 .navbar li {
@@ -127,12 +131,22 @@
     transition: 0.5s;
 }
 
-.mobile-nav-toggle.bi-x {
-    color: var(--white);
+.navbar-home .mobile-nav-toggle {
+    display: none;
 }
 
-.navbar ul {
-    display: none;
+@media (max-width: 991px) {
+    .navbar-home .mobile-nav-toggle {
+        display: block;
+    }
+
+    .navbar-home ul {
+        display: none;
+    }
+}
+
+.mobile-nav-toggle.bi-x {
+    color: var(--white);
 }
 
 .navbar-mobile {
