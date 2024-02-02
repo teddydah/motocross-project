@@ -34,7 +34,40 @@
                     <td>Utilisateur</td>
                 @endif
             </tr>
-            <!-- TODO -->
+            @if($user->license_number !== null)
+                <tr>
+                    <th scope="row">N° de licence :</th>
+                    <td>{{ $user->license_number }}</td>
+                </tr>
+            @endif
+            @if($user->phone !== null)
+                <tr>
+                    <th scope="row">N° de téléphone :</th>
+                    <td>{{ wordwrap($user->phone, 2, '.', 1) }}</td>
+                </tr>
+            @endif
+            <tr>
+                <th scope="row">Date de naissance :</th>
+                <td>{{ date_format(date_create($user->birth_date), 'd/m/Y') }}</td>
+            </tr>
+            @if($user->address !== null)
+                <tr>
+                    <th scope="row">Adresse :</th>
+                    <td>{{ $user->address }}</td>
+                </tr>
+            @endif
+            @if($user->zip_code !== null)
+                <tr>
+                    <th scope="row">Code postal :</th>
+                    <td>{{ $user->zip_code }}</td>
+                </tr>
+            @endif
+            @if($user->city !== null)
+                <tr>
+                    <th scope="row">Ville :</th>
+                    <td>{{ $user->city }}</td>
+                </tr>
+            @endif
             </tbody>
             <tfoot>
             <tr>

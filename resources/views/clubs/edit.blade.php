@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-    Auribail Mx Park | {{$club->name}}
+    Auribail Mx Park | {{ $club->name }}
 @endsection
 
 @section('header')

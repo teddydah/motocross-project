@@ -7,7 +7,7 @@
                 <a href="{{ url('/') }}"><span>Auribail</span> <span>Mx Park</span></a>
             </h1>
         </div>
-        <nav id="navbar" class="navbar">
+        <nav id="navbar" class="navbar navbar-home">
             <ul>
                 <li><a class="nav-link scrollto active" href="{{ url('/') }}">Accueil</a></li>
                 <li><a class="nav-link scrollto" href="#about">About</a></li>

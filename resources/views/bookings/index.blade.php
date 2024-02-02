@@ -43,7 +43,7 @@
                             à {{ str_replace('h00', 'h', date_format(date_create($booking->schedule->end_date), 'H\hi')) }}</a>
                     </td>
                     <td>
-                        <a href="{{ route('users.show', $booking->user_id) }}">{{ $booking->user->email }}</a>
+                        <a href="{{ route('users.show', $booking->user_id) }}">{{ $booking->user->firstname }} {{ $booking->user->lastname }}</a>
                     </td>
                     <td>
                         <a class="btn btn-secondary btn-outline-light btn-edit m-2"

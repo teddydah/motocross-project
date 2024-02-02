@@ -23,7 +23,7 @@
                 <tbody>
                 <tr>
                     <th scope="row"><label for="user_id">Utilisateur :</label></th>
-                    <td>{{ $booking->user->email }}</td>
+                    <td>{{ $booking->user->firstname }} {{ $booking->user->lastname }} ({{ $booking->user->email }})</td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="schedule_id">Horaire :</label></th>
