@@ -1,7 +1,7 @@
 export class Register {
-    displayPasswordConfirmationInput = (password, passwordConfirmation) => {
+    displayPasswordConfirmationInput = (password, confirmPassword) => {
         if (password) password.addEventListener("input", () => {
-            passwordConfirmation.classList.remove("d-none");
+            confirmPassword.classList.remove("d-none");
         })
     }
 }

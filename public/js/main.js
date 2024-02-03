@@ -16,9 +16,9 @@ const {displayPasswordConfirmationInput} = new Register();
      * Display password confirmation input after entering 1st character in password entry input
      */
     const password = document.getElementById("password");
-    const passwordConfirmation = document.querySelector(".password-confirmation");
+    const confirmPassword = document.querySelector(".password-confirmation");
 
-    displayPasswordConfirmationInput(password, passwordConfirmation);
+    displayPasswordConfirmationInput(password, confirmPassword);
 
     /**
      * Easy selector helper function
