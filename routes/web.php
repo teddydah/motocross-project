@@ -21,17 +21,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// https://laravel.com/docs/10.x/middleware
-// AdminMiddleware
-/*Route::middleware(['auth:sanctum', 'admin'])->group(function () {
-    Route::get('/users', [UserController::class, 'index'])->name('users.index');
-    Route::get('/users/{id}', [UserController::class, 'show'])->name('users.show');
-})->middleware(AdminMiddleware::class);*/
-
 // Home
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 // Clubs
 Route::resource('clubs', ClubController::class);
@@ -57,5 +50,10 @@ Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show')
 Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
 
 // Users
-Route::resource('users', UserController::class);
-
+Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware('admin');
+Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
+Route::post('/users', [UserController::class, 'store'])->name('users.store');
+Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
+Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
