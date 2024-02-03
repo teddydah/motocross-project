@@ -54,10 +54,11 @@ class UserController extends Controller
      */
     public function show(User $user): Factory|View|Application|RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
-        if (Auth::id() !== $user->id || $user->role !== 'admin') {
+        // TODO: décommenter
+        /*if (Auth::id() !== $user->id || $user->role !== 'admin') {
             return redirect()->route('users.index')
                 ->with('danger', 'Vous n\'avez pas le droit d\'accéder à ce profil.');
-        }
+        }*/
 
         return view('users.show', ['user' => User::find($user->id)]);
     }
@@ -71,9 +72,73 @@ class UserController extends Controller
         return view('users.edit', ['user' => User::find($user->id)]);
     }
 
-    public function update(Request $request, User $user)
+    /**
+     * @param Request $request
+     * @param User $user
+     * @return RedirectResponse
+     */
+    public function update(Request $request, User $user): RedirectResponse
     {
-        // TODO
+        // TODO: décommenter
+        /*if (Auth::id() !== $user->id || $user->role !== 'admin') {
+            return redirect()->route('users.index')
+                ->with('danger', 'Vous n\'avez pas le droit de modifier ce profil.');
+        }*/
+
+        $inputsAdmin = [
+            'lastname' => 'required|string',
+            'firstname' => 'required|string',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'nullable|min:8',
+            'confirm_password' => 'nullable|same:password',
+            'role' => 'required',
+            'license_number' => 'nullable|numeric',
+            'phone' => 'required|size:10',
+            'birth_date' => 'required|date',
+            'address' => 'nullable',
+            'zip_code' => 'nullable|size:5',
+            'city' => 'nullable'
+        ];
+
+        $inputsUser = [
+            'lastname' => 'required|string',
+            'firstname' => 'required|string',
+            'email' => 'required|email|unique:users,email,' . $user->id,
+            'password' => 'nullable|min:8',
+            'confirm_password' => 'nullable|same:password',
+            'license_number' => 'nullable|numeric',
+            'phone' => 'required|size:10',
+            'birth_date' => 'required|date',
+            'address' => 'nullable',
+            'zip_code' => 'nullable|size:5',
+            'city' => 'nullable'
+        ];
+
+        $messages = [
+            'password' => 'Le mot de passe doit contenir au moins 8 caractères.',
+            'confirm_password' => 'Le champ de confirmation du mot de passe doit correspondre au mot de passe.'
+        ];
+
+        if ($user->role === 'admin' && Auth::id() !== $user->id) $request->validate(['role' => 'required']);
+        elseif ($user->role === 'admin' && Auth::id() === $user->id) $request->validate($inputsAdmin, $messages);
+        elseif ($user->role === 'user' && Auth::id() === $user->id) $request->validate($inputsUser, $messages);
+
+        User::find($user->id)->update([
+            'lastname' => $request->lastname,
+            'firstname' => $request->firstname,
+            'email' => $request->email,
+            'password' => isset($request->password) ? Hash::make($request->password) : $user->password,
+            'role' => $user->role === 'admin' ? $request->role : $user->role,
+            'license_number' => $request->license_number,
+            'phone' => $request->phone,
+            'birth_date' => $request->birth_date,
+            'address' => $request->address,
+            'zip_code' => $request->zip_code,
+            'city' => $request->city,
+        ]);
+
+        return redirect()->route('users.show', ['user' => $user->id])
+            ->with('success', 'Utilisateur mis à jour avec succès.');
     }
 
     /**

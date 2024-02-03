@@ -26,5 +26,18 @@ class UserSeeder extends Seeder
             'zip_code' => '12345',
             'city' => 'Faker City'
         ]);
+
+        DB::table('users')->insert([
+            'lastname' => 'Charbon',
+            'firstname' => 'Jacques',
+            'email' => 'jacques.charbon@live.fr',
+            'password' => '$2y$10$Y5LdAjHNd8AG6FC21GNXCuW38Y1ClEgrcinq2fC0Ib//TZv9ycHYW', // Pa$$w0rd
+            'license_number' => 123456,
+            'phone' => '0612345678',
+            'birth_date' => '1980-01-01',
+            'address' => '123 Fake Street',
+            'zip_code' => '12345',
+            'city' => 'Faker City'
+        ]);
     }
 }
