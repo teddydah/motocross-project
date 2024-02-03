@@ -22,7 +22,7 @@
                 <th scope="row">#</th>
                 <th scope="row">Email</th>
                 <th scope="row">Rôle</th>
-                <th scope="row">Actions</th>
+                <th scope="row">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -40,19 +40,6 @@
                            title="Voir l'utilisateur">
                             <i class="fa-solid fa-eye"></i>
                         </a>
-                        <a class="btn btn-secondary btn-outline-light btn-edit m-2"
-                           href="{{ route('users.edit', $user->id) }}" title="Modifier l'utilisateur">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </a>
-                        <form class="d-inline-block" action="{{ route('users.destroy', $user->id) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger btn-outline-light btn-delete ms-0 me-0" type="submit"
-                                    title="Supprimer l'utilisateur"
-                                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                        </form>
                     </td>
                 </tr>
             @endforeach

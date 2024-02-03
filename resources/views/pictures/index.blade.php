@@ -22,7 +22,7 @@
                 <th scope="row">#</th>
                 <th scope="row">Image</th>
                 <th scope="row">Club</th>
-                <th scope="row">Actions</th>
+                <th scope="row">Action</th>
             </tr>
             </thead>
             <tfoot>
@@ -47,20 +47,6 @@
                            href="{{ route('pictures.show', $picture->id) }}" title="Voir la photo">
                             <i class="fa-solid fa-eye"></i>
                         </a>
-                        <a class="btn btn-secondary btn-outline-light btn-edit m-2"
-                           href="{{ route('pictures.edit', $picture->id) }}" title="Modifier la photo">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </a>
-                        <form class="d-inline-block" action="{{ route('pictures.destroy', $picture->id) }}"
-                              method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger btn-outline-light btn-delete ms-0 me-0" type="submit"
-                                    title="Supprimer la photo"
-                                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                        </form>
                     </td>
                 </tr>
             @endforeach

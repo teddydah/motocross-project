@@ -42,6 +42,18 @@
                 <td class="text-center" colspan="2">
                     <a class="btn btn-dark btn-outline-light btn-back ms-0 me-0" href="{{ route('pictures.index') }}"
                        title="Retour à la liste des photos">Retour</a>
+                    <a class="btn btn-secondary btn-outline-light btn-edit m-2"
+                       href="{{ route('pictures.edit', $picture->id) }}" title="Modifier la photo">Éditer
+                    </a>
+                    <form class="d-inline-block" action="{{ route('pictures.destroy', $picture->id) }}"
+                          method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger btn-outline-light btn-delete ms-0 me-0" type="submit"
+                                title="Supprimer la photo"
+                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette photo ?')">Supprimer
+                        </button>
+                    </form>
                 </td>
             </tr>
             </tfoot>

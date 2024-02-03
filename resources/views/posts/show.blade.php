@@ -57,6 +57,14 @@
                 <td class="text-center" colspan="2">
                     <a class="btn btn-dark btn-outline-light btn-back ms-0 me-0" href="{{ route('posts.index') }}"
                        title="Retour à la liste des messages">Retour</a>
+                    <form class="d-inline-block" action="{{ route('posts.destroy', $post->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger btn-outline-light btn-delete m-2" type="submit"
+                                title="Supprimer le message"
+                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce message ?')">Supprimer
+                        </button>
+                    </form>
                 </td>
             </tr>
             </tfoot>

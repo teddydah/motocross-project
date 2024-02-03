@@ -25,38 +25,49 @@
                     <th scope="row"><label for="firstname">Prénom :</label></th>
                     <td>
                         <input type="text" name="firstname" id="firstname"
-                               value="{{ old('firstname', $user->firstname) }}" required>
+                               value="{{ old('firstname', $user->firstname) }}"
+                               required {{ (Auth::user()->role === 'admin' && Auth::id() === $user->id) ? '' : 'disabled' }}>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="lastname">Nom :</label></th>
                     <td>
                         <input type="text" name="lastname" id="lastname"
-                               value="{{ old('lastname', $user->lastname) }}" required>
+                               value="{{ old('lastname', $user->lastname) }}"
+                               required {{ (Auth::user()->role === 'admin' && Auth::id() === $user->id) ? '' : 'disabled' }}>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="email">Email :</label></th>
                     <td>
                         <input type="email" name="email" id="email"
-                               value="{{ old('email', $user->email) }}" required>
+                               value="{{ old('email', $user->email) }}"
+                               required {{ (Auth::user()->role === 'admin' && Auth::id() === $user->id) ? '' : 'disabled' }}>
                     </td>
                 </tr>
-
-                <!-- TODO: password -->
-
+                @if(Auth::user()->role === 'admin' && Auth::id() === $user->id)
+                    <tr>
+                        <th scope="row"><label for="password">Mot de passe :</label></th>
+                        <td>
+                            <input type="password" name="password" id="password"
+                                   placeholder="Saisissez votre nouveau mot de passe">
+                        </td>
+                    </tr>
+                    <tr class="password-confirmation d-none">
+                        <th scope="row"><label for="confirm_password">Confirmation du mot de passe :</label></th>
+                        <td>
+                            <input type="password" name="confirm_password" id="confirm_password"
+                                   value="{{ $user->confirm_password }}"
+                                   placeholder="Confirmez votre nouveau mot de passe">
+                        </td>
+                    </tr>
+                @endif
                 <tr>
                     <th scope="row"><label for="role">Rôle :</label></th>
                     <td>
-                        <select name="role" id="role" required disabled>
-                            <option
-                                    value="{{ old('role', $user->role) }}" {{ $user->role == 'user' ? 'selected' : '' }}>
-                                Utilisateur
-                            </option>
-                            <option
-                                    value="{{ old('role', $user->role) }}" {{ $user->role == 'admin' ? 'selected' : '' }}>
-                                Administrateur
-                            </option>
+                        <select name="role" id="role" required {{ Auth::user()->role !== 'admin' ? 'disabled' : '' }}>
+                            <option value="user" {{ $user->role == 'user' ? 'selected' : '' }}>Utilisateur</option>
+                            <option value="admin" {{ $user->role == 'admin' ? 'selected' : '' }}>Administrateur</option>
                         </select>
                     </td>
                 </tr>
@@ -64,23 +75,24 @@
                     <th scope="row"><label for="license_number">N° de licence :</label></th>
                     <td>
                         <input type="text" name="license_number" id="license_number"
-                               value="{{ old('license_number', $user->license_number) }}">
+                               value="{{ old('license_number', $user->license_number) }}" {{ (Auth::user()->role === 'admin' && Auth::id() === $user->id) ? '' : 'disabled' }}>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="phone">N° de téléphone :</label></th>
                     <td>
-                        <input type="text" name="phone" id="phone" value="{{ old('phone', $user->phone) }}">
+                        <input type="text" name="phone" id="phone"
+                               value="{{ old('phone', $user->phone) }}" {{ (Auth::user()->role === 'admin' && Auth::id() === $user->id) ? '' : 'disabled' }}>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="birth_date">Date de naissance :</label></th>
                     <td>
                         <input type="date" name="birth_date" id="birth_date"
-                               value="{{ old('birth_date', $user->birth_date) }}">
+                               value="{{ old('birth_date', $user->birth_date) }}" {{ (Auth::user()->role === 'admin' && Auth::id() === $user->id) ? '' : 'disabled' }}>
                     </td>
                 </tr>
-                <!-- TODO -->
+                <!-- TODO: adresse, ... -->
                 </tbody>
                 <tfoot>
                 <tr>

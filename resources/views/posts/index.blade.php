@@ -22,7 +22,7 @@
                 <th scope="row">#</th>
                 <th scope="row">Email</th>
                 <th scope="row">Motif</th>
-                <th scope="row">Actions</th>
+                <th scope="row">Action</th>
             </tr>
             </thead>
             <tbody>
@@ -52,15 +52,6 @@
                                title="Voir le message">
                                 <i class="fa-solid fa-eye"></i>
                             </a>
-                            <form class="d-inline-block" action="{{ route('posts.destroy', $post->id) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger btn-outline-light btn-delete ms-0 me-0" type="submit"
-                                        title="Supprimer le message"
-                                        onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce message ?')">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                </button>
-                            </form>
                         </td>
                     </tr>
                 @endforeach

@@ -22,7 +22,7 @@
                 <th scope="row">#</th>
                 <th scope="row">Nom</th>
                 <th scope="row">Ville</th>
-                <th scope="row">Actions</th>
+                <th scope="row">Action</th>
             </tr>
             </thead>
             <tfoot>
@@ -45,19 +45,6 @@
                            title="Voir le club">
                             <i class="fa-solid fa-eye"></i>
                         </a>
-                        <a class="btn btn-secondary btn-outline-light btn-edit m-2"
-                           href="{{ route('clubs.edit', $club->id) }}" title="Modifier le club">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </a>
-                        <form class="d-inline-block" action="{{ route('clubs.destroy', $club->id) }}" method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger btn-outline-light btn-delete ms-0 me-0" type="submit"
-                                    title="Supprimer le club"
-                                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce club ?')" {{ $club->id === 1 ? 'disabled' : '' }}>
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                        </form>
                     </td>
                 </tr>
             @endforeach
