@@ -54,21 +54,31 @@ class UserController extends Controller
      */
     public function show(User $user): Factory|View|Application|RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
-        // TODO: décommenter
-        /*if (Auth::id() !== $user->id || $user->role !== 'admin') {
+        if (
+            (Auth::user()->role === 'user' && Auth::id() !== $user->id) ||
+            (Auth::user()->role === 'admin' && Auth::id() !== $user->id && $user->role === 'admin')
+        ) {
             return redirect()->route('users.index')
                 ->with('danger', 'Vous n\'avez pas le droit d\'accéder à ce profil.');
-        }*/
+        }
 
         return view('users.show', ['user' => User::find($user->id)]);
     }
 
     /**
      * @param User $user
-     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     * @return Factory|View|Application|RedirectResponse|\Illuminate\Contracts\Foundation\Application
      */
-    public function edit(User $user): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function edit(User $user): Factory|View|Application|RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
+        if (
+            (Auth::user()->role === 'user' && Auth::id() !== $user->id) ||
+            (Auth::user()->role === 'admin' && Auth::id() !== $user->id && $user->role === 'admin')
+        ) {
+            return redirect()->route('users.show', ['user' => User::find($user->id)])
+                ->with('danger', 'Vous n\'avez pas le droit de modifier ce profil.');
+        };
+
         return view('users.edit', ['user' => User::find($user->id)]);
     }
 
@@ -79,11 +89,13 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user): RedirectResponse
     {
-        // TODO: décommenter
-        /*if (Auth::id() !== $user->id || $user->role !== 'admin') {
-            return redirect()->route('users.index')
+        if (
+            (Auth::user()->role === 'user' && Auth::id() !== $user->id) ||
+            (Auth::user()->role === 'admin' && Auth::id() !== $user->id && $user->role === 'admin')
+        ) {
+            return redirect()->route('users.show', ['user' => User::find($user->id)])
                 ->with('danger', 'Vous n\'avez pas le droit de modifier ce profil.');
-        }*/
+        }
 
         $inputsAdmin = [
             'lastname' => 'required|string',
@@ -119,23 +131,53 @@ class UserController extends Controller
             'confirm_password' => 'Le champ de confirmation du mot de passe doit correspondre au mot de passe.'
         ];
 
-        if ($user->role === 'admin' && Auth::id() !== $user->id) $request->validate(['role' => 'required']);
-        elseif ($user->role === 'admin' && Auth::id() === $user->id) $request->validate($inputsAdmin, $messages);
-        elseif ($user->role === 'user' && Auth::id() === $user->id) $request->validate($inputsUser, $messages);
+        if (Auth::user()->role === 'admin' && Auth::id() === $user->id) {
+            $request->validate($inputsAdmin, $messages);
 
-        User::find($user->id)->update([
-            'lastname' => $request->lastname,
-            'firstname' => $request->firstname,
-            'email' => $request->email,
-            'password' => isset($request->password) ? Hash::make($request->password) : $user->password,
-            'role' => $user->role === 'admin' ? $request->role : $user->role,
-            'license_number' => $request->license_number,
-            'phone' => $request->phone,
-            'birth_date' => $request->birth_date,
-            'address' => $request->address,
-            'zip_code' => $request->zip_code,
-            'city' => $request->city,
-        ]);
+            User::find($user->id)->update([
+                'lastname' => $request->lastname,
+                'firstname' => $request->firstname,
+                'email' => $request->email,
+                'password' => isset($request->password) ? Hash::make($request->password) : $user->password,
+                'role' => $request->role,
+                'license_number' => $request->license_number,
+                'phone' => $request->phone,
+                'birth_date' => $request->birth_date,
+                'address' => $request->address,
+                'zip_code' => $request->zip_code,
+                'city' => $request->city,
+            ]);
+        } elseif (Auth::user()->role === 'admin' && Auth::id() !== $user->id) {
+            $request->validate(['role' => 'required']);
+
+            User::find($user->id)->update([
+                'lastname' => $user->lastname,
+                'firstname' => $user->firstname,
+                'email' => $user->email,
+                'role' => $request->role,
+                'license_number' => $user->license_number,
+                'phone' => $user->phone,
+                'birth_date' => $user->birth_date,
+                'address' => $user->address,
+                'zip_code' => $user->zip_code,
+                'city' => $user->city,
+            ]);
+        } elseif (Auth::user()->role === 'user' && Auth::id() === $user->id) {
+            $request->validate($inputsUser, $messages);
+
+            User::find($user->id)->update([
+                'lastname' => $request->lastname,
+                'firstname' => $request->firstname,
+                'email' => $request->email,
+                'password' => isset($request->password) ? Hash::make($request->password) : $user->password,
+                'license_number' => $request->license_number,
+                'phone' => $request->phone,
+                'birth_date' => $request->birth_date,
+                'address' => $request->address,
+                'zip_code' => $request->zip_code,
+                'city' => $request->city,
+            ]);
+        };
 
         return redirect()->route('users.show', ['user' => $user->id])
             ->with('success', 'Utilisateur mis à jour avec succès.');

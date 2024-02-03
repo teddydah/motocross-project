@@ -26,7 +26,7 @@
                     <td>
                         <input type="text" name="firstname" id="firstname"
                                value="{{ old('firstname', $user->firstname) }}"
-                               required {{ (Auth::user()->role === 'admin' && Auth::id() === $user->id) ? '' : 'disabled' }}>
+                               required {{ Auth::user()->id !== $user->id ? 'disabled' : '' }}>
                     </td>
                 </tr>
                 <tr>
@@ -34,7 +34,7 @@
                     <td>
                         <input type="text" name="lastname" id="lastname"
                                value="{{ old('lastname', $user->lastname) }}"
-                               required {{ (Auth::user()->role === 'admin' && Auth::id() === $user->id) ? '' : 'disabled' }}>
+                               required {{ Auth::user()->id !== $user->id ? 'disabled' : '' }}>
                     </td>
                 </tr>
                 <tr>
@@ -42,10 +42,10 @@
                     <td>
                         <input type="email" name="email" id="email"
                                value="{{ old('email', $user->email) }}"
-                               required {{ (Auth::user()->role === 'admin' && Auth::id() === $user->id) ? '' : 'disabled' }}>
+                               required {{ Auth::user()->id !== $user->id ? 'disabled' : '' }}>
                     </td>
                 </tr>
-                @if(Auth::user()->role === 'admin' && Auth::id() === $user->id)
+                @if(Auth::user()->role === 'admin' || Auth::id() === $user->id)
                     <tr>
                         <th scope="row"><label for="password">Mot de passe :</label></th>
                         <td>
@@ -75,24 +75,44 @@
                     <th scope="row"><label for="license_number">N° de licence :</label></th>
                     <td>
                         <input type="text" name="license_number" id="license_number"
-                               value="{{ old('license_number', $user->license_number) }}" {{ (Auth::user()->role === 'admin' && Auth::id() === $user->id) ? '' : 'disabled' }}>
+                               value="{{ old('license_number', $user->license_number) }}" {{ Auth::user()->id !== $user->id ? 'disabled' : '' }}>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="phone">N° de téléphone :</label></th>
                     <td>
                         <input type="text" name="phone" id="phone"
-                               value="{{ old('phone', $user->phone) }}" {{ (Auth::user()->role === 'admin' && Auth::id() === $user->id) ? '' : 'disabled' }}>
+                               value="{{ old('phone', $user->phone) }}" {{ Auth::user()->id !== $user->id ? 'disabled' : '' }}>
                     </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="birth_date">Date de naissance :</label></th>
                     <td>
                         <input type="date" name="birth_date" id="birth_date"
-                               value="{{ old('birth_date', $user->birth_date) }}" {{ (Auth::user()->role === 'admin' && Auth::id() === $user->id) ? '' : 'disabled' }}>
+                               value="{{ old('birth_date', $user->birth_date) }}" {{ Auth::user()->id !== $user->id ? 'disabled' : '' }}>
                     </td>
                 </tr>
-                <!-- TODO: adresse, ... -->
+                <tr>
+                    <th scope="row"><label for="address">Adresse :</label></th>
+                    <td>
+                        <input type="text" name="address" id="address"
+                               value="{{ old('address', $user->address) }}" {{ Auth::user()->id !== $user->id ? 'disabled' : '' }}>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="zip_code">Code postal :</label></th>
+                    <td>
+                        <input type="text" name="zip_code" id="zip_code" minlength="5" maxlength="5"
+                               value="{{ old('zip_code', $user->zip_code) }}" {{ Auth::user()->id !== $user->id ? 'disabled' : '' }}>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"><label for="city">Ville :</label></th>
+                    <td>
+                        <input type="text" name="city" id="city"
+                               value="{{ old('city', $user->city) }}" {{ Auth::user()->id !== $user->id ? 'disabled' : '' }}>
+                    </td>
+                </tr>
                 </tbody>
                 <tfoot>
                 <tr>
