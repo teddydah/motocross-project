@@ -11,17 +11,17 @@ use Symfony\Component\HttpFoundation\Response;
 class AdminMiddleware
 {
     /**
-     * Handle an incoming request.
-     *
      * @param Request $request
-     * @param \Closure(Request): (Response) $next
+     * @param Closure $next
      * @return Response
      */
     public function handle(Request $request, Closure $next): Response
     {
         $user = User::find(Auth::id());
 
-        if (Auth::check() && $user->role === 'admin') return $next($request);
-        else return response()->json(['Forbidden'], 403);
+        if (Auth::check()) {
+            if ($user->role === 'admin') return $next($request);
+            else return redirect()->route('users.show', ['user' => Auth::id()]);
+        } else return redirect()->route('login')->with('warning', 'Veuillez vous authentifier.');;
     }
 }
