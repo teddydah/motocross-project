@@ -28,13 +28,7 @@
                                 </div>
                             </div>
 
-                            @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    @foreach ($errors->all() as $error)
-                                        <span>{{ $error }}</span>
-                                    @endforeach
-                                </div>
-                            @endif
+                            @include('includes.alert')
 
                             <form method="POST" action="{{ route('login') }}" class="signin-form">
                                 @csrf
