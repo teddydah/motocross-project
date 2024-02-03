@@ -4,9 +4,11 @@
 .btn-see,
 .btn-add,
 .btn-edit,
+.btn-edit-icon,
 .btn-save,
-.btn-cancel,
 .btn-delete,
+.btn-delete-icon,
+.btn-cancel,
 .btn-back {
     margin: 0.75em 0;
     padding: 0.7em !important;
@@ -16,20 +18,22 @@
     padding: 0.5em 0.75em !important;
 }
 
-.btn-edit {
+.btn-edit-icon {
     padding: 0.5em 0.8125em !important;
 }
 
-.btn-delete {
+.btn-delete-icon {
     padding: 0.5em 0.875em !important;
 }
 
 .btn-see:hover,
 .btn-add:hover,
 .btn-edit:hover,
+.btn-edit-icon:hover,
 .btn-save:hover,
-.btn-cancel:hover,
 .btn-delete:hover,
+.btn-delete-icon:hover,
+.btn-cancel:hover,
 .btn-back:hover {
     border-color: var(--black) !important;
 }
@@ -38,8 +42,8 @@
 .btn-add::before,
 .btn-edit::before,
 .btn-save::before,
-.btn-cancel::before,
 .btn-delete::before,
+.btn-cancel::before,
 .btn-back::before {
     font-family: "Font Awesome 6 Free";
     font-weight: bold;
@@ -47,11 +51,19 @@
 }
 
 .btn-add::before {
-    content: "\2b";
+    content: "\f055";
+}
+
+.btn-edit::before {
+    content: "\f044";
 }
 
 .btn-save::before {
     content: "\f0c7";
+}
+
+.btn-delete::before {
+    content: "\f2ed";
 }
 
 .btn-cancel::before {
