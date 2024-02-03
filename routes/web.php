@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ClubController;
 use App\Http\Controllers\PictureController;
@@ -59,7 +58,4 @@ Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.
 
 // Users
 Route::resource('users', UserController::class);
-
-// Login
-Route::post('/login', [LoginController::class, 'login'])->name('users.login');
 
