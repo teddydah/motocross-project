@@ -71,6 +71,7 @@
                                 <div class="form-group mb-3">
                                     <label class="label mb-2" for="zip_code">Code postal</label>
                                     <input class="form-control rounded-0" id="zip_code" type="text" name="zip_code"
+                                           minlength="5" maxlength="5"
                                            placeholder="Code postal">
                                 </div>
                                 <div class="form-group mb-3">
