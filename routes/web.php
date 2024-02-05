@@ -62,5 +62,5 @@ Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.
 Route::get('logout', function () {
     auth()->logout();
     Session()->flush();
-    return Redirect::to('/login');
+    return Redirect::to('/');
 })->name('users.logout');
