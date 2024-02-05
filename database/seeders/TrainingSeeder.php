@@ -24,8 +24,8 @@ class TrainingSeeder extends Seeder
             'city' => 'Auribail',
             'latitude' => '43.34192221833587',
             'longitude' => '1.357055980850652',
-            'description' => 'Nature du terrain : terre argileuse
-Infos pratiques : sanitaire, douche, club house, électricité, terrain technique et école de pilotage à disposition',
+            'description' => 'Infos pratiques : sanitaire, douche, club house, électricité, terrain technique et école de pilotage à disposition
+Nature du terrain : terre argileuse',
             'club_id' => 1
         ]);
     }
