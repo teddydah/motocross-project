@@ -5,7 +5,9 @@
 @endsection
 
 @section('header')
-    @include('includes.admin.header')
+    @if(Auth::check())
+        @include('includes.admin.header')
+    @endif
 @endsection
 
 @section('main')

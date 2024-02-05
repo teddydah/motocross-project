@@ -4,6 +4,10 @@
     Auribail Mx Park | Connexion
 @endsection
 
+@section('header')
+    @include('includes.home.header')
+@endsection
+
 @section('main')
     <section class="ftco-section admin">
         <div class="container">

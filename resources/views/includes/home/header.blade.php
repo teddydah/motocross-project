@@ -8,13 +8,67 @@
             </h1>
         </div>
         <nav id="navbar" class="navbar navbar-home">
-            <ul>
-                <li><a class="nav-link scrollto active" href="{{ url('/') }}">Accueil</a></li>
-                <li><a class="nav-link scrollto" href="#about">About</a></li>
-                <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                <li><a class="nav-link scrollto " href="#portfolio">Portfolio</a></li>
-                <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-            </ul>
+            @if(Route::currentRouteName() == 'home')
+                <ul>
+                    <li><a class="nav-link scrollto" href="#about">About</a></li>
+                    <li><a class="nav-link scrollto" href="#services">Services</a></li>
+                    <li><a class="nav-link scrollto " href="#portfolio">Photos</a></li>
+                    <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
+
+                    @if(Auth::check())
+                        <li class="dropdown">
+                            <a class="{{ Route::currentRouteName() == 'users.show' || Route::currentRouteName() == 'users.edit' ? 'active' : '' }}"
+                               href="#"><span>Mon compte</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li><a class="user {{ Route::currentRouteName() == 'users.show' ? 'active' : '' }}"
+                                       href="{{ route('users.show', ['user' => Auth::user()->id]) }}">{{ Auth::user()->email }}</a>
+                                </li>
+                                <li>
+                                    <a class="{{ Route::currentRouteName() == 'users.edit' ? 'active' : '' }}"
+                                       href="{{ route('users.edit', ['user' => Auth::user()->id]) }}">Modifier mon
+                                        profil</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link scrollto" href="{{ url('/logout') }}" title="Se déconnecter">Se
+                                        déconnecter</a>
+                                </li>
+                            </ul>
+                        </li>
+                    @else
+                        <li class="dropdown"><a href="#"><span>Mon compte</span> <i class="bi bi-chevron-down"></i></a>
+                            <ul>
+                                <li>
+                                    <a class="nav-link scrollto" href="{{ url('/login') }}" title="Se connecter">Se
+                                        connecter</a>
+                                </li>
+                                <li>
+                                    <a class="nav-link scrollto" href="{{ url('/register') }}"
+                                       title="S'inscrire">S'inscrire</a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
+                </ul>
+            @elseif(Route::currentRouteName() == 'login')
+                <ul>
+                    <li>
+                        <a class="nav-link scrollto" href="{{ url('/') }}" title="Retour à la page d'accueil">Accueil</a></li>
+
+                    <li>
+                        <a class="nav-link scrollto" href="{{ url('/register') }}" title="S'inscrire">S'inscrire</a>
+                    </li>
+                </ul>
+            @else
+                <ul>
+                    <li>
+                        <a class="nav-link scrollto" href="{{ url('/') }}" title="Retour à la page d'accueil">Accueil</a>
+                    </li>
+                    <li>
+                        <a class="nav-link scrollto" href="{{ url('/login') }}" title="Se connecter">Se
+                            connecter</a>
+                    </li>
+                </ul>
+            @endif
             <i class="bi bi-list mobile-nav-toggle"></i>
         </nav>
     </div>

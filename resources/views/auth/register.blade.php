@@ -4,6 +4,10 @@
     Auribail Mx Park | Inscription
 @endsection
 
+@section('header')
+    @include('includes.home.header')
+@endsection
+
 @section('main')
     <section class="ftco-section register admin">
         <div class="container">
