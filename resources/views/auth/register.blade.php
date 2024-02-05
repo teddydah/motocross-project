@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-    Auribail Mx Park | Inscription
+    Auribail Mx Park | Créer un compte
 @endsection
 
 @section('header')
@@ -18,7 +18,7 @@
                         <div class="login-wrap p-4 p-lg-5">
                             <div class="d-flex">
                                 <div class="w-100 text-center">
-                                    <h3 class="mb-4 text-uppercase fw-bold">S'inscrire</h3>
+                                    <h3 class="mb-4 text-uppercase fw-bold">Créer un compte</h3>
                                 </div>
                             </div>
 

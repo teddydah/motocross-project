@@ -27,5 +27,26 @@ class PictureSeeder extends Seeder
             'club_id' => 1,
             'created_at' => Date::now()
         ]);
+
+        DB::table('pictures')->insert([
+            'image' => 'photo-motocross_65c0e9e170567.jpg',
+            'description' => 'Photo Auribail Mx Park',
+            'club_id' => 1,
+            'created_at' => Date::now()
+        ]);
+
+        DB::table('pictures')->insert([
+            'image' => 'photo-motocross_65c0ea7d1baa8.jpg',
+            'description' => 'Photo Auribail Mx Park',
+            'club_id' => 1,
+            'created_at' => Date::now()
+        ]);
+
+        DB::table('pictures')->insert([
+            'image' => 'photo-motocross_65c0eb25b3519.jpg',
+            'description' => 'Photo Auribail Mx Park',
+            'club_id' => 1,
+            'created_at' => Date::now()
+        ]);
     }
 }

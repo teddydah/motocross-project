@@ -20,7 +20,7 @@
     @include('home.services')
 
     <!-- Galerie -->
-    @include('home.portfolio')
+    @include('home.pictures')
 
     @include('home.team')
 

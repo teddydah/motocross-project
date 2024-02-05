@@ -43,7 +43,7 @@
                                 </li>
                                 <li>
                                     <a class="nav-link scrollto" href="{{ url('/register') }}"
-                                       title="S'inscrire">S'inscrire</a>
+                                       title="Créer un compte">Créer un compte</a>
                                 </li>
                             </ul>
                         </li>
@@ -52,16 +52,19 @@
             @elseif(Route::currentRouteName() == 'login')
                 <ul>
                     <li>
-                        <a class="nav-link scrollto" href="{{ url('/') }}" title="Retour à la page d'accueil">Accueil</a></li>
+                        <a class="nav-link scrollto" href="{{ url('/') }}"
+                           title="Retour à la page d'accueil">Accueil</a></li>
 
                     <li>
-                        <a class="nav-link scrollto" href="{{ url('/register') }}" title="S'inscrire">S'inscrire</a>
+                        <a class="nav-link scrollto" href="{{ url('/register') }}" title="Créer un compte">Créer un
+                            compte</a>
                     </li>
                 </ul>
             @else
                 <ul>
                     <li>
-                        <a class="nav-link scrollto" href="{{ url('/') }}" title="Retour à la page d'accueil">Accueil</a>
+                        <a class="nav-link scrollto" href="{{ url('/') }}"
+                           title="Retour à la page d'accueil">Accueil</a>
                     </li>
                     <li>
                         <a class="nav-link scrollto" href="{{ url('/login') }}" title="Se connecter">Se

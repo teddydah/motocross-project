@@ -10,7 +10,8 @@
                 <div class="carousel-item slide-1 active">
                     <div class="carousel-container">
                         <div class="carousel-content">
-                            <img class="w-25 mb-4" src="{{ url('/') }}/img/logo.png" alt="Logo Auribail Mx Park">
+                            <img class="w-25 mb-4 scrollto animate__animated animate__zoomIn"
+                                 src="{{ url('/') }}/img/logo.png" alt="Logo Auribail Mx Park">
                         </div>
                     </div>
                 </div>
@@ -25,19 +26,14 @@
                 </div>
 
                 <!-- Slide 3 -->
-                <!--<div class="carousel-item" style="background-image: url(img/slide/slide-3.jpg);">
+                <div class="carousel-item slide-3">
                     <div class="carousel-container">
                         <div class="carousel-content">
-                            <h2 class="animate__animated animate__fadeInDown">Bienvenue à Auribail Mx Park</h2>
-                            <p class="animate__animated animate__adeInUp">Ut velit est quam dolor ad a aliquid qui
-                                aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem
-                                mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti
-                                vel. Minus et tempore modi architecto.</p>
-                            <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp">Read
-                                More</a>
+                            <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp"
+                               title="S'inscrire à un entraînement">S'inscrire</a>
                         </div>
                     </div>
-                </div>-->
+                </div>
             </div>
             <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon ri-arrow-left-line" aria-hidden="true"></span>

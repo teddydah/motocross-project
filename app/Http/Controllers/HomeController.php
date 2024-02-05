@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Club;
+use App\Models\Picture;
 use App\Models\Training;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -17,6 +18,7 @@ class HomeController extends Controller
     {
         return view('home', [
             'training' => Training::find(1),
+            'pictures' => Picture::all()->take(10),
             'club' => Club::find(1)
         ]);
     }
