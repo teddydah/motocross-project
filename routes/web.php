@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\ClubController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PictureController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\TrainingController;
 use App\Http\Controllers\UserController;
 use App\Http\Middleware\AdminMiddleware;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,6 +27,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('home');
 })->name('home');
+
+Route::get('/', [HomeController::class, 'main'])->name('home');
 
 // Clubs
 Route::resource('clubs', ClubController::class);
