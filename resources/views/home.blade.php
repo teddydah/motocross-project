@@ -15,7 +15,7 @@
 
     @include('home.about_list')
 
-    @include('home.counts')
+    @include('home.training')
 
     @include('home.services')
 
