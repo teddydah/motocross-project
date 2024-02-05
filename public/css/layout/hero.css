@@ -30,6 +30,18 @@
     bottom: 0;
 }
 
+#hero .carousel-item.slide-1 {
+    background: var(--color-2) url(../../img/slide/motocross-slide-1.jpg) no-repeat center;
+    /*background-blend-mode: luminosity;*/
+    background-size: cover;
+}
+
+#hero .carousel-item.slide-2 {
+    background: var(--color-2) url(../../img/slide/motocross-slide-3.jpg) no-repeat center;
+    /*background-blend-mode: luminosity;*/
+    background-size: cover;
+}
+
 #hero .carousel-container {
     display: flex;
     justify-content: center;
