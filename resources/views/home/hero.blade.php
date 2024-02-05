@@ -30,7 +30,7 @@
                     <div class="carousel-container">
                         <div class="carousel-content">
                             <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp"
-                               title="S'inscrire à un entraînement">S'inscrire</a>
+                               title="S'inscrire à un entraînement">S'inscrire à un entraînement</a>
                         </div>
                     </div>
                 </div>

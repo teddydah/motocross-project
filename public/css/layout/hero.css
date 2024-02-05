@@ -37,13 +37,13 @@
 }
 
 #hero .carousel-item.slide-2 {
-    background: var(--color-2) url(../../img/slide/motocross-slide-2.jpg) no-repeat center;
+    background: var(--color-2) url(../../img/slide/motocross-slide-5.jpg) no-repeat center;
     /*background-blend-mode: luminosity;*/
     background-size: cover;
 }
 
 #hero .carousel-item.slide-3 {
-    background: var(--color-2) url(../../img/slide/motocross-slide-3.jpg) no-repeat center;
+    background: var(--color-2) url(../../img/slide/motocross-slide-2.jpg) no-repeat center;
     /*background-blend-mode: luminosity;*/
     background-size: cover;
 }
@@ -152,7 +152,7 @@
 
 #hero .btn-get-started:hover {
     color: var(--white);
-    background: var(--color-2);
+    background: var(--color-1);
     border: 1px solid var(--white);
 }
 

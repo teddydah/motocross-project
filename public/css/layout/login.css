@@ -20,8 +20,8 @@
 }
 
 .text-wrap {
-    background: var(--color-theme-3) url("../../img/motorbike.jpg") no-repeat center;
-    background-blend-mode: luminosity;
+    background: var(--color-1) url("../../img/motocross-3.jpg") no-repeat center;
+    /*background-blend-mode: luminosity;*/
     /*background-blend-mode: hard-light;*/
     background-size: cover;
     color: var(--white);
@@ -34,7 +34,7 @@
 }
 
 .register .text-wrap {
-    background-image: url("../../img/motorbike_2.jpg");
+    background-image: url("../../img/motocross-2.jpg");
 }
 
 .text-wrap.order-md-last {
@@ -109,13 +109,13 @@
 .btn.btn-white {
     border: 1px solid var(--white);
     background: var(--white);
-    color: var(--color-hsl-1);
+    color: var(--color-1);
     padding: 0.7em;
 }
 
 .btn.btn-white:active,
 .btn.btn-white:hover {
     border: 1px solid var(--white) !important;
-    background: var(--color-hsl-1) !important;
+    background: var(--color-2) !important;
     color: var(--white);
 }
