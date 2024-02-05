@@ -77,7 +77,8 @@ class UserController extends Controller
         ) {
             return redirect()->route('users.show', ['user' => User::find($user->id)])
                 ->with('danger', 'Vous n\'avez pas le droit de modifier ce profil.');
-        };
+        }
+        ;
 
         return view('users.edit', ['user' => User::find($user->id)]);
     }
@@ -177,7 +178,8 @@ class UserController extends Controller
                 'zip_code' => $request->zip_code,
                 'city' => $request->city,
             ]);
-        };
+        }
+        ;
 
         return redirect()->route('users.show', ['user' => $user->id])
             ->with('success', 'Utilisateur mis à jour avec succès.');
@@ -191,5 +193,11 @@ class UserController extends Controller
     {
         $user->delete();
         return redirect()->route('users.index')->with('success', 'Utilisateur supprimé avec succès.');
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        return redirect('/login')->with(['msg-body' => 'You signed out !']);
     }
 }
