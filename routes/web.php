@@ -88,13 +88,18 @@ Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.
     ->middleware('admin');;
 
 // Users
-Route::get('/users', [UserController::class, 'index'])->name('users.index')->middleware('admin');
+Route::get('/users', [UserController::class, 'index'])->name('users.index')
+    ->middleware('admin');
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 Route::post('/users', [UserController::class, 'store'])->name('users.store');
-Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
-Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show')
+    ->middleware('user');
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit')
+    ->middleware('user');
+Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update')
+    ->middleware('user');
+Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy')
+    ->middleware('user');
 
 // Logout
 Route::get('logout', function () {
