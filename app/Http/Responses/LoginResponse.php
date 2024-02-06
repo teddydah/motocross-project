@@ -2,14 +2,20 @@
 
 namespace App\Http\Responses;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Laravel\Fortify\Contracts\LoginResponse as LoginResponseContract;
+use Symfony\Component\HttpFoundation\Response;
 
 class LoginResponse implements LoginResponseContract
 {
-    public function toResponse($request)
+    /**
+     * @param $request
+     * @return RedirectResponse|Response
+     */
+    public function toResponse($request): RedirectResponse|Response
     {
-        //$id = $request->user->id;
-        return redirect()->route('users.show', [Auth::user()->id]);
+        if (Auth::user()->role === 'admin') return redirect()->route('users.index');
+        else return redirect()->route('users.show', [Auth::user()->id]);
     }
 }
