@@ -74,23 +74,21 @@
             <tfoot>
             <tr>
                 <td class="text-center" colspan="2">
-                    <a class="btn btn-dark btn-outline-light btn-back ms-0 me-0" href="{{ route('users.index') }}"
-                       title="Retour à la liste des utilisateurs">Retour</a>
-                       @if (auth()->check())
-                        @if (auth()->user()->role === 'admin')  
-                            <a class="btn btn-secondary btn-outline-light btn-edit m-2"
-                            href="{{ route('users.edit', $user->id) }}" title="Modifier l'utilisateur">Éditer
-                            </a>
-                            <form class="d-inline-block" action="{{ route('users.destroy', $user->id) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger btn-outline-light btn-delete ms-0 me-0" type="submit"
-                                        title="Supprimer l'utilisateur"
-                                        onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">
-                                    Supprimer
-                                </button>
-                            @endif
-                        @endif
+                    @if(Auth::user()->role === 'admin')
+                        <a class="btn btn-dark btn-outline-light btn-back ms-0 me-0" href="{{ route('users.index') }}"
+                           title="Retour à la liste des utilisateurs">Retour</a>
+                    @endif
+                    <a class="btn btn-secondary btn-outline-light btn-edit m-2"
+                       href="{{ route('users.edit', $user->id) }}" title="Modifier l'utilisateur">Éditer
+                    </a>
+                    <form class="d-inline-block" action="{{ route('users.destroy', $user->id) }}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger btn-outline-light btn-delete ms-0 me-0" type="submit"
+                                title="Supprimer l'utilisateur"
+                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">
+                            Supprimer
+                        </button>
                     </form>
                 </td>
             </tr>
