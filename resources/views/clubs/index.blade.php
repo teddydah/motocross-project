@@ -27,19 +27,17 @@
                 <th scope="row">Action</th>
             </tr>
             </thead>
-            <tfoot>
-            <tr>
-                <td colspan="4">
-                @if (auth()->check())
-                    @if (auth()->user()->role === 'admin') 
+            @if(Auth::user()->role === 'admin')
+                <tfoot>
+                <tr>
+                    <td colspan="4">
                         <a class="btn-add btn btn-primary btn-outline-light" href="{{ route('clubs.create') }}"
-                        title="Ajouter un club">Ajouter un
+                           title="Ajouter un club">Ajouter un
                             club</a>
-                    @endif
-                @endif
-                </td>
-            </tr>
-            </tfoot>
+                    </td>
+                </tr>
+                </tfoot>
+            @endif
             <tbody>
             @foreach($clubs as $club)
                 <tr>

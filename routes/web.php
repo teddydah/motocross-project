@@ -31,13 +31,23 @@ Route::get('/', function () {
 Route::get('/', [HomeController::class, 'main'])->name('home');
 
 // Clubs
-Route::resource('clubs', ClubController::class);
-Route::get('/clubs/{club}/edit', [ClubController::class, 'edit'])->name('clubs.edit')->middleware('admin');
-Route::put('/clubs/{club}', [ClubController::class, 'update'])->name('clubs.update')->middleware('admin');
-
+Route::get('/clubs', [ClubController::class, 'index'])->name('clubs.index')
+    ->middleware('user');
+Route::get('/clubs/create', [ClubController::class, 'create'])->name('clubs.create')
+    ->middleware('admin');
+Route::post('/clubs', [ClubController::class, 'store'])->name('clubs.store')
+    ->middleware('admin');
+Route::get('/clubs/{club}', [ClubController::class, 'show'])->name('clubs.show')
+    ->middleware('user');
+Route::get('/clubs/{club}/edit', [ClubController::class, 'edit'])->name('clubs.edit')
+    ->middleware('admin');
+Route::put('/clubs/{club}', [ClubController::class, 'update'])->name('clubs.update')
+    ->middleware('admin');
+Route::delete('/clubs/{club}', [ClubController::class, 'destroy'])->name('clubs.destroy')
+    ->middleware('admin');
 
 // Trainings
-Route::resource('trainings', TrainingController::class);
+Route::resource('trainings', TrainingController::class)->middleware('user');
 Route::get('/trainings/{training}/edit', [TrainingController::class, 'edit'])->name('trainings.edit')->middleware('admin');
 Route::put('/trainings/{training}', [TrainingController::class, 'update'])->name('trainings.update')->middleware('admin');
 
