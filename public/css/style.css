@@ -35,7 +35,8 @@
 --------------------------------------------------------------*/
 
 .admin {
-    background: var(--white) url("../../img/bg-motocross.jpg") no-repeat fixed center;
+    background: var(--color-1) url("../../img/slide/motocross-slide-3.jpg") no-repeat fixed center;
+    background-blend-mode: luminosity;
     background-size: cover;
     padding: 7em 0;
 }
