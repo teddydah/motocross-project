@@ -32,9 +32,11 @@
                             <option value="">-- Sélectionnez un horaire --</option>
                             @foreach($schedules as $schedule)
                                 <option
-                                    value="{{ $schedule->id }}">Le {{ date_format(date_create($schedule->start_date), 'd/m/y') }}
+                                        value="{{ $schedule->id }}">
+                                    Le {{ date_format(date_create($schedule->start_date), 'd/m/y') }}
                                     de {{ str_replace('h00', 'h', date_format(date_create($schedule->start_date), 'H\hi')) }}
                                     à {{ str_replace('h00', 'h', date_format(date_create($schedule->end_date), 'H\hi')) }}
+                                    ({{ $schedule->training->name }})
                                 </option>
                             @endforeach
                         </select>
