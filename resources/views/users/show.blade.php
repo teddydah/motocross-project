@@ -76,6 +76,8 @@
                 <td class="text-center" colspan="2">
                     <a class="btn btn-dark btn-outline-light btn-back ms-0 me-0" href="{{ route('users.index') }}"
                        title="Retour à la liste des utilisateurs">Retour</a>
+
+                       @if (auth()->user()->role === 'admin')  
                     <a class="btn btn-secondary btn-outline-light btn-edit m-2"
                        href="{{ route('users.edit', $user->id) }}" title="Modifier l'utilisateur">Éditer
                     </a>
@@ -87,6 +89,7 @@
                                 onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">
                             Supprimer
                         </button>
+                        @endif
                     </form>
                 </td>
             </tr>

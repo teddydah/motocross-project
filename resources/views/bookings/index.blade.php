@@ -48,6 +48,7 @@
                         <a href="{{ route('users.show', $booking->user_id) }}">{{ $booking->user->firstname }} {{ $booking->user->lastname }}</a>
                     </td>
                     <td>
+                    @if (auth()->user()->role === 'admin') 
                         <a class="btn btn-secondary btn-outline-light btn-edit-icon m-2"
                            href="{{ route('bookings.edit', $booking->id) }}" title="Modifier la réservation">
                             <i class="fa-solid fa-pen-to-square"></i>
@@ -61,6 +62,7 @@
                                     onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')">
                                 <i class="fa-solid fa-trash-can"></i>
                             </button>
+                            @endif
                         </form>
                     </td>
                 </tr>

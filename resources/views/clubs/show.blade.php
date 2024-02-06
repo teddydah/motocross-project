@@ -72,6 +72,7 @@
                 <td class="text-center" colspan="2">
                     <a class="btn btn-dark btn-outline-light btn-back ms-0 me-0" href="{{ route('clubs.index') }}"
                        title="Retour à la liste des clubs">Retour</a>
+                       @if (auth()->user()->role === 'admin') 
                     <a class="btn btn-secondary btn-outline-light btn-edit m-2"
                        href="{{ route('clubs.edit', $club->id) }}" title="Modifier le club">Éditer
                     </a>
@@ -83,6 +84,7 @@
                                 onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce club ?')" {{ $club->id === 1 ? 'disabled' : '' }}>
                             Supprimer
                         </button>
+                        @endif
                     </form>
                 </td>
             </tr>
