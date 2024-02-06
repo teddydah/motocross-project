@@ -48,19 +48,23 @@
                         <a href="{{ route('users.show', $booking->user_id) }}">{{ $booking->user->firstname }} {{ $booking->user->lastname }}</a>
                     </td>
                     <td>
-                        <a class="btn btn-secondary btn-outline-light btn-edit-icon m-2"
-                           href="{{ route('bookings.edit', $booking->id) }}" title="Modifier la réservation">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </a>
-                        <form class="d-inline-block" action="{{ route('bookings.destroy', $booking->id) }}"
-                              method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger btn-outline-light btn-delete-icon ms-0 me-0" type="submit"
-                                    title="Supprimer la réservation"
-                                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
+                    @if (auth()->check())
+                        @if (auth()->user()->role === 'admin') 
+                            <a class="btn btn-secondary btn-outline-light btn-edit-icon m-2"
+                            href="{{ route('bookings.edit', $booking->id) }}" title="Modifier la réservation">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                            <form class="d-inline-block" action="{{ route('bookings.destroy', $booking->id) }}"
+                                method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-outline-light btn-delete-icon ms-0 me-0" type="submit"
+                                        title="Supprimer la réservation"
+                                        onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            @endif
+                        @endif
                         </form>
                     </td>
                 </tr>

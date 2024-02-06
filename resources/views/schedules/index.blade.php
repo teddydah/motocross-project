@@ -27,16 +27,18 @@
                 <th scope="row">Actions</th>
             </tr>
             </thead>
-            @if(Auth::user()->role === 'admin')
-                <tfoot>
-                <tr>
-                    <td colspan="4">
+            <tfoot>
+            <tr>
+                <td colspan="4">
+                @if (auth()->check())
+                    @if (auth()->user()->role === 'admin') 
                         <a class="btn-add btn btn-primary btn-outline-light" href="{{ route('schedules.create') }}"
-                           title="Ajouter un horaire">Ajouter un horaire</a>
-                    </td>
-                </tr>
-                </tfoot>
-            @endif
+                        title="Ajouter un horaire">Ajouter un horaire</a>
+                    @endif
+                @endif
+                </td>
+            </tr>
+            </tfoot>
             <tbody>
             @foreach($schedules as $schedule)
                 <tr>

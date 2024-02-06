@@ -27,16 +27,19 @@
                 <th scope="row">Action</th>
             </tr>
             </thead>
-            @if(Auth::user()->role === 'admin')
-                <tfoot>
-                <tr>
-                    <td colspan="4">
-                        <a class="btn-add btn btn-primary btn-outline-light" href="{{ route('trainings.create') }}"
-                           title="Ajouter un entraînement">Ajouter un entraînement</a>
-                    </td>
-                </tr>
-                </tfoot>
-            @endif
+            <tfoot>
+            <tr>
+                <td colspan="4">
+                @if (auth()->check())
+                    @if (auth()->user()->role === 'admin') 
+                            <a class="btn-add btn btn-primary btn-outline-light" href="{{ route('trainings.create') }}"
+                            title="Ajouter un entraînement">Ajouter un entraînement</a>
+                    @endif
+                @endif
+
+                </td>
+            </tr>
+            </tfoot>
             <tbody>
             @foreach($trainings as $training)
                 <tr>
