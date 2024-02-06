@@ -10,7 +10,7 @@
         <nav id="navbar" class="navbar navbar-home">
             @if(Route::currentRouteName() == 'home')
                 <ul>
-                    <li><a class="nav-link scrollto" href="#about">About</a></li>
+                    <li><a class="nav-link scrollto" href="#about">À propos</a></li>
                     <li><a class="nav-link scrollto" href="#services">Services</a></li>
                     <li><a class="nav-link scrollto " href="#portfolio">Photos</a></li>
                     <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
