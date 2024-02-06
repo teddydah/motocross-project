@@ -29,8 +29,8 @@
                 <div class="carousel-item slide-3">
                     <div class="carousel-container">
                         <div class="carousel-content">
-                            <a href="#about" class="btn-get-started scrollto animate__animated animate__fadeInUp"
-                               title="S'inscrire à un entraînement">S'inscrire à un entraînement</a>
+                            <a href="{{ route('bookings.create') }}" class="btn-get-started scrollto animate__animated animate__fadeInUp"
+                               title="S'inscrire à un entraînement">S'inscrire</a>
                         </div>
                     </div>
                 </div>

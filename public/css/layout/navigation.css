@@ -43,8 +43,8 @@
     padding: 10px 0 10px 30px;
     font-family: "Raleway", sans-serif;
     font-size: 13px;
-    font-weight: 600;
-    color: #404f52;
+    font-weight: bold;
+    color: var(--color-1);
     white-space: nowrap;
     text-transform: uppercase;
     transition: 0.3s;

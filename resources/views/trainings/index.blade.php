@@ -27,14 +27,16 @@
                 <th scope="row">Action</th>
             </tr>
             </thead>
-            <tfoot>
-            <tr>
-                <td colspan="4">
-                    <a class="btn-add btn btn-primary btn-outline-light" href="{{ route('trainings.create') }}"
-                       title="Ajouter un entraînement">Ajouter un entraînement</a>
-                </td>
-            </tr>
-            </tfoot>
+            @if(Auth::user()->role === 'admin')
+                <tfoot>
+                <tr>
+                    <td colspan="4">
+                        <a class="btn-add btn btn-primary btn-outline-light" href="{{ route('trainings.create') }}"
+                           title="Ajouter un entraînement">Ajouter un entraînement</a>
+                    </td>
+                </tr>
+                </tfoot>
+            @endif
             <tbody>
             @foreach($trainings as $training)
                 <tr>
