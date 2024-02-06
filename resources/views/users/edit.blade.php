@@ -119,8 +119,10 @@
                 <tfoot>
                 <tr>
                     <td class="text-center" colspan="2">
-                        <a class="btn btn-dark btn-outline-light btn-back ms-0 me-0"
-                           href="{{ route('users.index') }}" title="Retour à la liste des utilisateurs">Retour</a>
+                        @if(Auth::user()->role === 'admin')
+                            <a class="btn btn-dark btn-outline-light btn-back ms-0 me-0"
+                               href="{{ route('users.index') }}" title="Retour à la liste des utilisateurs">Retour</a>
+                        @endif
                         <button class="btn btn-success btn-outline-light btn-save m-2" type="submit"
                                 title="Enregistrer les modifications">Enregistrer
                         </button>
