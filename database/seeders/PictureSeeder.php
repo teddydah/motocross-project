@@ -15,20 +15,6 @@ class PictureSeeder extends Seeder
     public function run(): void
     {
         DB::table('pictures')->insert([
-            'image' => 'auribail_65b7981d0a597.jpg',
-            'description' => 'Photo Auribail Mx Park',
-            'club_id' => 1,
-            'created_at' => Date::now()
-        ]);
-
-        DB::table('pictures')->insert([
-            'image' => 'auribail_65b79851aa417.jpg',
-            'description' => 'Photo Auribail Mx Park',
-            'club_id' => 1,
-            'created_at' => Date::now()
-        ]);
-
-        DB::table('pictures')->insert([
             'image' => 'photo-motocross_65c0e9e170567.jpg',
             'description' => 'Photo Auribail Mx Park',
             'club_id' => 1,
@@ -44,6 +30,48 @@ class PictureSeeder extends Seeder
 
         DB::table('pictures')->insert([
             'image' => 'photo-motocross_65c0eb25b3519.jpg',
+            'description' => 'Photo Auribail Mx Park',
+            'club_id' => 1,
+            'created_at' => Date::now()
+        ]);
+
+        DB::table('pictures')->insert([
+            'image' => 'photo-motocross_65c2103c23995.jpg',
+            'description' => 'Photo Auribail Mx Park',
+            'club_id' => 1,
+            'created_at' => Date::now()
+        ]);
+
+        DB::table('pictures')->insert([
+            'image' => 'photo-motocross_65c210d096388.jpg',
+            'description' => 'Photo Auribail Mx Park',
+            'club_id' => 1,
+            'created_at' => Date::now()
+        ]);
+
+        DB::table('pictures')->insert([
+            'image' => 'photo-motocross_65c21140d09cc.jpg',
+            'description' => 'Photo Auribail Mx Park',
+            'club_id' => 1,
+            'created_at' => Date::now()
+        ]);
+
+        DB::table('pictures')->insert([
+            'image' => 'photo-motocross_65c2117551798.jpg',
+            'description' => 'Photo Auribail Mx Park',
+            'club_id' => 1,
+            'created_at' => Date::now()
+        ]);
+
+        DB::table('pictures')->insert([
+            'image' => 'photo-motocross_65c216f937980.jpg',
+            'description' => 'Photo Auribail Mx Park',
+            'club_id' => 1,
+            'created_at' => Date::now()
+        ]);
+
+        DB::table('pictures')->insert([
+            'image' => 'photo-motocross_65c2176148637.jpg',
             'description' => 'Photo Auribail Mx Park',
             'club_id' => 1,
             'created_at' => Date::now()

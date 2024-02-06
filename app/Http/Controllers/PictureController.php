@@ -17,7 +17,7 @@ use function Tinify\setKey;
 class PictureController extends Controller
 {
     private array $inputs = [
-        'image' => 'required|image|mimes:png,jpg,jpeg,webp',
+        'image' => 'required|image|mimes:png,jpg,jpeg,webp|dimensions:min_height=265,max_width=1920,max_height=1080',
         'description' => 'required|string',
         'club_id' => 'required|exists:clubs,id'
     ];

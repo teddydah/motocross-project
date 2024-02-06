@@ -18,7 +18,7 @@ class HomeController extends Controller
     {
         return view('home', [
             'training' => Training::find(1),
-            'pictures' => Picture::all()->take(10),
+            'pictures' => Picture::inRandomOrder()->get()->take(9),
             'club' => Club::find(1)
         ]);
     }
