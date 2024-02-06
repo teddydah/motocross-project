@@ -24,6 +24,7 @@ class ScheduleController extends Controller
      */
     public function index(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
+        //forcer l'authentification pour l'accès à la liste d'attente 
         return view('schedules.index', ['schedules' => Schedule::all()->sortBy('start_date')]);
     }
 

@@ -32,15 +32,25 @@ Route::get('/', [HomeController::class, 'main'])->name('home');
 
 // Clubs
 Route::resource('clubs', ClubController::class);
+Route::get('/clubs/{club}/edit', [ClubController::class, 'edit'])->name('clubs.edit')->middleware('admin');
+Route::put('/clubs/{club}', [ClubController::class, 'update'])->name('clubs.update')->middleware('admin');
+
 
 // Trainings
 Route::resource('trainings', TrainingController::class);
+Route::get('/trainings/{training}/edit', [TrainingController::class, 'edit'])->name('trainings.edit')->middleware('admin');
+Route::put('/trainings/{training}', [TrainingController::class, 'update'])->name('trainings.update')->middleware('admin');
 
 // Schedules
 Route::resource('schedules', ScheduleController::class);
+Route::get('/schedules/{schedule}/edit', [ScheduleController::class, 'edit'])->name('schedules.edit')->middleware('admin');
+Route::put('/schedules/{schedule}', [ScheduleController::class, 'update'])->name('schedules.update')->middleware('admin');
 
 // Bookings
 Route::resource('bookings', BookingController::class);
+Route::get('/bookings/{booking}/edit', [BookingController::class, 'edit'])->name('bookings.edit')->middleware('admin');
+Route::put('/bookings/{booking}', [BookingController::class, 'update'])->name('bookings.update')->middleware('admin');
+
 
 // Pictures
 Route::resource('pictures', PictureController::class);
@@ -58,8 +68,8 @@ Route::get('/users', [UserController::class, 'index'])->name('users.index')->mid
 Route::get('/users/create', [UserController::class, 'create'])->name('users.create');
 Route::post('/users', [UserController::class, 'store'])->name('users.store');
 Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
-Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit');
-Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update');
+Route::get('/users/{user}/edit', [UserController::class, 'edit'])->name('users.edit')->middleware('admin');
+Route::put('/users/{user}', [UserController::class, 'update'])->name('users.update')->middleware('admin');
 Route::delete('/users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
 
 // Logout
