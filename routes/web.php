@@ -47,9 +47,20 @@ Route::delete('/clubs/{club}', [ClubController::class, 'destroy'])->name('clubs.
     ->middleware('admin');
 
 // Trainings
-Route::resource('trainings', TrainingController::class)->middleware('user');
-Route::get('/trainings/{training}/edit', [TrainingController::class, 'edit'])->name('trainings.edit')->middleware('admin');
-Route::put('/trainings/{training}', [TrainingController::class, 'update'])->name('trainings.update')->middleware('admin');
+Route::get('/trainings', [ClubController::class, 'index'])->name('trainings.index')
+    ->middleware('user');
+Route::get('/trainings/create', [ClubController::class, 'create'])->name('trainings.create')
+    ->middleware('admin');
+Route::post('/trainings', [ClubController::class, 'store'])->name('trainings.store')
+    ->middleware('admin');
+Route::get('/trainings/{training}', [ClubController::class, 'show'])->name('trainings.show')
+    ->middleware('user');
+Route::get('/trainings/{training}/edit', [ClubController::class, 'edit'])->name('trainings.edit')
+    ->middleware('admin');
+Route::put('/trainings/{training}', [ClubController::class, 'update'])->name('trainings.update')
+    ->middleware('admin');
+Route::delete('/trainings/{training}', [ClubController::class, 'destroy'])->name('trainings.destroy')
+    ->middleware('admin');
 
 // Schedules
 Route::resource('schedules', ScheduleController::class);
