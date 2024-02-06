@@ -38,19 +38,20 @@
                 <td class="text-center" colspan="2">
                     <a class="btn btn-dark btn-outline-light btn-back ms-0 me-0" href="{{ route('schedules.index') }}"
                        title="Retour à la liste des horaires">Retour</a>
-
-                       @if (auth()->user()->role === 'admin') 
-                    <a class="btn btn-secondary btn-outline-light btn-edit m-2"
-                       href="{{ route('schedules.edit', $schedule->id) }}" title="Modifier l'horaire">Éditer
-                    </a>
-                    <form class="d-inline-block" action="{{ route('schedules.destroy', $schedule->id) }}"
-                          method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger btn-outline-light btn-delete ms-0 me-0" type="submit"
-                                title="Supprimer l'horaire"
-                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet horaire ?')">Supprimer
-                        </button>
+                       @if (auth()->check())
+                        @if (auth()->user()->role === 'admin') 
+                            <a class="btn btn-secondary btn-outline-light btn-edit m-2"
+                            href="{{ route('schedules.edit', $schedule->id) }}" title="Modifier l'horaire">Éditer
+                            </a>
+                            <form class="d-inline-block" action="{{ route('schedules.destroy', $schedule->id) }}"
+                                method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-outline-light btn-delete ms-0 me-0" type="submit"
+                                        title="Supprimer l'horaire"
+                                        onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet horaire ?')">Supprimer
+                                </button>
+                            @endif
                         @endif
                     </form>
                 </td>
