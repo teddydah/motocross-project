@@ -18,11 +18,11 @@
             </div>
         </div>-->
 
-        <div class="row portfolio-container">
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             @foreach($pictures as $picture)
-                <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+                <div class="col">
                     <div class="portfolio-wrap">
-                        <img src="{{ url('/uploads/'.$picture->image) }}" class="img-fluid"
+                        <img src="{{ url('/uploads/'.$picture->image) }}" class="img-fluid object-fit"
                              alt="{{ $picture->description }}">
                         <div class="portfolio-info">
                             <h4>{{ $picture->description }}</h4>

@@ -1,43 +1,16 @@
 /*--------------------------------------------------------------
 # Pictures
 --------------------------------------------------------------*/
-.portfolio .portfolio-item {
-    margin-bottom: 30px;
+.portfolio-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: -7.5px; /* Pour compenser la marge négative des éléments enfants */
 }
 
-.portfolio .portfolio-item.filter-app {
-    padding: 0 15px;
-}
-
-.portfolio #portfolio-flters {
-    padding: 0;
-    margin: 0 0 35px 0;
-    list-style: none;
-    text-align: center;
-}
-
-.portfolio #portfolio-flters li {
-    cursor: pointer;
-    display: inline-block;
-    padding: 10px 20px;
-    font-size: 12px;
-    line-height: 20px;
-    color: #444444;
-    border-radius: 4px;
-    text-transform: uppercase;
-    background: var(--white);
-    margin: 0 15px 5px 0;
-    transition: all 0.3s ease-in-out;
-}
-
-.portfolio #portfolio-flters li:hover,
-.portfolio #portfolio-flters li.filter-active {
-    background: #01b1d7;
-    color: var(--white);
-}
-
-.portfolio #portfolio-flters li:last-child {
-    margin-right: 0;
+.portfolio-item {
+    width: calc(33.33% - 15px);
+    margin: 15px 0;
 }
 
 .portfolio .portfolio-wrap {
@@ -45,12 +18,15 @@
     transition: 0.3s;
     position: relative;
     overflow: hidden;
-    max-height: 265px;
+    max-height: 100%; /* Modifier ici */
 }
 
-.portfolio .portfolio-wrap img {
-    transition: 0.3s;
+.portfolio-wrap img {
+    width: 100%;
+    max-height: 17em;
+    height: 17em;
     object-fit: cover;
+    transition: 0.3s;
 }
 
 .portfolio .portfolio-wrap .portfolio-info {
@@ -122,3 +98,20 @@
     transform: scale(1.1);
 }
 
+@media (min-width: 767px) {
+    .portfolio-wrap img {
+        height: 15em;
+    }
+}
+
+@media (min-width: 991px) {
+    .portfolio-wrap img {
+        height: 13em;
+    }
+}
+
+@media (min-width: 1199px) {
+    .portfolio-wrap img {
+        height: 17em;
+    }
+}
