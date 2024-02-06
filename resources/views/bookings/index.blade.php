@@ -21,7 +21,7 @@
         <table class="container table-index table table-striped text-center align-baseline mb-0">
             <thead>
             <tr>
-                <th scope="row">#</th>
+                <th scope="row">Entraînement</th>
                 <th scope="row">Horaire</th>
                 <th scope="row">Utilisateur</th>
                 <th scope="row">Actions</th>
@@ -31,14 +31,16 @@
             <tr>
                 <td colspan="4">
                     <a class="btn-add btn btn-primary btn-outline-light" href="{{ route('bookings.create') }}"
-                       title="Ajouter une réservation">Ajouter une réservation</a>
+                       title="S'inscrire à un entraînement">S'inscrire</a>
                 </td>
             </tr>
             </tfoot>
             <tbody>
             @foreach($bookings as $booking)
                 <tr>
-                    <td>{{ $booking->id }}</td>
+                    <td>
+                        <a href="{{ route('trainings.show', $booking->schedule->training->id) }}">{{ $booking->schedule->training->name }}</a>
+                    </td>
                     <td>
                         <a href="{{ route('schedules.show', $booking->schedule_id) }}">{{ date_format(date_create($booking->schedule->start_date), 'd/m/y') }}
                             • {{ str_replace('h00', 'h', date_format(date_create($booking->schedule->start_date), 'H\hi')) }}
@@ -48,10 +50,12 @@
                         <a href="{{ route('users.show', $booking->user_id) }}">{{ $booking->user->firstname }} {{ $booking->user->lastname }}</a>
                     </td>
                     <td>
-                        <a class="btn btn-secondary btn-outline-light btn-edit-icon m-2"
-                           href="{{ route('bookings.edit', $booking->id) }}" title="Modifier la réservation">
-                            <i class="fa-solid fa-pen-to-square"></i>
-                        </a>
+                        @if(Auth::user()->role === 'admin')
+                            <a class="btn btn-secondary btn-outline-light btn-edit-icon m-2"
+                               href="{{ route('bookings.edit', $booking->id) }}" title="Modifier la réservation">
+                                <i class="fa-solid fa-pen-to-square"></i>
+                            </a>
+                        @endif
                         <form class="d-inline-block" action="{{ route('bookings.destroy', $booking->id) }}"
                               method="post">
                             @csrf

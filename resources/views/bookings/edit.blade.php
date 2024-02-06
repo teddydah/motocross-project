@@ -24,7 +24,7 @@
             <table class="container table table-admin table-edit table-striped align-middle mb-0">
                 <tbody>
                 <tr>
-                    <th scope="row"><label for="user_id">Utilisateur :</label></th>
+                    <th scope="row">Utilisateur :</th>
                     <td>{{ $booking->user->firstname }} {{ $booking->user->lastname }} ({{ $booking->user->email }})</td>
                 </tr>
                 <tr>

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-    Auribail Mx Park | Ajouter une réservation
+    Auribail Mx Park | Réserver à un entraînement
 @endsection
 
 @section('header')
@@ -14,13 +14,17 @@
     <section class="admin">
         @include('includes.alert')
         <div class="section-title container bg-white">
-            <span class="d-none">AJouter une réservation</span>
-            <h2 class="mb-0">Ajouter une réservation</h2>
+            <span class="d-none">Réserver à un entraînement</span>
+            <h2 class="mb-0">Réserver à un entraînement</h2>
         </div>
         <form action="{{ route('bookings.store') }}" method="post">
             @csrf
             <table class="container table table-admin table-edit table-striped align-middle mb-0">
                 <tbody>
+                <tr>
+                    <th scope="row">Utilisateur :</th>
+                    <td>{{ Auth::user()->firstname }} {{ Auth::user()->lastname }} ({{ Auth::user()->email }})</td>
+                </tr>
                 <tr>
                     <th scope="row"><label for="schedule_id">Horaire :</label></th>
                     <td>
@@ -32,17 +36,6 @@
                                     de {{ str_replace('h00', 'h', date_format(date_create($schedule->start_date), 'H\hi')) }}
                                     à {{ str_replace('h00', 'h', date_format(date_create($schedule->end_date), 'H\hi')) }}
                                 </option>
-                            @endforeach
-                        </select>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="user_id">Utilisateur :</label></th>
-                    <td>
-                        <select name="user_id" id="user_id" required>
-                            <option value="">-- Sélectionnez un utilisateur --</option>
-                            @foreach($users as $user)
-                                <option value="{{ $user->id }}">{{ $user->email }}</option>
                             @endforeach
                         </select>
                     </td>

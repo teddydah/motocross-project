@@ -28,8 +28,7 @@ class BookingController extends Controller
     public function create(): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
     {
         return view('bookings.create', [
-            'schedules' => Schedule::all()->sortByDesc(['start_date']),
-            'users' => User::all()
+            'schedules' => Schedule::all()->sortByDesc(['start_date'])
         ]);
     }
 
@@ -37,16 +36,16 @@ class BookingController extends Controller
      * @param Request $request
      * @return RedirectResponse
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request, Booking $booking): RedirectResponse
     {
         $request->validate([
-            'user_id' => 'required|exists:users,id',
             'schedule_id' => 'required|exists:schedules,id'
-        ], [
-            'user_id' => 'Le champ "utilisateur" est requis.'
         ]);
 
-        Booking::create($request->all());
+        Booking::create([
+            'user_id' => Auth::user()->id,
+            'schedule_id' => $request->schedule_id
+        ]);
 
         return redirect()->route('bookings.index')->with('success', 'Réservation ajoutée avec succès.');
     }
