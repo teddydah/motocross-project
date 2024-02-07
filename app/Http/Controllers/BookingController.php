@@ -45,8 +45,11 @@ class BookingController extends Controller
             'schedule_id' => 'required|exists:schedules,id'
         ]);
 
+        $scheduleId = $request->schedule_id;
+        $userId = Auth::user()->id;
+
         // Vérifie si l'utilisateur a déjà une réservation pour ce créneau horaire
-        if (Booking::where('user_id', Auth::user()->id)->where('schedule_id', $request->schedule_id)->exists()) {
+        if (Booking::where('user_id', $userId)->where('schedule_id', $scheduleId)->exists()) {
             return redirect()->route('bookings.index')
                 ->with('warning', 'Vous êtes déjà inscrit à cet entraînement.');
         }
@@ -58,10 +61,28 @@ class BookingController extends Controller
         $currentBookingsCount = Booking::where('schedule_id', $request->schedule_id)->count() + 1;
         $remainingPlaces = $maxPeople - $currentBookingsCount;
 
-        if ($currentBookingsCount >= $maxPeople) {
+
+        // Vérifie si l'utilisateur peut être ajouté à la liste d'attente
+        if ($remainingPlaces <= 0) {
+            // Ajoute l'utilisateur à la liste d'attente
+            Booking::create([
+                'user_id' => $userId,
+                'schedule_id' => $scheduleId,
+                'waiting_list' => true,
+            ]);
+
+            return redirect()->route('bookings.index')
+                ->with('info', 'Vous êtes en liste d\'attente pour l\'entraînement ' . strtoupper($schedule->training->name) .
+                    ' du ' . date_format(date_create($schedule->start_date), 'd/m/y') . ' de ' .
+                    str_replace('h00', 'h', date_format(date_create($schedule->start_date), 'H\hi')) . ' à ' .
+                    str_replace('h00', 'h', date_format(date_create($schedule->end_date), 'H\hi')) .
+                    '. Vous serez informé s\'il y a des annulations.');
+        }
+
+        /*if ($currentBookingsCount >= $maxPeople) {
             return redirect()->route('bookings.index')
                 ->with('warning', 'Vous avez atteint le nombre maximum d\'inscriptions pour ce créneau horaire.');
-        }
+        }*/
 
         Booking::create([
             'user_id' => Auth::user()->id,
@@ -70,8 +91,8 @@ class BookingController extends Controller
 
         return redirect()->route('bookings.index')
             ->with('success', 'Vous vous êtes bien inscrit à l\'entraînement ' . strtoupper($schedule->training->name) .
-                ' du ' . date_format(date_create($schedule->start_date), 'd/m/y') . ' à ' .
-                str_replace('h00', 'h', date_format(date_create($schedule->start_date), 'H\hi')) . ' de ' .
+                ' du ' . date_format(date_create($schedule->start_date), 'd/m/y') . ' de ' .
+                str_replace('h00', 'h', date_format(date_create($schedule->start_date), 'H\hi')) . ' à ' .
                 str_replace('h00', 'h', date_format(date_create($schedule->end_date), 'H\hi')) .
                 '. Il reste ' . $remainingPlaces . ' places pour ce créneau horaire.');
     }
@@ -87,12 +108,15 @@ class BookingController extends Controller
 
     /**
      * @param Booking $booking
-     * @return View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+     * @return Factory|View|Application|RedirectResponse|\Illuminate\Contracts\Foundation\Application
      */
-    public function edit(Booking $booking): View|Application|Factory|\Illuminate\Contracts\Foundation\Application
+    public function edit(Booking $booking): Factory|View|Application|RedirectResponse|\Illuminate\Contracts\Foundation\Application
     {
         $users = User::all();
         $schedules = Schedule::all();
+
+        if (Auth::id() !== $booking->user_id) return redirect()->route('bookings.index')
+            ->with('danger', 'Vous n\'êtes pas autorisé à modifier cette inscription.');
 
         return view('bookings.edit', compact('booking', 'users', 'schedules'));
     }
@@ -114,10 +138,8 @@ class BookingController extends Controller
                 ->with('warning', 'Vous êtes déjà inscrit à cet entraînement.');
         }
 
-        if (Auth::id() !== $booking->user_id || User::find($booking->user_id)->role !== 'admin') {
-            return redirect()->route('bookings.index')
-                ->with('danger', 'Vous n\'êtes pas autorisé à modifier cette inscription.');
-        }
+        if (Auth::id() !== $booking->user_id) return redirect()->route('bookings.index')
+            ->with('danger', 'Vous n\'êtes pas autorisé à modifier cette inscription.');
 
         $booking->update([
             'user_id' => $booking->user_id,
@@ -133,10 +155,17 @@ class BookingController extends Controller
      */
     public function destroy(Booking $booking): RedirectResponse
     {
-        if (Auth::user()->role === 'admin' || Auth::id() === $booking->user_id) $booking->delete();
-        else return redirect()->route('bookings.index')
-            ->with('danger', 'Vous ne pouvez pas supprimer cette inscription.');
+        if (Auth::user()->role === 'admin' || Auth::id() === $booking->user_id) {
+            // Vérifie si la réservation est sur la liste d'attente
+            $isWaitingList = $booking->waiting_list;
 
-        return redirect()->route('bookings.index')->with('success', 'Inscription supprimée avec succès.');
+            $booking->delete();
+
+            if ($isWaitingList) return redirect()->route('bookings.index')
+                ->with('success', 'Inscription en liste d\'attente supprimée avec succès.');
+            else return redirect()->route('bookings.index')
+                ->with('success', 'Inscription supprimée avec succès.');
+        } else return redirect()->route('bookings.index')
+            ->with('danger', 'Vous ne pouvez pas supprimer cette inscription.');
     }
 }

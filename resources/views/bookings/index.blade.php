@@ -39,39 +39,47 @@
             </tr>
             </tfoot>
             <tbody>
-            @foreach($bookings as $booking)
+            @if(Auth::user()->bookings->isEmpty())
                 <tr>
-                    <td>
-                        <a href="{{ route('trainings.show', $booking->schedule->training->id) }}">{{ $booking->schedule->training->name }}</a>
-                    </td>
-                    <td>
-                        <a href="{{ route('schedules.show', $booking->schedule_id) }}">{{ date_format(date_create($booking->schedule->start_date), 'd/m/y') }}
-                            • {{ str_replace('h00', 'h', date_format(date_create($booking->schedule->start_date), 'H\hi')) }}
-                            à {{ str_replace('h00', 'h', date_format(date_create($booking->schedule->end_date), 'H\hi')) }}</a>
-                    </td>
-                    <td>
-                        <a href="{{ route('users.show', $booking->user_id) }}">{{ $booking->user->firstname }} {{ $booking->user->lastname }}</a>
-                    </td>
-                    <td>
-                        @if(Auth::user()->role === 'admin')
-                            <a class="btn btn-secondary btn-outline-light btn-edit-icon m-2"
-                               href="{{ route('bookings.edit', $booking->id) }}" title="Modifier la réservation">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </a>
-                        @endif
-                        <form class="d-inline-block" action="{{ route('bookings.destroy', $booking->id) }}"
-                              method="post">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-danger btn-outline-light btn-delete-icon ms-0 me-0" type="submit"
-                                    title="Supprimer la réservation"
-                                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette réservation ?')">
-                                <i class="fa-solid fa-trash-can"></i>
-                            </button>
-                        </form>
-                    </td>
+                    <td colspan="4" class="p-4">Vous n'avez pas d'inscription(s) en cours.</td>
                 </tr>
-            @endforeach
+            @else
+                @foreach($bookings as $booking)
+
+                    <tr>
+                        <td>
+                            <a href="{{ route('trainings.show', $booking->schedule->training->id) }}">{{ $booking->schedule->training->name }}</a>
+                        </td>
+                        <td>
+                            <a href="{{ route('schedules.show', $booking->schedule_id) }}">{{ date_format(date_create($booking->schedule->start_date), 'd/m/y') }}
+                                • {{ str_replace('h00', 'h', date_format(date_create($booking->schedule->start_date), 'H\hi')) }}
+                                à {{ str_replace('h00', 'h', date_format(date_create($booking->schedule->end_date), 'H\hi')) }}</a>
+                        </td>
+                        <td>
+                            <a href="{{ route('users.show', $booking->user_id) }}">{{ $booking->user->firstname }} {{ $booking->user->lastname }}</a>
+                        </td>
+                        <td>
+                            @if(Auth::user()->role === 'admin')
+                                <button class="btn btn-secondary btn-outline-light btn-edit-icon m-2"
+                                        href="{{ route('bookings.edit', $booking->id) }}"
+                                        title="Modifier l'inscription" {{ Auth::id() !== $booking->user_id ? 'disabled' : '' }}>
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </button>
+                            @endif
+                            <form class="d-inline-block" action="{{ route('bookings.destroy', $booking->id) }}"
+                                  method="post">
+                                @csrf
+                                @method('DELETE')
+                                <button class="btn btn-danger btn-outline-light btn-delete-icon ms-0 me-0" type="submit"
+                                        title="Supprimer l'inscription"
+                                        onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette inscription ?')">
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+                @endforeach
+            @endif
             </tbody>
         </table>
     </section>
