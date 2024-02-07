@@ -108,9 +108,15 @@ class BookingController extends Controller
             'schedule_id' => 'required|exists:schedules,id'
         ]);
 
+        // Vérifie si l'utilisateur a déjà une réservation pour ce créneau horaire
+        if (Booking::where('user_id', Auth::user()->id)->where('schedule_id', $request->schedule_id)->exists()) {
+            return redirect()->route('bookings.index')
+                ->with('warning', 'Vous êtes déjà inscrit à cet entraînement.');
+        }
+
         if (Auth::id() !== $booking->user_id || User::find($booking->user_id)->role !== 'admin') {
             return redirect()->route('bookings.index')
-                ->with('danger', 'Vous n\'êtes pas autorisé à modifier cette réservation.');
+                ->with('danger', 'Vous n\'êtes pas autorisé à modifier cette inscription.');
         }
 
         $booking->update([
@@ -118,7 +124,7 @@ class BookingController extends Controller
             'schedule_id' => $request->schedule_id
         ]);
 
-        return redirect()->route('bookings.index')->with('success', 'Réservation mise à jour avec succès.');
+        return redirect()->route('bookings.index')->with('success', 'Inscription mise à jour avec succès.');
     }
 
     /**
