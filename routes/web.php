@@ -47,34 +47,42 @@ Route::delete('/clubs/{club}', [ClubController::class, 'destroy'])->name('clubs.
     ->middleware('admin');
 
 // Trainings
-Route::get('/trainings', [ClubController::class, 'index'])->name('trainings.index')
+Route::get('/trainings', [TrainingController::class, 'index'])->name('trainings.index')
     ->middleware('user');
-Route::get('/trainings/create', [ClubController::class, 'create'])->name('trainings.create')
+Route::get('/trainings/create', [TrainingController::class, 'create'])->name('trainings.create')
     ->middleware('admin');
-Route::post('/trainings', [ClubController::class, 'store'])->name('trainings.store')
+Route::post('/trainings', [TrainingController::class, 'store'])->name('trainings.store')
     ->middleware('admin');
-Route::get('/trainings/{training}', [ClubController::class, 'show'])->name('trainings.show')
+Route::get('/trainings/{training}', [TrainingController::class, 'show'])->name('trainings.show')
     ->middleware('user');
-Route::get('/trainings/{training}/edit', [ClubController::class, 'edit'])->name('trainings.edit')
+Route::get('/trainings/{training}/edit', [TrainingController::class, 'edit'])->name('trainings.edit')
     ->middleware('admin');
-Route::put('/trainings/{training}', [ClubController::class, 'update'])->name('trainings.update')
+Route::put('/trainings/{training}', [TrainingController::class, 'update'])->name('trainings.update')
     ->middleware('admin');
-Route::delete('/trainings/{training}', [ClubController::class, 'destroy'])->name('trainings.destroy')
+Route::delete('/trainings/{training}', [TrainingController::class, 'destroy'])->name('trainings.destroy')
     ->middleware('admin');
 
 // Schedules
-Route::resource('schedules', ScheduleController::class);
-Route::get('/schedules/{schedule}/edit', [ScheduleController::class, 'edit'])->name('schedules.edit')->middleware('admin');
-Route::put('/schedules/{schedule}', [ScheduleController::class, 'update'])->name('schedules.update')->middleware('admin');
+Route::resource('schedules', ScheduleController::class)->middleware('admin');
 
 // Bookings
-Route::resource('bookings', BookingController::class);
-Route::get('/bookings/{booking}/edit', [BookingController::class, 'edit'])->name('bookings.edit')->middleware('admin');
-Route::put('/bookings/{booking}', [BookingController::class, 'update'])->name('bookings.update')->middleware('admin');
-
+Route::get('/bookings', [BookingController::class, 'index'])->name('bookings.index')
+    ->middleware('user');
+Route::get('/bookings/create', [BookingController::class, 'create'])->name('bookings.create')
+    ->middleware('user');
+Route::post('/bookings', [BookingController::class, 'store'])->name('bookings.store')
+    ->middleware('user');
+Route::get('/bookings/{booking}', [BookingController::class, 'show'])->name('bookings.show')
+    ->middleware('user');
+Route::get('/bookings/{booking}/edit', [BookingController::class, 'edit'])->name('bookings.edit')
+    ->middleware('admin');
+Route::put('/bookings/{booking}', [BookingController::class, 'update'])->name('bookings.update')
+    ->middleware('admin');
+Route::delete('/bookings/{booking}', [BookingController::class, 'destroy'])->name('bookings.destroy')
+    ->middleware('user');
 
 // Pictures
-Route::resource('pictures', PictureController::class);
+Route::resource('pictures', PictureController::class)->middleware('admin');
 
 // Posts (formulaire de contact)
 Route::get('/#form-contact', [PostController::class, 'create'])->name('posts.create');
