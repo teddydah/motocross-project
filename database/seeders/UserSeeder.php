@@ -19,7 +19,7 @@ class UserSeeder extends Seeder
             'email' => 'john.doe@gmail.com',
             'password' => '$2y$10$Y5LdAjHNd8AG6FC21GNXCuW38Y1ClEgrcinq2fC0Ib//TZv9ycHYW', // Pa$$w0rd
             'role' => 'admin',
-            'license_number' => 123456,
+            'license_number' => rand(00000,999999),
             'phone' => '0612345678',
             'birth_date' => '1900-01-01',
             'address' => '123 Fake Street',
@@ -32,9 +32,22 @@ class UserSeeder extends Seeder
             'firstname' => 'Jacques',
             'email' => 'jacques.charbon@live.fr',
             'password' => '$2y$10$Y5LdAjHNd8AG6FC21GNXCuW38Y1ClEgrcinq2fC0Ib//TZv9ycHYW', // Pa$$w0rd
-            'license_number' => 123456,
+            'license_number' => rand(000000,999999),
             'phone' => '0612345678',
             'birth_date' => '1980-01-01',
+            'address' => '123 Fake Street',
+            'zip_code' => '12345',
+            'city' => 'Faker City'
+        ]);
+
+        DB::table('users')->insert([
+            'lastname' => 'Culkin',
+            'firstname' => 'Macaulay',
+            'email' => 'macaulay.culkin@yahoo.fr',
+            'password' => '$2y$10$Y5LdAjHNd8AG6FC21GNXCuW38Y1ClEgrcinq2fC0Ib//TZv9ycHYW', // Pa$$w0rd
+            'license_number' => rand(000000,999999),
+            'phone' => '0612345678',
+            'birth_date' => '2010-01-01',
             'address' => '123 Fake Street',
             'zip_code' => '12345',
             'city' => 'Faker City'

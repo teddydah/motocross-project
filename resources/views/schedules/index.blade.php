@@ -44,7 +44,9 @@
                     <td>{{ date_format(date_create($schedule->start_date), 'd/m/y') }}
                         • {{ str_replace('h00', 'h', date_format(date_create($schedule->start_date), 'H\hi')) }}
                         à {{ str_replace('h00', 'h', date_format(date_create($schedule->end_date), 'H\hi')) }}</td>
-                    <td>{{ $schedule->training->name }}</td>
+                    <td>{{ $schedule->training->name }}
+                        ({{ $schedule->training->run === 'adult' ? 'Adulte' : 'Enfant' }})
+                    </td>
                     <td>
                         <a class="btn btn-see btn-info btn-outline-light"
                            href="{{ route('schedules.show', $schedule->id) }}"

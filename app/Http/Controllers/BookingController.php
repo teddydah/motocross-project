@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Foundation\Application;
@@ -84,6 +85,20 @@ class BookingController extends Controller
                 ->with('warning', 'Vous avez atteint le nombre maximum d\'inscriptions pour ce créneau horaire.');
         }*/
 
+        // Vérifie si l'utilisateur a l'âge requis
+        $birthDate = Auth::user()->birth_date;
+        $userAge = Carbon::parse($birthDate)->age;
+        $adultAge = 16;
+
+        $run = $schedule->training->run;
+
+        if ($userAge <= 0) return redirect()->route('bookings.index')
+            ->with('warning', 'Vous ne remplissez pas les critères d\'âge requis pour cet entraînement.');
+        elseif ($run === 'adult' && $userAge < $adultAge) return redirect()->route('bookings.index')
+            ->with('warning', 'Vous ne remplissez pas les critères d\'âge requis pour cet entraînement.');
+        elseif ($run === 'kid' && $userAge >= $adultAge) return redirect()->route('bookings.index')
+            ->with('warning', 'Vous ne remplissez pas les critères d\'âge requis pour cet entraînement.');
+
         Booking::create([
             'user_id' => Auth::user()->id,
             'schedule_id' => $request->schedule_id
@@ -140,6 +155,18 @@ class BookingController extends Controller
 
         if (Auth::id() !== $booking->user_id) return redirect()->route('bookings.index')
             ->with('danger', 'Vous n\'êtes pas autorisé à modifier cette inscription.');
+
+        // Vérifie si l'utilisateur a l'âge requis
+        $birthDate = Auth::user()->birth_date;
+        $userAge = Carbon::parse($birthDate)->age;
+        $adultAge = 16;
+
+        $run = Schedule::find($request->schedule_id)->training->run;
+
+        if ($userAge <= 0 || ($run === 'adult' && $userAge < $adultAge)) return redirect()->route('bookings.index')
+            ->with('warning', 'Vous ne remplissez pas les critères d\'âge requis pour cet entraînement.');
+        elseif ($run === 'kid' && $userAge >= $adultAge) return redirect()->route('bookings.index')
+            ->with('warning', 'Vous ne remplissez pas les critères d\'âge requis pour cet entraînement.');
 
         $booking->update([
             'user_id' => $booking->user_id,

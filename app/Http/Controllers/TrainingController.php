@@ -14,8 +14,7 @@ class TrainingController extends Controller
 {
     private array $inputs = [
         'name' => 'required',
-        'max_people' => 'required|numeric',
-        'track' => 'required',
+        'run' => 'required',
         'license_type' => 'required',
         'length' => 'nullable|numeric',
         'width' => 'nullable|numeric',
@@ -63,8 +62,8 @@ class TrainingController extends Controller
 
         Training::create([
             'name' => $request->name,
-            'max_people' => $request->max_people,
-            'track' => $request->track,
+            'run' => $request->run,
+            'max_people' => $request->run === 'adult' ? 75 : 15,
             'license_type' => $request->license_type,
             'length' => $request->length,
             'width' => $request->width,
@@ -109,8 +108,8 @@ class TrainingController extends Controller
 
         Training::find($training->id)->update([
             'name' => $request->name,
-            'max_people' => $request->max_people,
-            'track' => $request->track,
+            'run' => $request->run,
+            'max_people' => $request->run === 'adult' ? 75 : 15,
             'license_type' => $request->license_type,
             'length' => $request->length,
             'width' => $request->width,

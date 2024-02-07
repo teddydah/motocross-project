@@ -43,7 +43,9 @@
                         <select name="training_id" id="training_id" required>
                             <option value="">-- Sélectionnez un entraînement --</option>
                             @foreach($trainings as $training)
-                                <option value="{{ $training->id }}">{{ $training->name }}</option>
+                                <option value="{{ $training->id }}">{{ $training->name }}
+                                    ({{ $training->run === 'adult' ? 'Adulte' : 'Enfant' }})
+                                </option>
                             @endforeach
                         </select>
                     </td>

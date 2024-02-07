@@ -29,12 +29,16 @@
                 <td>{{ $training->club->name }}</td>
             </tr>
             <tr>
+                <th scope="row">Série :</th>
+                <td>{{ $training->run === 'adult' ? 'Adulte' : 'Enfant' }}</td>
+            </tr>
+            <tr>
                 <th scope="row">Nb max de participants :</th>
                 <td>{{ $training->max_people }}</td>
             </tr>
             <tr>
-                <th scope="row">Piste :</th>
-                <td>{{ $training->track === 'mx' ? 'MX' : 'Enfant' }}</td>
+                <th scope="row">Type de véhicule :</th>
+                <td class="text-capitalize">{{ $training->vehicle }}</td>
             </tr>
             <tr>
                 <th scope="row">Type de licence :</th>
@@ -79,11 +83,7 @@
             @if($training->description != null)
                 <tr>
                     <th scope="row">Description :</th>
-                    <td>
-                        <ul class="mb-0">
-                            <li>{!! str_replace('<br />', '<li>', nl2br(htmlspecialchars($training->description))) !!}</li>
-                        </ul>
-                    </td>
+                    <td>{{ $training->description }}</td>
                 </tr>
             @endif
             </tbody>
@@ -92,22 +92,18 @@
                 <td class="text-center" colspan="2">
                     <a class="btn btn-dark btn-outline-light btn-back ms-0 me-0" href="{{ route('trainings.index') }}"
                        title="Retour à la liste des entraînements">Retour</a>
-                       @if (auth()->check())
-                        @if (auth()->user()->role === 'admin')
-                            <a class="btn btn-secondary btn-outline-light btn-edit m-2"
-                            href="{{ route('trainings.edit', $training->id) }}" title="Modifier l'entraînement">Éditer
-                            </a>
-                            <form class="d-inline-block" action="{{ route('trainings.destroy', $training->id) }}"
-                                method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button class="btn btn-danger btn-outline-light btn-delete ms-0 me-0" type="submit"
-                                        title="Supprimer l'entraînement"
-                                        onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet entraînement ?')">
-                                    Supprimer
-                                </button>
-                            @endif
-                        @endif
+                    <a class="btn btn-secondary btn-outline-light btn-edit m-2"
+                       href="{{ route('trainings.edit', $training->id) }}" title="Modifier l'entraînement">Éditer
+                    </a>
+                    <form class="d-inline-block" action="{{ route('trainings.destroy', $training->id) }}"
+                          method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button class="btn btn-danger btn-outline-light btn-delete ms-0 me-0" type="submit"
+                                title="Supprimer l'entraînement"
+                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet entraînement ?')">
+                            Supprimer
+                        </button>
                     </form>
                 </td>
             </tr>

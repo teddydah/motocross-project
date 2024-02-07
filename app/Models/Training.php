@@ -15,7 +15,7 @@ class Training extends Model
     protected $fillable = [
         'name',
         'max_people',
-        'track',
+        'run',
         'vehicle',
         'license_type',
         'length',

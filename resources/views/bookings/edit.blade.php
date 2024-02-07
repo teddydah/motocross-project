@@ -25,19 +25,34 @@
                 <tbody>
                 <tr>
                     <th scope="row">Utilisateur :</th>
-                    <td>{{ $booking->user->firstname }} {{ $booking->user->lastname }} ({{ $booking->user->email }})</td>
+                    <td>{{ $booking->user->firstname }} {{ $booking->user->lastname }} ({{ $booking->user->email }})
+                    </td>
                 </tr>
                 <tr>
                     <th scope="row"><label for="schedule_id">Horaire :</label></th>
                     <td>
                         <select name="schedule_id" id="schedule_id" required>
                             @foreach($schedules as $schedule)
-                                <option
+                                @php
+                                    $userAge = Carbon\Carbon::parse(Auth::user()->birth_date)->age;
+                                @endphp
+                                @if($schedule->training->run === 'adult' && $userAge >= 16)
+                                    <option
                                         value="{{ old('schedule_id', $schedule->id) }}" {{ $booking->schedule_id == $schedule->id ? 'selected' : '' }}>
-                                    Le {{ date_format(date_create($schedule->start_date), 'd/m/y') }}
-                                    de {{ str_replace('h00', 'h', date_format(date_create($schedule->start_date), 'H\hi')) }}
-                                    à {{ str_replace('h00', 'h', date_format(date_create($schedule->end_date), 'H\hi')) }}
-                                </option>
+                                        Le {{ date_format(date_create($schedule->start_date), 'd/m/y') }}
+                                        de {{ str_replace('h00', 'h', date_format(date_create($schedule->start_date), 'H\hi')) }}
+                                        à {{ str_replace('h00', 'h', date_format(date_create($schedule->end_date), 'H\hi')) }}
+                                        ({{ $schedule->training->name }} - Adulte)
+                                    </option>
+                                @elseif($schedule->training->run === 'kid' && $userAge < 16)
+                                    <option
+                                        value="{{ old('schedule_id', $schedule->id) }}" {{ $booking->schedule_id == $schedule->id ? 'selected' : '' }}>
+                                        Le {{ date_format(date_create($schedule->start_date), 'd/m/y') }}
+                                        de {{ str_replace('h00', 'h', date_format(date_create($schedule->start_date), 'H\hi')) }}
+                                        à {{ str_replace('h00', 'h', date_format(date_create($schedule->end_date), 'H\hi')) }}
+                                        ({{ $schedule->training->name }} - Enfant)
+                                    </option>
+                                @endif
                             @endforeach
                         </select>
                     </td>

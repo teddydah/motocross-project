@@ -40,19 +40,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <th scope="row"><label for="max_people">Nb max de participants :</label></th>
+                    <th scope="row"><label for="run">Série :</label></th>
                     <td>
-                        <input type="text" name="max_people" id="max_people" placeholder="20"
-                               value="{{ old('max_people') }}" required>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"><label for="track">Piste :</label></th>
-                    <td>
-                        <select name="track" id="track" required>
-                            <option value="">-- Sélectionnez une piste --</option>
-                            <option value="{{ old('track', 'mx') }}">MX</option>
-                            <option value="{{ old('track', 'kid') }}">Enfant</option>
+                        <select name="run" id="run" required>
+                            <option value="">-- Sélectionnez une série --</option>
+                            <option value="{{ old('run', 'adult') }}">Adulte</option>
+                            <option value="{{ old('run', 'kid') }}">Enfant</option>
                         </select>
                     </td>
                 </tr>

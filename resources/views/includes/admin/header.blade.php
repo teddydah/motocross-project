@@ -46,39 +46,28 @@
                         </ul>
                     </li>
                 @endif
-                @if(Auth::user()->role === 'admin')
-                    <li class="dropdown">
-                        <a class="{{ Route::currentRouteName() == 'trainings.index' || Route::currentRouteName() == 'trainings.create' ? 'active' : '' }}"
-                           href="#"><span>Entraînements</span> <i class="bi bi-chevron-down"></i>
-                        </a>
-                        <ul>
-                            <li>
-                                <a class="{{ Route::currentRouteName() == 'trainings.index' ? 'active' : '' }}" href="{{ route('trainings.index') }}
+
+                <li class="dropdown">
+                    <a class="{{ Route::currentRouteName() == 'trainings.index' || Route::currentRouteName() == 'trainings.create' ? 'active' : '' }}"
+                       href="#"><span>Entraînements</span> <i class="bi bi-chevron-down"></i>
+                    </a>
+                    <ul>
+                        <li>
+                            <a class="{{ Route::currentRouteName() == 'trainings.index' ? 'active' : '' }}" href="{{ route('trainings.index') }}
                             ">Liste des entraînements</a>
-                            </li>
+                        </li>
+                        @if(Auth::user()->role === 'admin')
                             <li>
                                 <a class="{{ Route::currentRouteName() == 'trainings.create' ? 'active' : '' }}" href="{{ route('trainings.create') }}
                             ">Ajouter un entraînement</a>
                             </li>
-                        </ul>
-                    </li>
-                @else
-                    <li class="dropdown">
-                        <a class="{{ Route::currentRouteName() == 'trainings.index' || Route::currentRouteName() == 'trainings.create' ? 'active' : '' }}"
-                           href="#"><span>Entraînements</span> <i class="bi bi-chevron-down"></i>
-                        </a>
-                        <ul>
-                            <li>
-                                <a class="{{ Route::currentRouteName() == 'trainings.index' ? 'active' : '' }}" href="{{ route('trainings.index') }}
-                            ">Liste des entraînements</a>
-                            </li>
-                            <li><a class="{{ Route::currentRouteName() == 'bookings.create' ? 'active' : '' }}"
-                                   href="{{ route('bookings.create') }}">S'inscrire à un entraînement</a></li>
-                            <li><a class="{{ Route::currentRouteName() == 'bookings.index' ? 'active' : '' }}"
-                                   href="{{ route('bookings.index') }}">Mes inscriptions</a></li>
-                        </ul>
-                    </li>
-                @endif
+                        @endif
+                        <li><a class="{{ Route::currentRouteName() == 'bookings.index' ? 'active' : '' }}"
+                               href="{{ route('bookings.index') }}">Liste des inscriptions</a></li>
+                        <li><a class="{{ Route::currentRouteName() == 'bookings.create' ? 'active' : '' }}"
+                               href="{{ route('bookings.create') }}">S'inscrire à un entraînement</a></li>
+                    </ul>
+                </li>
                 @if(Auth::user()->role === 'admin')
                     <li class="dropdown">
                         <a class="{{ Route::currentRouteName() == 'schedules.index' || Route::currentRouteName() == 'schedules.create' ? 'active' : '' }}"
@@ -89,17 +78,6 @@
                                    href="{{ route('schedules.index') }}">Liste des horaires</a></li>
                             <li><a class="{{ Route::currentRouteName() == 'schedules.create' ? 'active' : '' }}"
                                    href="{{ route('schedules.create') }}">Ajouter un horaire</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="{{ Route::currentRouteName() == 'bookings.index' || Route::currentRouteName() == 'bookings.create' ? 'active' : '' }}"
-                           href="#"><span>Réservations</span> <i class="bi bi-chevron-down"></i>
-                        </a>
-                        <ul>
-                            <li><a class="{{ Route::currentRouteName() == 'bookings.index' ? 'active' : '' }}"
-                                   href="{{ route('bookings.index') }}">Liste des inscriptionss</a></li>
-                            <li><a class="{{ Route::currentRouteName() == 'bookings.create' ? 'active' : '' }}"
-                                   href="{{ route('bookings.create') }}">S'inscrire à un entraînement</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

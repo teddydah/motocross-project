@@ -13,8 +13,8 @@ return new class extends Migration {
         Schema::create('trainings', function (Blueprint $table) {
             $table->id();
             $table->string('name'); // Nom du circuit
+            $table->enum('run', ['adult', 'kid']); // Type de série
             $table->integer('max_people'); // Nb max de pilotes inscrits
-            $table->enum('track', ['mx', 'kid']); // Type de piste
             $table->enum('vehicle', ['moto'])->default('Moto'); // Véhicule autorisé
             $table->enum('license_type', ['ufolep', 'ffm']);
             $table->integer('length')->nullable();

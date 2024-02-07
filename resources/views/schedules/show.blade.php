@@ -32,6 +32,10 @@
                 <th scope="row">Club :</th>
                 <td>{{ $schedule->training->name }}</td>
             </tr>
+            <tr>
+                <th scope="row">Série :</th>
+                <td>{{ $schedule->training->run === 'adult' ? 'Adulte' : 'Enfant' }}</td>
+            </tr>
             </tbody>
             <tfoot>
             <tr>

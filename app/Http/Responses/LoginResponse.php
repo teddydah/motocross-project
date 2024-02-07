@@ -16,6 +16,6 @@ class LoginResponse implements LoginResponseContract
     public function toResponse($request): RedirectResponse|Response
     {
         if (Auth::user()->role === 'admin') return redirect()->route('users.index');
-        else return redirect()->route('users.show', [Auth::user()->id]);
+        else return redirect()->route('bookings.index');
     }
 }

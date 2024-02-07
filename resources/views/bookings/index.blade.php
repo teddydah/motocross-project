@@ -60,11 +60,11 @@
                         </td>
                         <td>
                             @if(Auth::user()->role === 'admin')
-                                <button class="btn btn-secondary btn-outline-light btn-edit-icon m-2"
-                                        href="{{ route('bookings.edit', $booking->id) }}"
-                                        title="Modifier l'inscription" {{ Auth::id() !== $booking->user_id ? 'disabled' : '' }}>
+                                <a class="btn btn-secondary btn-outline-light btn-edit-icon m-2"
+                                   href="{{ route('bookings.edit', $booking->id) }}"
+                                   title="Modifier l'inscription" {{ Auth::id() !== $booking->user_id ? 'disabled' : '' }}>
                                     <i class="fa-solid fa-pen-to-square"></i>
-                                </button>
+                                </a>
                             @endif
                             <form class="d-inline-block" action="{{ route('bookings.destroy', $booking->id) }}"
                                   method="post">

@@ -43,7 +43,9 @@
                         <select name="training_id" id="training_id" required>
                             @foreach($trainings as $training)
                                 <option
-                                    value="{{ old('training_id', $training->id) }}" {{ $schedule->training_id == $training->id ? 'selected' : '' }}>{{ $training->name }}</option>
+                                        value="{{ old('training_id', $training->id) }}" {{ $schedule->training_id == $training->id ? 'selected' : '' }}>{{ $training->name }}
+                                    ({{ $training->run === 'adult' ? 'Adulte' : 'Enfant' }})
+                                </option>
                             @endforeach
                         </select>
                     </td>
