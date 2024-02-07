@@ -81,7 +81,7 @@
                     <th scope="row">Description :</th>
                     <td>
                         <ul class="mb-0">
-                            <li><?= str_replace('<br />', '<li>', nl2br(htmlspecialchars($training->description))) ?></li>
+                            <li>{!! str_replace('<br />', '<li>', nl2br(htmlspecialchars($training->description))) !!}</li>
                         </ul>
                     </td>
                 </tr>
@@ -93,7 +93,7 @@
                     <a class="btn btn-dark btn-outline-light btn-back ms-0 me-0" href="{{ route('trainings.index') }}"
                        title="Retour à la liste des entraînements">Retour</a>
                        @if (auth()->check())
-                        @if (auth()->user()->role === 'admin') 
+                        @if (auth()->user()->role === 'admin')
                             <a class="btn btn-secondary btn-outline-light btn-edit m-2"
                             href="{{ route('trainings.edit', $training->id) }}" title="Modifier l'entraînement">Éditer
                             </a>

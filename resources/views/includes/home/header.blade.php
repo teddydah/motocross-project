@@ -20,7 +20,7 @@
                             <a class="{{ Route::currentRouteName() == 'users.show' || Route::currentRouteName() == 'users.edit' ? 'active' : '' }}"
                                href="#"><span>Mon compte</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
-                                <li><a class="user {{ Route::currentRouteName() == 'users.show' ? 'active' : '' }}"
+                                <li><a class="fw-bold {{ Route::currentRouteName() == 'users.show' ? 'active' : '' }}"
                                        href="{{ route('users.show', ['user' => Auth::user()->id]) }}">{{ Auth::user()->email }}</a>
                                 </li>
                                 <li>

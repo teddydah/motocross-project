@@ -135,7 +135,8 @@
 * Mobile Navigation
 */
 .mobile-nav-toggle {
-    color: #354144;
+    /*color: #354144;*/
+    color: var(--color-1);
     font-size: 28px;
     cursor: pointer;
     display: block;
@@ -182,7 +183,7 @@
 .navbar-mobile ul {
     display: block;
     position: absolute;
-    top: 72px;
+    top: 81px;
     right: 15px;
     bottom: 15px;
     padding: 10px 0;
@@ -203,7 +204,7 @@
 .navbar-mobile a:focus {
     padding: 10px 20px;
     font-size: 15px;
-    color: #354144;
+    color: var(--color-1);
 }
 
 .navbar-mobile a:hover,

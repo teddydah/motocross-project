@@ -1,6 +1,14 @@
 /*--------------------------------------------------------------
 # Tables
 --------------------------------------------------------------*/
+.table a:not(.btn) {
+    color: var(--black);
+}
+
+.table a:not(.btn):hover {
+    color: var(--color-2);
+}
+
 .table-admin tr th,
 .table-admin tr td {
     width: 50%;

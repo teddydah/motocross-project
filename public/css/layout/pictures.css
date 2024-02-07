@@ -63,7 +63,8 @@
 }
 
 .portfolio .portfolio-wrap .portfolio-info .portfolio-links a {
-    color: #01b1d7;
+    /*color: #01b1d7;*/
+    color: var(--color-1);
     margin: 0 4px;
     background-color: var(--white);
     border-radius: 50px;
@@ -81,7 +82,8 @@
 }
 
 .portfolio .portfolio-wrap .portfolio-info .portfolio-links a:hover {
-    background: #01b1d7;
+    /*background: #01b1d7;*/
+    background: var(--color-2);
     color: var(--white);
 }
 

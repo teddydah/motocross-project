@@ -22,9 +22,9 @@
     <!-- Galerie -->
     @include('home.pictures')
 
-    @include('home.team')
+    <!--include('home.team')
 
-    @include('home.testimonials')
+    include('home.testimonials')-->
 
     <!-- Formulaire de contact -->
     @include('home.contact')

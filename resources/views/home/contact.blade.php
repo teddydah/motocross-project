@@ -3,7 +3,7 @@
         <div class="section-title">
             <span>Contact</span>
             <h2>Contact</h2>
-            <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+            <p>Une question ? Vous pouvez contacter le club via le formulaire de contact</p>
         </div>
     </div>
 

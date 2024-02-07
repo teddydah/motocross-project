@@ -1,21 +1,24 @@
 @extends('layouts.main')
 
 @section('title')
-    Auribail Mx Park | Réservations
+    Auribail Mx Park | Inscriptions
 @endsection
 
 @section('header')
-    @if(Auth::check())
-        @include('includes.admin.header')
-    @endif
+    @include('includes.admin.header')
 @endsection
 
 @section('main')
     <section class="admin">
         @include('includes.alert')
         <div class="section-title container bg-white">
-            <span class="d-none">Liste des réservations</span>
-            <h2 class="mb-0">Liste des réservations</h2>
+            @if(Auth::user()->role === 'admin')
+                <span class="d-none">Liste des inscriptions</span>
+                <h2 class="mb-0">Liste des inscriptions</h2>
+            @else
+                <span class="d-none">Mes inscriptions</span>
+                <h2 class="mb-0">Mes inscriptions</h2>
+            @endif
         </div>
 
         <table class="container table-index table table-striped text-center align-baseline mb-0">
@@ -31,7 +34,7 @@
             <tr>
                 <td colspan="4">
                     <a class="btn-add btn btn-primary btn-outline-light" href="{{ route('bookings.create') }}"
-                       title="S'inscrire à un entraînement">S'inscrire</a>
+                       title="S'inscrire à un entraînement">S'inscrire à un entraînement</a>
                 </td>
             </tr>
             </tfoot>

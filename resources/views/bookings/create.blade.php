@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('title')
-    Auribail Mx Park | Réserver à un entraînement
+    Auribail Mx Park | S'inscrire à un entraînement
 @endsection
 
 @section('header')
@@ -14,8 +14,8 @@
     <section class="admin">
         @include('includes.alert')
         <div class="section-title container bg-white">
-            <span class="d-none">Réserver à un entraînement</span>
-            <h2 class="mb-0">Réserver à un entraînement</h2>
+            <span class="d-none">S'inscrire à un entraînement</span>
+            <h2 class="mb-0">S'inscrire à un entraînement</h2>
         </div>
         <form action="{{ route('bookings.store') }}" method="post">
             @csrf
