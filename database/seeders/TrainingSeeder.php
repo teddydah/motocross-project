@@ -15,7 +15,7 @@ class TrainingSeeder extends Seeder
     {
         DB::table('trainings')->insert([
             'name' => 'Auribail mx track',
-            'max_people' => 20,
+            'max_people' => 75,
             'track' => 'MX',
             'length' => 1950,
             'width' => 8,
