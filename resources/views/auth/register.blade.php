@@ -22,15 +22,7 @@
                                 </div>
                             </div>
 
-                            @if ($errors->any())
-                                <div class="alert alert-danger">
-                                    <ul class="mb-0">
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endif
+                            @include('includes.alert')
 
                             <form method="POST" action="{{ route('register') }}" class="signin-form">
                                 @csrf
@@ -50,12 +42,6 @@
                                     <input class="form-control rounded-0" id="email" type="email" name="email"
                                            placeholder="Email"
                                            required>
-                                </div>
-                                <div class="form-group mb-3">
-                                    <label class="label mb-2" for="license_number">Numéro de licence</label>
-                                    <input class="form-control rounded-0" id="license_number" type="text"
-                                           name="license_number"
-                                           placeholder="Numéro de licence">
                                 </div>
                                 <div class="form-group mb-3">
                                     <label class="label mb-2" for="phone">Numéro de téléphone</label>

@@ -35,6 +35,7 @@ class CreateNewUser implements CreatesNewUsers
         ];
 
         $messages = [
+            'password' => 'Le mot de passe doit contenir au moins 8 caractères.',
             'phone' => 'Le numéro de téléphone doit comporté 10 chiffres.',
             'zip_code' => 'Le code postal doit comporté 5 chiffres.'
         ];
@@ -45,7 +46,7 @@ class CreateNewUser implements CreatesNewUsers
             'lastname' => $input['lastname'],
             'firstname' => $input['firstname'],
             'email' => $input['email'],
-            'license_number' => $input['license_number'],
+            'license_number' => rand(000000,999999),
             'phone' => $input['phone'],
             'birth_date' => $input['birth_date'],
             'address' => $input['address'],

@@ -47,7 +47,7 @@
                                required {{ Auth::user()->id !== $user->id ? 'disabled' : '' }}>
                     </td>
                 </tr>
-                @if(Auth::user()->role === 'admin' || Auth::id() === $user->id)
+                @if(Auth::id() === $user->id)
                     <tr>
                         <th scope="row"><label for="password">Mot de passe :</label></th>
                         <td>
@@ -76,8 +76,7 @@
                 <tr>
                     <th scope="row"><label for="license_number">N° de licence :</label></th>
                     <td>
-                        <input type="text" name="license_number" id="license_number"
-                               value="{{ old('license_number', $user->license_number) }}" {{ Auth::user()->id !== $user->id ? 'disabled' : '' }}>
+                        <input type="text" name="license_number" id="license_number" value="{{ $user->license_number }}" disabled>
                     </td>
                 </tr>
                 <tr>

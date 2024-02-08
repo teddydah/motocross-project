@@ -36,12 +36,10 @@
                     <td>Utilisateur</td>
                 @endif
             </tr>
-            @if($user->license_number !== null)
-                <tr>
-                    <th scope="row">N° de licence :</th>
-                    <td>{{ $user->license_number }}</td>
-                </tr>
-            @endif
+            <tr>
+                <th scope="row">N° de licence :</th>
+                <td>{{ $user->license_number }}</td>
+            </tr>
             @if($user->phone !== null)
                 <tr>
                     <th scope="row">N° de téléphone :</th>
