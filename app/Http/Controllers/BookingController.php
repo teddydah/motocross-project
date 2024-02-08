@@ -92,7 +92,7 @@ class BookingController extends Controller
 
         $run = $schedule->training->run;
 
-        if ($userAge <= 0) return redirect()->route('bookings.index')
+        if ($userAge <= 6) return redirect()->route('bookings.index')
             ->with('warning', 'Vous ne remplissez pas les critères d\'âge requis pour cet entraînement.');
         elseif ($run === 'adult' && $userAge < $adultAge) return redirect()->route('bookings.index')
             ->with('warning', 'Vous ne remplissez pas les critères d\'âge requis pour cet entraînement.');
@@ -163,7 +163,7 @@ class BookingController extends Controller
 
         $run = Schedule::find($request->schedule_id)->training->run;
 
-        if ($userAge <= 0 || ($run === 'adult' && $userAge < $adultAge)) return redirect()->route('bookings.index')
+        if ($userAge <= 6 || ($run === 'adult' && $userAge < $adultAge)) return redirect()->route('bookings.index')
             ->with('warning', 'Vous ne remplissez pas les critères d\'âge requis pour cet entraînement.');
         elseif ($run === 'kid' && $userAge >= $adultAge) return redirect()->route('bookings.index')
             ->with('warning', 'Vous ne remplissez pas les critères d\'âge requis pour cet entraînement.');
