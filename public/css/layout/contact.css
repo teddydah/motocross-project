@@ -118,16 +118,25 @@
 }
 
 .contact .php-email-form button[type=submit] {
-    background: var(--color-hsl-1);
-    border: 0;
-    padding: 10px 24px;
+    background: var(--color-1);
+    border: 1px solid var(--white);
+    padding: 10px 16px;
     color: var(--white);
     transition: 0.4s;
     border-radius: 4px;
 }
 
+.contact .php-email-form button[type=submit]::before {
+    content: "\f1d8";
+    font-family: "Font Awesome 6 Free";
+    font-weight: bold;
+    padding-right: 0.5em;
+}
+
 .contact .php-email-form button[type=submit]:hover {
-    background: var(--color-hsl-2);
+    background: var(--color-hsl-3);
+    color: var(--color-1);
+    border: 1px solid var(--color-1);
 }
 
 .contact i.close {

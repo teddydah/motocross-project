@@ -1,10 +1,11 @@
-<section id="portfolio" class="portfolio">
+<section id="pictures" class="portfolio">
     <div class="container">
 
         <div class="section-title">
             <span>Photos</span>
             <h2>Photos</h2>
-            <!--<p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>-->
+            <p>Découvrez notre galerie captivante de moments palpitants et d'aventures tout-terrain au Auribail Mx
+                Park</p>
         </div>
 
         <!--<div class="row">

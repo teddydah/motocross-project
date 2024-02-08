@@ -15,7 +15,9 @@ class LoginResponse implements LoginResponseContract
      */
     public function toResponse($request): RedirectResponse|Response
     {
-        if (Auth::user()->role === 'admin') return redirect()->route('users.index');
-        else return redirect()->route('bookings.index');
+        if (Auth::user()->role === 'admin') return redirect()->route('users.index')
+            ->with('success', 'Bienvenue ' . Auth::user()->email . ' !');
+        else return redirect()->route('bookings.index')
+            ->with('success', 'Bienvenue ' . Auth::user()->email . ' !');
     }
 }

@@ -11,8 +11,8 @@
             @if(Route::currentRouteName() == 'home')
                 <ul>
                     <li><a class="nav-link scrollto" href="#about">À propos</a></li>
-                    <li><a class="nav-link scrollto" href="#services">Services</a></li>
-                    <li><a class="nav-link scrollto " href="#portfolio">Photos</a></li>
+                    <li><a class="nav-link scrollto" href="#circuit">Circuit</a></li>
+                    <li><a class="nav-link scrollto " href="#pictures">Photos</a></li>
                     <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
 
                     @if(Auth::check())

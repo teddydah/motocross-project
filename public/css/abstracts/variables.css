@@ -2,25 +2,14 @@
 # Variables
 --------------------------------------------------------------*/
 :root {
-    /*--color-1: #004b9a;
-    --color-2: #feec08;/*
-
     /* theme */
     --color-1: #102d66;
     --color-2: #f18617;
     --color-3: #3a2a41;
-
     --color-4: #62787d;
     --color-5: #4d5154;
-
-    --color-theme-1: #FC6700;
-    --color-theme-2: #E8C88F;
-    --color-theme-3: #000;
-
-    --color1: #f16539;
-    --color2: #343434;
-    --color3: #f6997b;
-    --color4: #d9c0b8;
+    --color-6: #FC6700;
+    --color-7: #E8C88F;
 
     /* background */
     --color-bg-1: #1f2627;
@@ -31,15 +20,13 @@
     --color-rgba-2: rgba(241, 134, 23, 0.5);
     --color-rgba-3: rgba(58, 42, 65, 0.5);
     --color-rgba-4: rgba(16, 45, 102, 0.5);
+    --color-rgba-5: rgba(0, 0, 0, 0.02);
 
     /* hsl */
-    /*--color-hsl-1: hsl(211, 100%, 30%);
-    --color-hsl-2: hsl(211, 100%, 40%);
-    --color-hsl-3: hsl(211, 100%, 90%);*/
-
     --color-hsl-1: hsl(220, 73%, 23%);
     --color-hsl-2: hsl(220, 73%, 43%);
     --color-hsl-3: hsl(220, 73%, 93%);
+    --color-hsl-4: hsl(31, 89%, 42%);
 
     --blue: #007bff;
     --indigo: #6610f2;

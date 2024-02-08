@@ -9,23 +9,15 @@
 @endsection
 
 @section('main')
-    @include('home.hero')
+    @include('home.carousel')
 
     @include('home.about')
 
-    @include('home.about_list')
-
     @include('home.training')
 
-    @include('home.services')
+    @include('home.circuit')
 
-    <!-- Galerie -->
     @include('home.pictures')
 
-    <!--include('home.team')
-
-    include('home.testimonials')-->
-
-    <!-- Formulaire de contact -->
     @include('home.contact')
 @endsection

@@ -1,5 +1,3 @@
-<?php $club = \App\Models\Club::find(1); ?>
-
 <footer id="footer">
     <div class="footer-top">
         <div class="container">
@@ -7,6 +5,7 @@
                 <div class="col-md-4">
                     <div class="d-flex justify-content-center">
                         <div class="footer-info">
+                            @php($club = \App\Models\Club::find(1))
                             <h3>{{$club->name}}</h3>
                             <p>
                                 {{$club->address}} <br>
@@ -23,32 +22,53 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 footer-links">
-                    <div class="d-flex justify-content-center">
-                        <div class="footer-info">
-                            <h4>Liens utiles</h4>
-                            <ul>
-                                <li><i class="bx bx-chevron-right"></i> <a href="{{url('/')}}">Accueil</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">À propos</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
-                            </ul>
+                <div class="links">
+                    <div class="col-md-4 footer-links">
+                        <div class="d-flex justify-content-center">
+                            <div class="footer-info">
+                                <h4>Menu</h4>
+                                <ul>
+                                    <li><i class="bx bx-chevron-right"></i> <a href="{{ url('/') }}">Accueil</a></li>
+                                    <li><i class="bx bx-chevron-right"></i> <a href="{{ url('/#about') }}">À propos</a>
+                                    </li>
+                                    <li><i class="bx bx-chevron-right"></i> <a href="{{ url('/#circuit') }}">Circuit</a>
+                                    </li>
+                                    <li><i class="bx bx-chevron-right"></i> <a href="{{ url('/#pictures') }}">Photos</a>
+                                    </li>
+                                    <li><i class="bx bx-chevron-right"></i> <a href="{{ url('/#contact') }}">Contact</a>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="col-md-4 footer-links">
-                    <div class="d-flex justify-content-center">
-                        <div class="footer-info">
-                            <h4>Our Services</h4>
-                            <ul>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-                                <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-                            </ul>
+                    <div class="col-md-4 footer-links">
+                        <div class="d-flex justify-content-center">
+                            <div class="footer-info">
+                                <h4>Liens utiles</h4>
+                                <ul>
+                                    @if(Auth::check())
+                                        <li><i class="bx bx-chevron-right"></i> <a
+                                                href="{{ route('users.show', ['user' => Auth::user()->id]) }}"
+                                                title="Voir mon profil">{{ Auth::user()->email }}</a></li>
+                                        <li><i class="bx bx-chevron-right"></i> <a
+                                                href="{{ route('users.edit', ['user' => Auth::user()->id]) }}"
+                                                title="Modifier mon profil">Modifier mon
+                                                profil</a></li>
+                                        <li><i class="bx bx-chevron-right"></i> <a
+                                                href="{{ url("/logout") }}" title="Se déconnecter">Se déconnecter</a>
+                                        </li>
+                                    @else
+                                        <li><i class="bx bx-chevron-right"></i> <a href="{{ url('/login') }}"
+                                                                                   title="Se connecter">Se
+                                                connecter</a>
+                                        </li>
+                                        <li><i class="bx bx-chevron-right"></i> <a href="{{ url('/register') }}"
+                                                                                   title="Créer un compte">Créer un
+                                                compte</a></li>
+                                    @endif
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

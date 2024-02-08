@@ -10,7 +10,7 @@
                 <div class="carousel-item slide-1 active">
                     <div class="carousel-container">
                         <div class="carousel-content">
-                            <img class="w-25 mb-4 scrollto animate__animated animate__zoomIn"
+                            <img class="mb-4 scrollto animate__animated animate__zoomIn"
                                  src="{{ url('/') }}/img/logo.png" alt="Logo Auribail Mx Park">
                         </div>
                     </div>
@@ -20,7 +20,8 @@
                 <div class="carousel-item slide-2">
                     <div class="carousel-container">
                         <div class="carousel-content">
-                            <h2 class="animate__animated animate__fadeInDown">Bienvenue à Auribail Mx Park</h2>
+                            <h2 class="animate__animated animate__fadeInDown">Bienvenue à <span>Auribail Mx Park</span>
+                            </h2>
                         </div>
                     </div>
                 </div>
@@ -29,7 +30,8 @@
                 <div class="carousel-item slide-3">
                     <div class="carousel-container">
                         <div class="carousel-content">
-                            <a href="{{ route('bookings.create') }}" class="btn-get-started scrollto animate__animated animate__fadeInUp"
+                            <a href="{{ route('bookings.create') }}"
+                               class="btn-get-started scrollto animate__animated animate__fadeInUp"
                                title="S'inscrire à un entraînement">S'inscrire à un entraînement</a>
                         </div>
                     </div>
