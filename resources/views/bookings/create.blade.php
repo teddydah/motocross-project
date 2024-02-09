@@ -33,23 +33,26 @@
                             @foreach($schedules as $schedule)
                                 @php
                                     $userAge = Carbon\Carbon::parse(Auth::user()->birth_date)->age;
+                                    $isUserAlreadyBooked = Auth::user()->bookings()->where('schedule_id', $schedule->id)->exists();
                                 @endphp
                                 @if($schedule->training->run === 'adult' && $userAge >= 16)
-                                    <option
-                                        value="{{ $schedule->id }}">
-                                        Le {{ date_format(date_create($schedule->start_date), 'd/m/y') }}
-                                        de {{ str_replace('h00', 'h', date_format(date_create($schedule->start_date), 'H\hi')) }}
-                                        à {{ str_replace('h00', 'h', date_format(date_create($schedule->end_date), 'H\hi')) }}
-                                        ({{ $schedule->training->name }} - Adulte)
-                                    </option>
+                                    @if(!$isUserAlreadyBooked)
+                                        <option value="{{ $schedule->id }}">
+                                            Le {{ date_format(date_create($schedule->start_date), 'd/m/y') }}
+                                            de {{ str_replace('h00', 'h', date_format(date_create($schedule->start_date), 'H\hi')) }}
+                                            à {{ str_replace('h00', 'h', date_format(date_create($schedule->end_date), 'H\hi')) }}
+                                            ({{ $schedule->training->name }} - Adulte)
+                                        </option>
+                                    @endif
                                 @elseif($schedule->training->run === 'kid' && $userAge < 16)
-                                    <option
-                                        value="{{ $schedule->id }}">
-                                        Le {{ date_format(date_create($schedule->start_date), 'd/m/y') }}
-                                        de {{ str_replace('h00', 'h', date_format(date_create($schedule->start_date), 'H\hi')) }}
-                                        à {{ str_replace('h00', 'h', date_format(date_create($schedule->end_date), 'H\hi')) }}
-                                        ({{ $schedule->training->name }} - Enfant)
-                                    </option>
+                                    @if(!$isUserAlreadyBooked)
+                                        <option value="{{ $schedule->id }}">
+                                            Le {{ date_format(date_create($schedule->start_date), 'd/m/y') }}
+                                            de {{ str_replace('h00', 'h', date_format(date_create($schedule->start_date), 'H\hi')) }}
+                                            à {{ str_replace('h00', 'h', date_format(date_create($schedule->end_date), 'H\hi')) }}
+                                            ({{ $schedule->training->name }} - Enfant)
+                                        </option>
+                                    @endif
                                 @endif
                             @endforeach
                         </select>
