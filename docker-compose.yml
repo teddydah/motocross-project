@@ -1,0 +1,73 @@
+version: "3"
+services:
+    phplaravel:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: phplaravel
+        restart: unless-stopped
+        tty: true
+        environment:
+            SERVICE_NAME: phplaravel
+            SERVICE_TAGS: dev
+            DB_HOST: mysqlbase
+            DB_PASSWORD: passwordroot
+            DB_PORT: 3306
+        working_dir: /var/www
+        volumes:
+            - ./:/var/www
+            - ./php/local.ini:/usr/local/etc/php/conf.d/local.ini
+        networks:
+            - reseau
+
+    nginxserver:
+        image: nginx:alpine3.18
+        container_name: nginxserver
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "8008:80"
+            - "443:443"
+        volumes:
+            - ./:/var/www
+            - ./nginx/conf.d/:/etc/nginx/conf.d/
+        networks:
+            - reseau
+
+    mysqlbase:
+        image: mysql:8.0.31
+        container_name: mysqlbase
+        restart: unless-stopped
+        tty: true
+        ports:
+            - "3306:3306"
+        environment:
+            MYSQL_DATABASE: auribail
+            MYSQL_ROOT_PASSWORD: passwordroot
+            SERVICE_TAGS: dev
+            SERVICE_NAME: mysqlbase
+        volumes:
+            - dbdata:/var/lib/mysql/
+            - ./mysql/my.cnf:/etc/mysql/my.cnf
+        networks:
+            - reseau
+    npmlaravel:
+        image: node:21.6-alpine3.19
+        container_name: npmlaravel
+        working_dir: /var/www/
+        volumes:
+            - ./:/var/www/
+        ports:
+            - 5173:5173
+        entrypoint: ["npm"]
+        # profiles: ["npm"]
+        networks:
+            - reseau
+
+networks:
+    reseau:
+        driver: bridge
+volumes:
+    dbdata:
+        driver: local
+
