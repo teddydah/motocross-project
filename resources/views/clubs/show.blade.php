@@ -67,26 +67,28 @@
                 </tr>
             @endif
             </tbody>
-            <tfoot>
-            <tr>
-                <td class="text-center" colspan="2">
-                    <a class="btn btn-dark btn-outline-light btn-back ms-0 me-0" href="{{ route('clubs.index') }}"
-                       title="Retour à la liste des clubs">Retour</a>
-                    <a class="btn btn-secondary btn-outline-light btn-edit m-2"
-                       href="{{ route('clubs.edit', $club->id) }}" title="Modifier le club">Éditer
-                    </a>
-                    <form class="d-inline-block" action="{{ route('clubs.destroy', $club->id) }}" method="post">
-                        @csrf
-                        @method('DELETE')
-                        <button class="btn btn-danger btn-outline-light btn-delete ms-0 me-0" type="submit"
-                                title="Supprimer le club"
-                                onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce club ?')" {{ $club->id === 1 ? 'disabled' : '' }}>
-                            Supprimer
-                        </button>
-                    </form>
-                </td>
-            </tr>
-            </tfoot>
+            @if(Auth::user()->role === 'admin')
+                <tfoot>
+                <tr>
+                    <td class="text-center" colspan="2">
+                        <!--<a class="btn btn-dark btn-outline-light btn-back ms-0 me-0" href="{{ route('clubs.index') }}"
+                           title="Retour à la liste des clubs">Retour</a>-->
+                        <a class="btn btn-secondary btn-outline-light btn-edit m-2"
+                           href="{{ route('clubs.edit', $club->id) }}" title="Modifier le club">Éditer
+                        </a>
+                        <form class="d-inline-block" action="{{ route('clubs.destroy', $club->id) }}" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button class="btn btn-danger btn-outline-light btn-delete ms-0 me-0" type="submit"
+                                    title="Supprimer le club"
+                                    onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce club ?')" {{ $club->id === 1 ? 'disabled' : '' }}>
+                                Supprimer
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+                </tfoot>
+            @endif
         </table>
     </section>
 @endsection

@@ -1,3 +1,4 @@
+@php($club = \App\Models\Club::find(1))
 <header id="header" class="fixed-top d-flex align-items-center">
     <div class="container d-flex align-items-center justify-content-between">
         <div class="logo">
@@ -34,7 +35,9 @@
                     <li><a class="nav-link scrollto {{ Route::currentRouteName() == 'users.index' ? 'active' : '' }}"
                            href="{{ route('users.index') }}">Utilisateurs</a></li>
                     <li><a class="nav-link scrollto" href="{{ route('posts.index') }}">Messages</a></li>
-                    <li class="dropdown">
+                    <li><a class="{{ Route::currentRouteName() == 'clubs.show' ? 'active' : '' }}"
+                           href="{{ route('clubs.show', ['club' => $club->id]) }}">{{ $club->name }}</a></li>
+                    <!--<li class="dropdown">
                         <a class="{{ Route::currentRouteName() == 'clubs.index' || Route::currentRouteName() == 'clubs.create' ? 'active' : '' }}"
                            href="#"><span>Clubs</span> <i class="bi bi-chevron-down"></i>
                         </a>
@@ -44,7 +47,7 @@
                             <li><a class="{{ Route::currentRouteName() == 'clubs.create' ? 'active' : '' }}"
                                    href="{{ route('clubs.create') }}">Ajouter un club</a></li>
                         </ul>
-                    </li>
+                    </li>-->
                 @endif
 
                 <li class="dropdown">
@@ -92,8 +95,10 @@
                         </ul>
                     </li>
                 @else
-                    <li><a class="{{ Route::currentRouteName() == 'clubs.index' ? 'active' : '' }}"
-                           href="{{ route('clubs.index') }}">Clubs</a></li>
+                    <!--<li><a class="{{ Route::currentRouteName() == 'clubs.index' ? 'active' : '' }}"
+                           href="{{ route('clubs.index') }}">Clubs</a></li>-->
+                    <li><a class="{{ Route::currentRouteName() == 'clubs.show' ? 'active' : '' }}"
+                           href="{{ route('clubs.show', ['club' => $club->id]) }}">{{ $club->name }}</a></li>
                 @endif
             </ul>
             <i class="bi bi-list mobile-nav-toggle"></i>
