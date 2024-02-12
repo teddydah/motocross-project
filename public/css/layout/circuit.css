@@ -1,0 +1,60 @@
+/*--------------------------------------------------------------
+# Services
+--------------------------------------------------------------*/
+.circuit {
+    background-color: var(--color-rgba-5);
+}
+
+.circuit .icon-box {
+    margin-bottom: 20px;
+    padding: 30px;
+    border-radius: 6px;
+    background: var(--white);
+}
+
+@media (min-width: 576px) {
+    .circuit .icon-box {
+        height: 30vh;
+    }
+}
+
+@media (min-width: 768px) {
+    .circuit .icon-box {
+        height: 35vh;
+    }
+}
+
+@media (min-width: 992px) {
+    .circuit .icon-box {
+        height: 30vh;
+    }
+}
+
+.circuit .icon-box i {
+    float: left;
+    color: var(--color-2);
+    font-size: 40px;
+    line-height: 0;
+}
+
+.circuit .icon-box h4 {
+    margin-left: 70px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.circuit .icon-box h4 a {
+    color: #354144;
+    transition: 0.3s;
+}
+
+.circuit .icon-box:hover h4 a {
+    color: var(--color-2);
+}
+
+.circuit .icon-box p {
+    margin-left: 70px;
+    line-height: 24px;
+    font-size: 14px;
+}

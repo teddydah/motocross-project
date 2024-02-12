@@ -1,0 +1,45 @@
+/*--------------------------------------------------------------
+# Tables
+--------------------------------------------------------------*/
+.table a:not(.btn) {
+    color: var(--black);
+}
+
+.table a:not(.btn):hover {
+    color: var(--color-2);
+}
+
+.table-admin tr th,
+.table-admin tr td {
+    width: 50%;
+}
+
+.table-admin tr th {
+    text-align: right;
+}
+
+.table-admin tr td {
+    text-align: left;
+}
+
+.table-admin.table-edit tr td input,
+.table-admin.table-edit tr td select {
+    height: 2em;
+}
+
+.table-admin.table-edit tr td input:not(input[type="file"]),
+.table-admin.table-edit tr td textarea,
+.table-admin.table-edit tr td select {
+    width: 100%;
+    padding-left: 0.25em;
+}
+
+.table-index tr th,
+.table-index tr td {
+    width: 25%;
+}
+
+.table tr td.text-justify {
+    text-align: justify !important;
+    padding: 1em;
+}

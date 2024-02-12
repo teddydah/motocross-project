@@ -1,0 +1,118 @@
+/*--------------------------------------------------------------
+# Pictures
+--------------------------------------------------------------*/
+.portfolio-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: -7.5px; /* Pour compenser la marge négative des éléments enfants */
+}
+
+.portfolio-item {
+    width: calc(33.33% - 15px);
+    margin: 15px 0;
+}
+
+.portfolio .portfolio-wrap {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
+    max-height: 100%; /* Modifier ici */
+}
+
+.portfolio-wrap img {
+    width: 100%;
+    max-height: 17em;
+    height: 17em;
+    object-fit: cover;
+    transition: 0.3s;
+}
+
+.portfolio .portfolio-wrap .portfolio-info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0;
+    position: absolute;
+    bottom: 0;
+    top: 0;
+    left: 0;
+    right: 0;
+    transition: 0.3s;
+    text-align: center;
+    background: rgba(53, 65, 68, 0.6);
+    padding-bottom: 30px;
+}
+
+.portfolio .portfolio-wrap .portfolio-info h4 {
+    font-size: 20px;
+    color: var(--white);
+    font-weight: 600;
+}
+
+.portfolio .portfolio-wrap .portfolio-info h5 {
+    color: var(--white);
+    font-size: 14px;
+    padding: 1em 0;
+}
+
+.portfolio .portfolio-wrap .portfolio-info .portfolio-links {
+    display: flex;
+}
+
+.portfolio .portfolio-wrap .portfolio-info .portfolio-links a {
+    /*color: #01b1d7;*/
+    color: var(--color-1);
+    margin: 0 4px;
+    background-color: var(--white);
+    border-radius: 50px;
+    width: 36px;
+    height: 36px;
+    transition: 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.portfolio .portfolio-wrap .portfolio-info .portfolio-links a i {
+    font-size: 18px;
+    line-height: 0;
+}
+
+.portfolio .portfolio-wrap .portfolio-info .portfolio-links a:hover {
+    background: var(--color-2);
+    color: var(--white);
+}
+
+.portfolio .portfolio-wrap:hover {
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+}
+
+.portfolio .portfolio-wrap:hover .portfolio-info {
+    opacity: 1;
+    padding-bottom: 0;
+}
+
+.portfolio .portfolio-wrap:hover img {
+    transform: scale(1.1);
+}
+
+@media (min-width: 768px) {
+    .portfolio-wrap img {
+        height: 15em;
+    }
+}
+
+@media (min-width: 992px) {
+    .portfolio-wrap img {
+        height: 13em;
+    }
+}
+
+@media (min-width: 1200px) {
+    .portfolio-wrap img {
+        height: 17em;
+    }
+}

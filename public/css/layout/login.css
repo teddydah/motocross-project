@@ -1,0 +1,121 @@
+/*--------------------------------------------------------------
+# Login Form
+--------------------------------------------------------------*/
+.ftco-no-pt {
+    padding-top: 0;
+}
+
+.ftco-no-pb {
+    padding-bottom: 0;
+}
+
+.text-wrap, .login-wrap {
+    width: 50%;
+}
+
+@media (max-width: 991.98px) {
+    .text-wrap, .login-wrap {
+        width: 100%;
+    }
+}
+
+.text-wrap {
+    background: var(--color-1) url("../../img/motocross-3.jpg") no-repeat center;
+    /*background-blend-mode: luminosity;*/
+    /*background-blend-mode: hard-light;*/
+    background-size: cover;
+    color: var(--white);
+}
+
+@media (max-width: 767.98px) {
+    .text-wrap {
+        background-size: 25%;
+    }
+}
+
+.register .text-wrap {
+    background-image: url("../../img/motocross-2.jpg");
+}
+
+.text-wrap.order-md-last {
+    padding: 0 !important;
+}
+
+.text-wrap .text {
+    background-color: var(--color-rgba-4);
+    padding: 1em;
+}
+
+.text-wrap .text h2 {
+    font-weight: 900;
+    color: var(--white);
+}
+
+.login-wrap {
+    position: relative;
+    background: var(--white);
+}
+
+.login-wrap h3 {
+    font-weight: 300;
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-group .label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--black);
+    font-weight: 700;
+}
+
+.form-group input {
+    height: 44px;
+}
+
+.form-group a {
+    color: gray;
+}
+
+.checkbox-wrap {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--black);
+    font-weight: 700;
+}
+
+.checkbox-wrap input {
+    vertical-align: middle;
+    padding-right: 0.5em;
+}
+
+.btn {
+    cursor: pointer;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    font-size: 15px;
+    padding: 10px 20px;
+    border-radius: 50px;
+}
+
+.btn:hover, .btn:active, .btn:focus {
+    outline: none;
+}
+
+.btn.btn-white {
+    border: 1px solid var(--white);
+    background: var(--white);
+    color: var(--color-1);
+    padding: 0.7em;
+}
+
+.btn.btn-white:active,
+.btn.btn-white:hover {
+    border: 1px solid var(--white) !important;
+    background: var(--color-2) !important;
+    color: var(--white);
+}

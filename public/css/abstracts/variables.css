@@ -1,0 +1,62 @@
+/*--------------------------------------------------------------
+# Variables
+--------------------------------------------------------------*/
+:root {
+    /* theme */
+    --color-1: #102d66;
+    --color-2: #f18617;
+    --color-3: #3a2a41;
+    --color-4: #62787d;
+    --color-5: #4d5154;
+    --color-6: #FC6700;
+    --color-7: #E8C88F;
+
+    /* background */
+    --color-bg-1: #1f2627;
+    --color-bg-2: #2a3336;
+
+    /* rgba */
+    --color-rgba-1: rgba(0, 75, 154, 0.5);
+    --color-rgba-2: rgba(241, 134, 23, 0.5);
+    --color-rgba-3: rgba(58, 42, 65, 0.5);
+    --color-rgba-4: rgba(16, 45, 102, 0.5);
+    --color-rgba-5: rgba(0, 0, 0, 0.02);
+
+    /* hsl */
+    --color-hsl-1: hsl(220, 73%, 23%);
+    --color-hsl-2: hsl(220, 73%, 43%);
+    --color-hsl-3: hsl(220, 73%, 93%);
+    --color-hsl-4: hsl(31, 89%, 42%);
+
+    --blue: #007bff;
+    --indigo: #6610f2;
+    --purple: #6f42c1;
+    --pink: #e83e8c;
+    --red: #dc3545;
+    --orange: #fd7e14;
+    --yellow: #ffc107;
+    --green: #28a745;
+    --teal: #20c997;
+    --cyan: #17a2b8;
+    --black: #000;
+    --white: #fff;
+    --gray: #6c757d;
+    --gray-dark: #343a40;
+    --primary: #007bff;
+    --secondary: #6c757d;
+    --success: #28a745;
+    --info: #17a2b8;
+    --warning: #ffc107;
+    --danger: #dc3545;
+    --light: #f8f9fa;
+    --dark: #343a40;
+
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+
+    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}

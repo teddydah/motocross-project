@@ -1,0 +1,47 @@
+/*--------------------------------------------------------------
+# Header
+--------------------------------------------------------------*/
+#header {
+    /*height: 70px;*/
+    padding: 1em 0;
+    z-index: 997;
+    transition: all 0.5s;
+    background: var(--white);
+    /*top: 44px;*/
+    position: relative;
+}
+
+#header.header-scrolled {
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+    top: 0;
+}
+
+#header .logo h1 {
+    font-size: 28px;
+    margin: 0;
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+#header .logo h1 a,
+#header .logo h1 a:hover {
+    color: #354144;
+    text-decoration: none;
+}
+
+#header .logo h1 a span:first-child,
+#header .logo h1 a:hover span:first-child {
+    color: var(--color-1);
+}
+
+#header .logo h1 a span,
+#header .logo h1 a:hover span {
+    color: var(--color-2);
+}
+
+#header .logo img {
+    padding: 0;
+    margin: 0;
+    max-height: 7vh;
+}
